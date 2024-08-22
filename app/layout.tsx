@@ -1,8 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Lato, League_Spartan } from "next/font/google"
 
-const inter = Inter({ subsets: ["latin"] });
+
+ const lato = Lato({
+  weight: ["400", "300","700", "900"],
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-lato"
+})
+ const spartan = League_Spartan({
+  weight: ["100","200","300", "400","500","600","700","800", "900"],
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-spartan"
+})
+
 
 export const metadata: Metadata = {
   title: "Watch And Whimsy",
@@ -16,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
+      <body className={`${lato.variable} ${spartan.variable} ${lato.className}`}>{children}</body>
     </html>
   );
 }

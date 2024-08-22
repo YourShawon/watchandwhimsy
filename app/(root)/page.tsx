@@ -1,3 +1,10 @@
+import Navbar from "@/components/shared/navbar";
+
+
 export default function Home() {
-  return <main>Watch And Whimsy</main>;
+  return (
+    <>
+    <Navbar/>
+    </>
+  );
 }
