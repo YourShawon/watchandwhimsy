@@ -1,6 +1,3 @@
-
 export default function Home() {
-  return (
-    <main>Watch And Whimsy</main>
-  );
+  return <main>Watch And Whimsy</main>;
 }
