@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       colors: {
+        green: "#088178",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -58,6 +59,10 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        lato: "var(--font-lato)",
+        spartan: "var(--font-spartan)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -69,8 +74,8 @@ const config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 2s ease-out",
+        "accordion-up": "accordion-up 1s ease-out",
       },
     },
   },
