@@ -74,8 +74,8 @@ const config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 2s ease-out",
-        "accordion-up": "accordion-up 1s ease-out",
+        "accordion-down": "accordion-down .7s ease-out",
+        "accordion-up": "accordion-up .7s ease-out",
       },
     },
   },
