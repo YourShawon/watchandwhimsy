@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Lato, League_Spartan } from "next/font/google"
+import Footer from "@/components/shared/footer";
+import Navbar from "@/components/shared/navbar";
 
 
  const lato = Lato({
@@ -27,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} ${spartan.variable} ${lato.className}`}>{children}</body>
+      <body className={`${lato.variable} ${spartan.variable} ${lato.className}`}><Navbar />{children}<Footer /></body>
     </html>
   );
 }

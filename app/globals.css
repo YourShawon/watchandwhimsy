@@ -16,3 +16,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.item {
+  display: none;
+}
+
+.group:hover .item {
+  display: block;
+}

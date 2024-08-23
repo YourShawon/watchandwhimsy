@@ -75,7 +75,7 @@ const teamData: TeamMember[] = [
 const TeamSection: FC = () => {
   return (
     <div>
-      <div className='mt-20 flex flex-col gap-12 sm:container xs:mt-12'>
+      <div className='mt-20 mb-10 flex flex-col gap-12 sm:container xs:mt-12'>
         <div className='m-auto flex flex-col items-center justify-center gap-2 text-center xs:w-[90%] sm:w-3/4 xl:w-2/4'>
           <h2 className='font-bold text-gray-800 xs:text-xl sm:text-xl md:text-2xl xl:text-4xl'>
             Our Amazing Team
