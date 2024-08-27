@@ -1,6 +1,12 @@
 import Footer from '@/components/shared/footer'
 import Navbar from '@/components/shared/navbar'
+import Products from '@/components/shared/products'
 
-export default function Home() {
-  return <div className='p-20 flex justify-center items-center'><h2>Hello Programers</h2></div>
-}
+const Home = () => (
+  // <div className='flex items-center justify-center p-20'>
+  //   <h2>Hello Programers</h2>
+  // </div>
+  <Products />
+)
+
+export default Home

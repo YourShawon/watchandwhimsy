@@ -12,6 +12,11 @@ import {
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import Logo from '../icons/logo'
+import Facebook from '../icons/facebook'
+import Twitter from '../icons/twitter'
+import Instagram from '../icons/instagram'
+import Youtube from '../icons/youtube'
+import { Separator } from '@radix-ui/react-separator'
 
 const Footer = () => {
   const [value, setValue] = useState<string>('')
@@ -28,93 +33,112 @@ const Footer = () => {
   }
 
   return (
-    <>
-      <div className='bg-darkBlue flex flex-wrap items-start justify-between border-t border-[#088178] bg-[#E8F6EA] py-10 xs:gap-y-5 xs:px-2 sm:gap-y-8 sm:px-8'>
-        <div className='flex flex-col gap-3 xs:w-full sm:w-2/4 md:w-1/3 xl:w-1/4'>
+    <div className='bg-[#E8F6EA] py-6 sm:pb-2 sm:pt-10'>
+      <div className='container flex flex-wrap items-start justify-between gap-y-5 font-spartan text-base text-[#222] xl:text-lg'>
+        <div className='lg:w-1/3 flex w-full flex-col gap-1 sm:w-1/2 xl:w-1/4'>
           <Link href={'#'}>
-            <div className='mb-4 flex items-center justify-start gap-3'>
+            <div className='flex items-end justify-start'>
               <Logo />
-              <span className='font-semibold text-[#088178]'>Watch Whimsy</span>
+              <span className='text-xl font-semibold'>Watch Whimsy</span>
             </div>
           </Link>
-          <span className='font-semibold xs:text-sm xs:text-[#088178] sm:text-[16px] sm:leading-6 sm:text-[#90908e]'>
+          <span className='mt-4 font-semibold text-[#088178] sm:text-[#90908e]'>
             SUPPORT
           </span>
-          <p className='text-[#222] xs:text-sm sm:text-[16px] sm:leading-6'>
-            <span className=''>South Banasree,</span>
+          <p>
+            <span>South Banasree,</span>
             <br />
-            <span className=''>Khilgaon, Dhaka, Bangladesh.</span>
+            <span>Khilgaon, Dhaka, Bangladesh.</span>
           </p>
-          <p className='text-[#222] xs:text-sm sm:text-[16px] sm:leading-6'>
-            support@wathwhimsy.com
-          </p>
-          <p className='text-[#222] xs:text-sm sm:text-[16px] sm:leading-6'>
-            +880 19** - ****62
-          </p>
+          <p>support@wathwhimsy.com</p>
+          <p>+880 19** - ****62</p>
         </div>
-        <div className='flex flex-col gap-4 xs:w-2/4 md:w-1/3 xl:w-1/4'>
-          <span className='font-semibold text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-            INFORMATION
-          </span>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              My Account
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Shop
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Login / Register
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Cart
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Wishlist
-            </span>
-          </Link>
+
+        <div className='lg:w-1/3 flex w-1/2 flex-col gap-1 xl:w-1/4'>
+          <span className='font-semibold text-[#088178]'>INFORMATION</span>
+          <ul>
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  My Account
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Shop
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Login / Register
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href='/'>
+                <span className='hover:ml-2 hover:mr-0 hover:text-[#088178] transition-all duration-500'>Cart</span>
+              </Link>
+            </li>
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Wishlist
+                </span>
+              </Link>
+            </li>
+          </ul>
         </div>
-        <div className='flex flex-col gap-4 xs:w-2/4 md:w-1/3 xl:w-1/4'>
-          <span className='font-semibold text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-            ABOUT
-          </span>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Privacy Policy
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Terms & Conditions
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              FAQ
-            </span>
-          </Link>
-          <Link href='/'>
-            <span className='mr-2 text-[#222] transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              Contact
-            </span>
-          </Link>
+
+        <div className='lg:w-1/3 flex w-1/2 flex-col gap-1 xl:w-1/4'>
+          <span className='font-semibold text-[#088178]'>ABOUT</span>
+          <ul>
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Privacy Policy
+                </span>
+              </Link>
+            </li>
+
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Terms & Conditions
+                </span>
+              </Link>
+            </li>
+
+            <li>
+              <Link href='/'>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  FAQ
+                </span>
+              </Link>
+            </li>
+
+            <li>
+              <Link href='/'>
+                <span
+                  className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'
+                  className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'
+                >
+                  Contact
+                </span>
+              </Link>
+            </li>
+          </ul>
         </div>
-        <div className='flex flex-col gap-4 xs:w-full sm:w-2/4 md:w-full md:flex-row xl:w-1/4 xl:flex-col'>
-          <div className='flex flex-col gap-4 md:w-1/2 xl:w-full'>
-            <h3 className='font-semibold text-[#088178] xs:text-sm sm:text-[16px] sm:leading-6'>
-              SUBSCRIBE
-            </h3>
+
+        <div className='lg:w-full lg:flex-row lg:justify-start lg:items-start lg:gap-12 flex w-full flex-col gap-4 sm:w-1/2 xl:w-1/4 xl:flex-col xl:gap-4'>
+          <div className='lg:w-1/2 xl:w-full'>
+            <h3 className='mb-2 font-semibold text-[#088178]'>SUBSCRIBE</h3>
             <form
               onSubmit={handleSubmit}
-              className='flex w-full max-w-sm items-center space-x-2'
+              className='flex w-full items-center space-x-2'
             >
               <Input
                 type='email'
@@ -122,7 +146,7 @@ const Footer = () => {
                 name='email'
                 onChange={handleChange}
                 placeholder='Enter your email'
-                className='border border-[#088178] text-[#222]'
+                className='lg:text-lg border border-[#088178] text-base text-[#222]'
               />
               <Button
                 type='submit'
@@ -133,64 +157,51 @@ const Footer = () => {
               </Button>
             </form>
           </div>
-          <div className='flex flex-col gap-4 md:w-1/2 xl:w-full'>
-            <h2 className='text-base font-semibold text-[#90908e] md:text-[16px] md:uppercase md:leading-6 md:text-[#088178] xl:capitalize xl:text-[#90908e]'>
+
+          <div className='lg:w-1/2 xl:w-full'>
+            <h5 className='font-spartan text-lg font-semibold text-[#90908c]'>
               Follow Us
-            </h2>
-            <div className='flex gap-2'>
-              <Link href='/'>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  className='border border-[#088178] bg-transparent'
-                >
-                  <GitHubLogoIcon className='h-4 w-4' />
-                </Button>
+            </h5>
+            <ul className='mt-3 flex gap-3'>
+              <Link href={'#'}>
+                <li>
+                  <Facebook />
+                </li>
               </Link>
-              <Link href='/'>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  className='border border-[#088178] bg-transparent'
-                >
-                  <LinkedInLogoIcon className='h-4 w-4' />
-                </Button>
+              <Link href={'#'}>
+                <li>
+                  <Twitter />
+                </li>
               </Link>
-              <Link href='/'>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  className='border border-[#088178] bg-transparent'
-                >
-                  <InstagramLogoIcon className='h-4 w-4' />
-                </Button>
+              <Link href={'#'}>
+                <li>
+                  <Instagram />
+                </li>
               </Link>
-              <Link href='/'>
-                <Button
-                  variant='outline'
-                  size='icon'
-                  className='border border-[#088178] bg-transparent'
-                >
-                  <TwitterLogoIcon className='h-4 w-4' />
-                </Button>
+              <Link href={'#'}>
+                <li>
+                  <Youtube />
+                </li>
               </Link>
-            </div>
+            </ul>
           </div>
         </div>
       </div>
 
-      <div className='bg-darkBlue flex flex-col items-center justify-center gap-2 border-t border-[#088178] bg-[#E8F6EA] p-2 text-[#90908e] sm:container xs:text-xs'>
-        <span className='px-5 text-center leading-5'>
+      <Separator className='my-4 h-[1px] bg-[#90908e]' />
+
+      <div className='container w-full text-center text-sm'>
+        <span>
           Copyright © 2024 Watch and Whimsy - all rights reserved. Technical
           support by Quantic Dynamics.
         </span>
-        <hr className='w-full bg-[#088178] opacity-30' />
-        <span className='px-5 text-center'>
+        <Separator className='my-4 h-[1px] bg-[#90908e48]' />
+        <span>
           <Link href={'#'}>Terms and conditions </Link>|
           <Link href={'#'}> Privacy Policy</Link>
         </span>
       </div>
-    </>
+    </div>
   )
 }
 
