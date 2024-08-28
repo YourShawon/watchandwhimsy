@@ -44,6 +44,8 @@ import Facebook from '../icons/facebook'
 import Twitter from '../icons/twitter'
 import Instagram from '../icons/instagram'
 import Youtube from '../icons/youtube'
+import SearchModal from './SearchModal'
+import { useState } from 'react'
 
 const Navbar = () => {
   const [text] = useTypewriter({
@@ -64,7 +66,28 @@ const Navbar = () => {
     delaySpeed: 1000
   })
 
+  const [open, setOpen] = useState(false)
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleSearch = () => {
+    setOpen(!open)
+  }
+  const handleToggle = () => {
+    setIsOpen((prev) => !prev); // Toggle popover open state
+  };
+
+  const handleOpenChange = (open:boolean) => {
+    if (open) {
+      setIsOpen(true); // Allow opening
+    } else if (!open && !isOpen) {
+      setIsOpen(false); // Allow closing
+    }
+  };
+
   return (
+
+
     <header>
       {/* header top wrapper */}
       <div className='border-green hidden border-b-[3px] border-solid lg:block'>
@@ -104,6 +127,7 @@ const Navbar = () => {
       <div className='container'>
         <div className='flex items-center justify-between py-5 lg:py-9'>
           <Logo />
+          {/* Search field */}
           <div className='hidden w-[800px] lg:block'>
             <form>
               <div className='flex items-center border border-[#dedfe2]'>
@@ -112,6 +136,7 @@ const Navbar = () => {
                 </span>
 
                 <input
+                onFocus={handleSearch}
                   className='w-full rounded-lg bg-transparent px-4 py-2 text-[#414648] focus:outline-none'
                   placeholder={`Search ${text}`}
                   type='text'
@@ -119,6 +144,10 @@ const Navbar = () => {
               </div>
             </form>
           </div>
+          {/* Search modal */}
+
+         <SearchModal open={open} setOpen={setOpen}/>
+
           <div className='flex items-center gap-3'>
             <HoverCard>
               <HoverCardTrigger className='cursor-pointer rounded-full p-3 transition duration-500 hover:bg-[#E5F0EF]'>
@@ -166,6 +195,7 @@ const Navbar = () => {
                   <SheetHeader>
                     <SheetTitle className='border-green mb-5 mt-10 flex items-center rounded-[5px] border pr-4'>
                       <input
+                        onFocus={handleSearch}
                         className='w-full border-none bg-transparent px-4 py-2 font-normal text-[#222] outline-none duration-200 placeholder:text-base placeholder:text-black focus:outline-none'
                         placeholder='Search for items...'
                         type='text'
@@ -260,47 +290,47 @@ const Navbar = () => {
       <div className='container mb-5 hidden lg:block'>
         <div className='flex justify-between'>
           <div>
-            <Popover>
-              <PopoverTrigger className='text-green flex cursor-pointer items-center gap-2 text-xl font-bold'>
+            <Popover open={isOpen} onOpenChange={handleOpenChange}>
+              <PopoverTrigger onClick={handleToggle} className='text-green flex cursor-pointer items-center gap-2 text-xl font-bold'>
                 <Category />
                 Browse Categories
               </PopoverTrigger>
-              <PopoverContent className='bg-white px-0'>
+              <PopoverContent id='popover-content-scroll' align='start' sideOffset={20} className={`bg-white px-0 top-4 left-[46px] max-h-[554px] overflow-y-scroll scroll-smooth`}>
                 <ul className='flex flex-col'>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Man
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Woman
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     kids
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Couples
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Minimalist Watch
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Leather
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Metal
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Smart Watch
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Digital Watch
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Analog Watch With Number
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Analog Watch Without Number
                   </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
+                  <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
                     Table Watch
                   </li>
                   <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
