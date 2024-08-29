@@ -153,7 +153,7 @@ const Navbar = () => {
               <HoverCardTrigger className='cursor-pointer rounded-full p-3 transition duration-500 hover:bg-[#E5F0EF]'>
                 <Cart />
               </HoverCardTrigger>
-              <HoverCardContent className='flex w-[320px] flex-col gap-5 bg-white py-8'>
+              <HoverCardContent align='end' sideOffset={30} className='flex w-[320px] flex-col gap-5 bg-white py-8'>
                 <ShortCartItem
                   image={BagImage}
                   alt={'shop bag'}
