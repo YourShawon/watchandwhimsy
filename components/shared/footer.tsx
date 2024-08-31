@@ -124,7 +124,6 @@ const Footer = () => {
               <Link href='/'>
                 <span
                   className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'
-                  className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'
                 >
                   Contact
                 </span>

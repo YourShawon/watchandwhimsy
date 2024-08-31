@@ -1,90 +1,217 @@
-import SimgleProduct from './single-product'
-import image from '@/public/uploads/6.png'
-import { idGenerator } from '@/lib/utils'
+import SimgleProduct from './single-product';
+import image from '@/public/uploads/6.png';
+import { idGenerator } from '@/lib/utils';
+
+interface Product {
+  id: string;
+  media: {
+    alt: string;
+    url: string;
+  };
+  name: string;
+  title: string;
+  description: string;
+  price: number;
+  oldPrice: number;
+  discount: string;
+  tag: string;
+  isAddFevorite: boolean;
+  isAddedToCart: boolean;
+  category: string;
+}
 
 function Products() {
-  const products = [
+  const products: Product[] = [
     {
       id: idGenerator(6),
       media: {
         alt: 'Sumsung Watch',
-        url: image
+        url: image,
       },
       name: 'Watch',
       title: 'Apple Watch SE',
       description:
         'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-      pirce: 249,
+      price: 249,
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
       isAddFevorite: false,
       isAddedToCart: true,
-      category: 'Man'
+      category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
         alt: 'Sumsung Watch',
-        url: image
+        url: image,
       },
       name: 'Watch',
       title: 'Apple Watch SE',
       description:
         'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-      pirce: 249,
+      price: 249,
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
       isAddFevorite: false,
       isAddedToCart: true,
-      category: 'Man'
+      category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
         alt: 'Sumsung Watch',
-        url: image
+        url: image,
       },
       name: 'Watch',
       title: 'Apple Watch SE',
       description:
         'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-      pirce: 249,
+      price: 249,
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
       isAddFevorite: false,
       isAddedToCart: true,
-      category: 'Man'
+      category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
         alt: 'Sumsung Watch',
-        url: image
+        url: image,
       },
       name: 'Watch',
       title: 'Apple Watch SE',
       description:
         'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-      pirce: 249,
+      price: 249,
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
       isAddFevorite: false,
       isAddedToCart: true,
-      category: 'Man'
-    }
-  ]
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    {
+      id: idGenerator(6),
+      media: {
+        alt: 'Sumsung Watch',
+        url: image,
+      },
+      name: 'Watch',
+      title: 'Apple Watch SE',
+      description:
+        'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+      price: 249,
+      oldPrice: 299,
+      discount: '05%',
+      tag: 'New',
+      isAddFevorite: false,
+      isAddedToCart: true,
+      category: 'Man',
+    },
+    // other products...
+  ];
 
   return (
-    <div className='my-20 grid xl:grid-cols-4 gap-6 xs:grid-cols-1 xs:p-2 sm:grid-cols-2 sm:p-8 md:grid-cols-3'>
+    <div className='mt-10 gap-y-4 p-4 grid justify-center sm:container sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4'>
       {products.map(product => (
         <SimgleProduct key={product.id} item={product} />
       ))}
     </div>
-  )
+  );
 }
 
-export default Products
+export default Products;
