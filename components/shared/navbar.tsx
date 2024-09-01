@@ -44,7 +44,7 @@ import Facebook from '../icons/facebook'
 import Twitter from '../icons/twitter'
 import Instagram from '../icons/instagram'
 import Youtube from '../icons/youtube'
-import SearchModal from './SearchModal'
+import SearchModal from './search-modal'
 import { useState } from 'react'
 
 const Navbar = () => {
