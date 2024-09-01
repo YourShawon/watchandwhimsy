@@ -10,6 +10,7 @@ interface ShortProps {
     price: number;
     quantity: number;
   }
+  
 const ShortCartItem:FC<ShortProps> = ({ image, alt, name, price, quantity }) => {
   return (
     <div className='flex items-start justify-between gap-4'>

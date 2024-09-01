@@ -90,7 +90,7 @@ const Navbar = () => {
 
     <header>
       {/* header top wrapper */}
-      <div className='border-green hidden border-b-[3px] border-solid lg:block'>
+      <div className='hidden border-b-[3px] border-solid border-green lg:block'>
         <div className='container'>
           {/* header top */}
           <div className='flex items-center justify-between py-[10px]'>
@@ -173,7 +173,7 @@ const Navbar = () => {
                   <span className='font-spartan text-lg font-medium text-[#9b9b9b]'>
                     Total
                   </span>
-                  <span className='text-green font-spartan text-2xl font-medium'>
+                  <span className='font-spartan text-2xl font-medium text-green'>
                     $4000.00
                   </span>
                 </div>
@@ -193,7 +193,7 @@ const Navbar = () => {
                     <X />
                   </SheetClose>
                   <SheetHeader>
-                    <SheetTitle className='border-green mb-5 mt-10 flex items-center rounded-[5px] border pr-4'>
+                    <SheetTitle className='mb-5 mt-10 flex items-center rounded-[5px] border border-green pr-4'>
                       <input
                         onFocus={handleSearch}
                         className='w-full border-none bg-transparent px-4 py-2 font-normal text-[#222] outline-none duration-200 placeholder:text-base placeholder:text-black focus:outline-none'
@@ -202,82 +202,104 @@ const Navbar = () => {
                       />
                       <SearchIcon />
                     </SheetTitle>
-                    </SheetHeader>
-                    <SheetDescription>
-                      <Accordion type='single' collapsible>
-                        <AccordionItem value='item-1'>
-                          <AccordionTrigger>
-                            <div className='flex items-center gap-2 text-green text-lg font-bold'>
+                  </SheetHeader>
+                  <SheetDescription>
+                    <Accordion type='single' collapsible>
+                      <AccordionItem value='item-1'>
+                        <AccordionTrigger>
+                          <div className='flex items-center gap-2 text-lg font-bold text-green'>
                             <Category />
                             Browse Categories
-                            </div>
-                            </AccordionTrigger>
-                          <AccordionContent>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent>
                           <ul className='flex flex-col'>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Man
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Woman
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    kids
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Couples
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Minimalist Watch
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Leather
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Metal
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Smart Watch
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Digital Watch
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Analog Watch With Number
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Analog Watch Without Number
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Table Watch
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Wall clock
-                  </li>
-                </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                      <ul className='flex flex-col'>
-                        <li className='py-2 text-base font-bold border-b border-gray-200'>Home</li>
-                        <li className='py-2 text-base font-bold border-b border-gray-200'>About</li>
-                        <li className='py-2 text-base font-bold border-b border-gray-200'>Shop</li>
-                        <li className='py-2 text-base font-bold'>Contact</li>
-                      </ul>
-                    </SheetDescription>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Man
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Woman
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              kids
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Couples
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Minimalist Watch
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Leather
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Metal
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Smart Watch
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Digital Watch
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Analog Watch With Number
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Analog Watch Without Number
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Table Watch
+                            </li>
+                            <li className='cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19] hover:text-green'>
+                              Wall clock
+                            </li>
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                    <ul className='flex flex-col'>
+                      <li className='border-b border-gray-200 py-2 text-base font-bold'>
+                        Home
+                      </li>
+                      <li className='border-b border-gray-200 py-2 text-base font-bold'>
+                        About
+                      </li>
+                      <li className='border-b border-gray-200 py-2 text-base font-bold'>
+                        Shop
+                      </li>
+                      <li className='py-2 text-base font-bold'>Contact</li>
+                    </ul>
+                  </SheetDescription>
                   <SheetFooter className='my-6'>
-                    <ul className='flex gap-4 flex-col'>
-                      <li className='text-base font-medium text-green hover:text-black'>Our Location</li>
-                      <li className='text-base font-medium text-green hover:text-black'>Log In / Sign Up</li>
-                      <li className='text-base font-medium text-green hover:text-black'>(+01) - 2345 - 6789</li>
+                    <ul className='flex flex-col gap-4'>
+                      <li className='text-base font-medium text-green hover:text-black'>
+                        Our Location
+                      </li>
+                      <li className='text-base font-medium text-green hover:text-black'>
+                        Log In / Sign Up
+                      </li>
+                      <li className='text-base font-medium text-green hover:text-black'>
+                        (+01) - 2345 - 6789
+                      </li>
                     </ul>
                   </SheetFooter>
                   <div>
-                    <h5 className='text-lg font-semibold text-[#90908c] font-spartan'>Follow Us</h5>
-                    <ul className='flex gap-3 mt-3'>
-                      <li><Facebook/></li>
-                      <li><Twitter/></li>
-                      <li><Instagram/></li>
-                      <li><Youtube/></li>
+                    <h5 className='font-spartan text-lg font-semibold text-[#90908c]'>
+                      Follow Us
+                    </h5>
+                    <ul className='mt-3 flex gap-3'>
+                      <li>
+                        <Facebook />
+                      </li>
+                      <li>
+                        <Twitter />
+                      </li>
+                      <li>
+                        <Instagram />
+                      </li>
+                      <li>
+                        <Youtube />
+                      </li>
                     </ul>
                   </div>
                 </SheetContent>
@@ -291,7 +313,7 @@ const Navbar = () => {
         <div className='flex justify-between'>
           <div>
             <Popover open={isOpen} onOpenChange={handleOpenChange}>
-              <PopoverTrigger onClick={handleToggle} className='text-green flex cursor-pointer items-center gap-2 text-xl font-bold'>
+              <PopoverTrigger onClick={handleToggle} className='text-green flex cursor-pointer items-center gap-2 text-xl font-bold'>        
                 <Category />
                 Browse Categories
               </PopoverTrigger>
@@ -331,26 +353,21 @@ const Navbar = () => {
                     Analog Watch Without Number
                   </li>
                   <li className='border-b border-[#E5E7EB] hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Table Watch
-                  </li>
-                  <li className='hover:text-green cursor-pointer px-5 py-2 text-base transition duration-200 hover:bg-[#4e97fd19]'>
-                    Wall clock
-                  </li>
                 </ul>
               </PopoverContent>
             </Popover>
           </div>
           <ul className='flex gap-4'>
-            <li className='hover:text-green cursor-pointer text-base font-bold transition-all duration-200'>
+            <li className='cursor-pointer text-base font-bold transition-all duration-200 hover:text-green'>
               Home
             </li>
-            <li className='hover:text-green cursor-pointer text-base font-bold transition-all duration-200'>
+            <li className='cursor-pointer text-base font-bold transition-all duration-200 hover:text-green'>
               About
             </li>
-            <li className='hover:text-green cursor-pointer text-base font-bold transition-all duration-200'>
+            <li className='cursor-pointer text-base font-bold transition-all duration-200 hover:text-green'>
               Shop
             </li>
-            <li className='hover:text-green cursor-pointer text-base font-bold transition-all duration-200'>
+            <li className='cursor-pointer text-base font-bold transition-all duration-200 hover:text-green'>
               Contact
             </li>
           </ul>
