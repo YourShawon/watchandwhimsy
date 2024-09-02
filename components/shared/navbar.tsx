@@ -1,4 +1,5 @@
 'use client'
+
 import Cart from '../icons/cart'
 import LocationIcon from '../icons/locationIcon'
 import Logo from '../icons/logo'
@@ -99,8 +100,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* card middle */}
 
+      {/* card middle */}
       <div className='container'>
         <div className='flex items-center justify-between py-5 lg:py-9'>
           <Logo />
@@ -278,6 +279,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
       {/* Card Nav */}
       <div className='container mb-5 hidden lg:block'>
         <div className='flex justify-between'>

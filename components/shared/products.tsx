@@ -1,4 +1,4 @@
-import SimgleProduct from './single-product';
+import SingleProduct from './single-product';
 import image from '@/public/uploads/6.png';
 import { idGenerator } from '@/lib/utils';
 
@@ -15,7 +15,7 @@ interface Product {
   oldPrice: number;
   discount: string;
   tag: string;
-  isAddFevorite: boolean;
+  isAddFavorite: boolean;
   isAddedToCart: boolean;
   category: string;
 }
@@ -25,7 +25,7 @@ function Products() {
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -36,14 +36,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -54,14 +54,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -72,14 +72,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -90,14 +90,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -108,14 +108,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -126,14 +126,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -144,14 +144,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -162,14 +162,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -180,14 +180,14 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
     {
       id: idGenerator(6),
       media: {
-        alt: 'Sumsung Watch',
+        alt: 'Samsung Watch',
         url: image,
       },
       name: 'Watch',
@@ -198,7 +198,7 @@ function Products() {
       oldPrice: 299,
       discount: '05%',
       tag: 'New',
-      isAddFevorite: false,
+      isAddFavorite: false,
       isAddedToCart: true,
       category: 'Man',
     },
@@ -208,7 +208,7 @@ function Products() {
   return (
     <div className='mt-10 gap-y-4 p-4 grid justify-center sm:container sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4'>
       {products.map(product => (
-        <SimgleProduct key={product.id} item={product} />
+        <SingleProduct key={product.id} item={product} />
       ))}
     </div>
   );

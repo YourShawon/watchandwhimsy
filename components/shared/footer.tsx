@@ -5,10 +5,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '../ui/button'
 import {
   ArrowRightIcon,
-  GitHubLogoIcon,
-  InstagramLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import Logo from '../icons/logo'
