@@ -8,6 +8,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
+import { headerCategoryList } from "@/constants/header";
 import { Dispatch, FC, SetStateAction } from "react";
 
 interface SearchProps {
@@ -21,48 +22,17 @@ const SearchModal:FC<SearchProps> = ({open, setOpen}) => {
     <>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
+        <CommandList className="popover-content-scroll">
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <span>Man</span>
+            {
+              headerCategoryList.map(category => (
+                <CommandItem key={category.id}>
+              <span className="capitalize">{category.title}</span>
             </CommandItem>
-            <CommandItem>
-              <span>Woman</span>
-            </CommandItem>
-            <CommandItem>
-              <span>kids</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Couples</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Minimalist Watch</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Leather</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Metal</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Smart Watch</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Digital Watch</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Analog Watch With Number</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Analog Watch Without Number</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Table Watch</span>
-            </CommandItem>
-            <CommandItem>
-              <span>Wall clock</span>
-            </CommandItem>
+              ))
+            }
+  
           </CommandGroup>
           <CommandSeparator />
         </CommandList>

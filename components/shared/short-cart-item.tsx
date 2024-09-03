@@ -1,16 +1,11 @@
-import Image, { StaticImageData } from "next/image"
+import Image from "next/image"
 import X from "../icons/crossIcon"
 import { FC } from "react";
+import { ShortCartProps } from "@/interface/cart";
 
 
-interface ShortProps {
-    image: StaticImageData;
-    alt: string;
-    name: string;
-    price: number;
-    quantity: number;
-  }
-const ShortCartItem:FC<ShortProps> = ({ image, alt, name, price, quantity }) => {
+
+const ShortCartItem:FC<ShortCartProps> = ({ image, alt, name, price, quantity }) => {
   return (
     <div className='flex items-start justify-between gap-4'>
       <Image className='h-[80px] w-[80px]' src={image} alt={alt} />

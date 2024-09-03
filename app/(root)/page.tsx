@@ -1,10 +1,12 @@
-import Navbar from "@/components/shared/navbar";
+import Navbar from "@/components/shared/header/navbar";
 
 
 export default function Home() {
   return (
     <>
-    <Navbar/>
+    <h1>
+    this is index page
+    </h1>
     </>
   );
 }
