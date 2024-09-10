@@ -2,16 +2,16 @@
 
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { Input } from '@/components/ui/input'
-import { Button } from '../ui/button'
+import { Button } from "@/components/ui/button"
 import {
   ArrowRightIcon,
 } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import Logo from '../icons/logo'
-import Facebook from '../icons/facebook'
-import Twitter from '../icons/twitter'
-import Instagram from '../icons/instagram'
-import Youtube from '../icons/youtube'
+import Logo from '../../icons/logo'
+import Facebook from '../../icons/facebook'
+import Twitter from '../../icons/twitter'
+import Instagram from '../../icons/instagram'
+import Youtube from '../../icons/youtube'
 import { Separator } from '@radix-ui/react-separator'
 
 const Footer = () => {

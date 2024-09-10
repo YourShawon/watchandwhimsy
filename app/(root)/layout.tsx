@@ -1,5 +1,5 @@
-import Footer from '@/components/shared/footer'
-import Navbar from '@/components/shared/navbar'
+import Footer from '@/components/shared/footer/footer'
+import Provider from './storeProvider'
 
 export default function RootLayout({
   children
@@ -8,8 +8,10 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <Navbar /> {children}
-      <Footer />
+      <Provider>
+        {children}
+        {/* <Footer /> */}
+      </Provider>
     </div>
   )
 }

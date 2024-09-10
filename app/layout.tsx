@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Lato, League_Spartan } from 'next/font/google'
+import { StoreProvider } from 'easy-peasy'
+import store from '@/store/index'
 
 const lato = Lato({
   weight: ['400', '300', '700', '900'],
