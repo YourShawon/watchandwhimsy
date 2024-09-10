@@ -118,27 +118,18 @@ export default function SingleProduct({ item }: SingleProductProps) {
           {hasFavorite ? (
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <TooltipProvider>
-                  <Tooltip delayDuration={150}>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant='outline'
-                        className='group/btn h-8 w-8 rounded-full border-none bg-[#E8F6EA] transition-all duration-700 hover:-translate-y-1 hover:bg-[#088178]'
-                        size='icon'
-                      >
-                        <FavoriteIcon
-                          isFilled={true}
-                          size={20}
-                          color={'#088178'}
-                          className={`-ml-0.5 fill-[#088178] stroke-[#088178] group-hover/btn:fill-[#fff] group-hover/btn:stroke-[#fff]`}
-                        />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent className='rounded-xl border-none bg-[#088178] text-xs text-[#fff]'>
-                      <p>{'Remove from Favorite'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Button
+                  variant='outline'
+                  className='group/btn h-8 w-8 rounded-full border-none bg-[#E8F6EA] transition-all duration-700 hover:-translate-y-1 hover:bg-[#088178]'
+                  size='icon'
+                >
+                  <FavoriteIcon
+                    isFilled={true}
+                    size={20}
+                    color={'#088178'}
+                    className={`-ml-0.5 fill-[#088178] stroke-[#088178] group-hover/btn:fill-[#fff] group-hover/btn:stroke-[#fff]`}
+                  />
+                </Button>
               </AlertDialogTrigger>
               <AlertDialogContent
                 className='w-64 rounded border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'
@@ -217,24 +208,15 @@ export default function SingleProduct({ item }: SingleProductProps) {
           {cart ? (
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <TooltipProvider>
-                  <Tooltip delayDuration={150}>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant='outline'
-                        className={`group/btn h-8 w-8 rounded-full border-none bg-[#088178] transition-all duration-700 hover:-translate-y-1 hover:bg-[#E8F6EA]`}
-                        size='icon'
-                      >
-                        <Cart
-                          className={`fill-[#fff] group-hover/btn:fill-[#088178]`}
-                        />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent className='rounded-xl border-none bg-[#088178] text-xs text-[#fff]'>
-                      <p>{'Remove from Cart'}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <Button
+                  variant='outline'
+                  className={`group/btn h-8 w-8 rounded-full border-none bg-[#088178] transition-all duration-700 hover:-translate-y-1 hover:bg-[#E8F6EA]`}
+                  size='icon'
+                >
+                  <Cart
+                    className={`fill-[#fff] group-hover/btn:fill-[#088178]`}
+                  />
+                </Button>
               </AlertDialogTrigger>
               <AlertDialogContent
                 className='w-64 rounded border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'

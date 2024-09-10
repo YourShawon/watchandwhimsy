@@ -22,27 +22,28 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+import { useStoreState } from 'easy-peasy'
 
-const data = [
-  {
-    productId: idGenerator(6),
-    title: 'This is Samsung new Watch.',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
-    image: image,
-    quantity: 1,
-    price: 100
-  },
-  {
-    productId: idGenerator(6),
-    title: 'This is Samsung new Watch.',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
-    image: image,
-    quantity: 1,
-    price: 100
-  }
-]
+// const data = [
+//   {
+//     productId: idGenerator(6),
+//     title: 'This is Samsung new Watch.',
+//     description:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
+//     image: image,
+//     quantity: 1,
+//     price: 100
+//   },
+//   {
+//     productId: idGenerator(6),
+//     title: 'This is Samsung new Watch.',
+//     description:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
+//     image: image,
+//     quantity: 1,
+//     price: 100
+//   }
+// ]
 
 const locations = [
   {
@@ -183,12 +184,19 @@ const locations = [
 ]
 
 function CartMobileView() {
-  const [cartData, setCartData] = useState([...data])
+  const data = useStoreState(states => states.addToCarts).items
+
+  const [carts, setCarts] = useState([])
+
+  const [cartQuantity, setCartQuantity] = useState([...data])
   const [shippingPrice, setShippingPrice] = useState(0)
   const [selectedLocation, setSelectedLocation] = useState('')
   const [selectErrorMessage, setSelectErrorMessage] = useState('')
   const [dataSubmitErrorMessage, setDataSubmitErrorMessage] = useState('')
 
+  useEffect(() => {
+    setCarts(data)
+  }, [data])
   const handleSubmit = e => {
     e.preventDefault()
 
@@ -208,12 +216,12 @@ function CartMobileView() {
   }
 
   const handleQuantity = (id, quantity) => {
-    setCartData(prevData =>
+    setCartQuantity(prevData =>
       prevData.map(item => (item.id === id ? { ...item, quantity } : item))
     )
   }
 
-  const subtotal = cartData.reduce(
+  const subtotal = cartQuantity.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   )
@@ -227,89 +235,105 @@ function CartMobileView() {
 
     setDataSubmitErrorMessage('')
 
-    const data = cartData.map(item => {
-      return { productId: item.productId, quantity: item.quantity, shipping: shippingPrice }
+    const proceedOrder = data.map(item => {
+      return { productId: item.productId, quantity: item.quantity }
     })
 
-    console.log('sent data to database: ', data)
+    proceedOrder.push(shippingPrice)
+
+    console.log('sent data to database: ', proceedOrder)
   }
 
   return (
-    <div>
-      {data.map(item => (
-        <CartItem key={item.productId} item={item} onQuantity={handleQuantity} />
-      ))}
+    <>
+      {carts.length < 1 ? (
+        <div>
+          <h2>404 Product not found</h2>
+        </div>
+      ) : (
+        <div>
+          <div>
+            {carts.map(item => (
+              <CartItem
+                key={item.productId}
+                item={item}
+                onQuantity={handleQuantity}
+              />
+            ))}
+          </div>
 
-      <div>
-        <form onSubmit={handleSubmit}>
-          <Select onValueChange={setSelectedLocation}>
-            <SelectTrigger className='w-[280px]'>
-              <SelectValue placeholder='Select a Deistic' />
-            </SelectTrigger>
-            <SelectContent className='bg-white text-black'>
-              <SelectGroup>
-                <SelectLabel>Dhaka</SelectLabel>
-                {locations
-                  .filter(item => item.department === 'dhaka')
-                  .map((item, index) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Rajshahi</SelectLabel>
-                {locations
-                  .filter(item => item.department === 'rajshahi')
-                  .map((item, index) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Rangpur</SelectLabel>
-                {locations
-                  .filter(item => item.department === 'rangpur')
-                  .map((item, index) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <Select onValueChange={setSelectedLocation}>
+                <SelectTrigger className='w-[280px]'>
+                  <SelectValue placeholder='Select a Deistic' />
+                </SelectTrigger>
+                <SelectContent className='bg-white text-black'>
+                  <SelectGroup>
+                    <SelectLabel>Dhaka</SelectLabel>
+                    {locations
+                      .filter(item => item.department === 'dhaka')
+                      .map((item, index) => (
+                        <SelectItem key={index} value={item.name}>
+                          {item.name}
+                        </SelectItem>
+                      ))}
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Rajshahi</SelectLabel>
+                    {locations
+                      .filter(item => item.department === 'rajshahi')
+                      .map((item, index) => (
+                        <SelectItem key={index} value={item.name}>
+                          {item.name}
+                        </SelectItem>
+                      ))}
+                  </SelectGroup>
+                  <SelectGroup>
+                    <SelectLabel>Rangpur</SelectLabel>
+                    {locations
+                      .filter(item => item.department === 'rangpur')
+                      .map((item, index) => (
+                        <SelectItem key={index} value={item.name}>
+                          {item.name}
+                        </SelectItem>
+                      ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
 
-          {selectErrorMessage && (
-            <p className='mt-2 text-red-500'>{selectErrorMessage}</p>
-          )}
+              {selectErrorMessage && (
+                <p className='mt-2 text-red-500'>{selectErrorMessage}</p>
+              )}
 
-          <Button type='submit'>Update</Button>
-        </form>
-      </div>
+              <Button type='submit'>Update</Button>
+            </form>
+          </div>
 
-      <div>
-        <Card>
-          <CardHeader>
-            <CardTitle>Cart Totals</CardTitle>
-          </CardHeader>
-          <CardContent className='flex flex-col'>
-            <span>Cart Subtotal</span>
-            <span>{`${subtotal}`}</span>
-            <span>Shipping</span>
-            <span>{shippingPrice || 'Free Shipping'}</span>
-            <span>Total</span>
-            <span>{`${shippingPrice ? shippingPrice + subtotal : subtotal}`}</span>
-          </CardContent>
-          <CardFooter>
-            {dataSubmitErrorMessage && (
-              <p className='mt-2 text-red-500'>{dataSubmitErrorMessage}</p>
-            )}
-            <Button onClick={sentData}>Proceed to Checkout</Button>
-          </CardFooter>
-        </Card>
-      </div>
-    </div>
+          <div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Cart Totals</CardTitle>
+              </CardHeader>
+              <CardContent className='flex flex-col'>
+                <span>Cart Subtotal</span>
+                <span>{`${subtotal}`}</span>
+                <span>Shipping</span>
+                <span>{shippingPrice || 'Free Shipping'}</span>
+                <span>Total</span>
+                <span>{`${shippingPrice ? shippingPrice + subtotal : subtotal}`}</span>
+              </CardContent>
+              <CardFooter>
+                {dataSubmitErrorMessage && (
+                  <p className='mt-2 text-red-500'>{dataSubmitErrorMessage}</p>
+                )}
+                <Button onClick={sentData}>Proceed to Checkout</Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
