@@ -12,7 +12,6 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import CartItem from './cartItem'
 import {
   Select,
   SelectContent,
@@ -24,26 +23,8 @@ import {
 } from '@/components/ui/select'
 import { useStoreState } from 'easy-peasy'
 
-// const data = [
-//   {
-//     productId: idGenerator(6),
-//     title: 'This is Samsung new Watch.',
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
-//     image: image,
-//     quantity: 1,
-//     price: 100
-//   },
-//   {
-//     productId: idGenerator(6),
-//     title: 'This is Samsung new Watch.',
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem",
-//     image: image,
-//     quantity: 1,
-//     price: 100
-//   }
-// ]
+import MobileCartItem from './mobileCartItem'
+import { Separator } from '@/components/ui/separator'
 
 const locations = [
   {
@@ -184,19 +165,22 @@ const locations = [
 ]
 
 function CartMobileView() {
-  const data = useStoreState(states => states.addToCarts).items
+  const getCarts = useStoreState(states => states.addToCarts).items
+  
+  const [data, setData] = useState([...getCarts])
 
-  const [carts, setCarts] = useState([])
+  const [subtotal, setSubtotal] = useState(0)
 
-  const [cartQuantity, setCartQuantity] = useState([...data])
   const [shippingPrice, setShippingPrice] = useState(0)
   const [selectedLocation, setSelectedLocation] = useState('')
+
   const [selectErrorMessage, setSelectErrorMessage] = useState('')
   const [dataSubmitErrorMessage, setDataSubmitErrorMessage] = useState('')
 
   useEffect(() => {
-    setCarts(data)
-  }, [data])
+    setData(getCarts)
+  }, [getCarts])
+
   const handleSubmit = e => {
     e.preventDefault()
 
@@ -212,19 +196,16 @@ function CartMobileView() {
 
     setShippingPrice(selected.cost)
 
-    console.log(selected)
+    console.log('Selected location: ', selected)
   }
 
-  const handleQuantity = (id, quantity) => {
-    setCartQuantity(prevData =>
-      prevData.map(item => (item.id === id ? { ...item, quantity } : item))
+  const handleQuantity = (productId, quantity) => {
+    setData(prev =>
+      prev.map(item =>
+        item.productId === productId ? { ...item, quantity } : item
+      )
     )
   }
-
-  const subtotal = cartQuantity.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  )
 
   const sentData = () => {
     if (!shippingPrice) {
@@ -244,17 +225,27 @@ function CartMobileView() {
     console.log('sent data to database: ', proceedOrder)
   }
 
+  useEffect(() => {
+    setSubtotal(
+      data.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+    )
+
+    console.log('data: ', data)
+    console.log('subtotal: ', subtotal)
+  }, [getCarts, data])
+
   return (
-    <>
-      {carts.length < 1 ? (
+    <div>
+      {data.length < 1 ? (
         <div>
           <h2>404 Product not found</h2>
         </div>
       ) : (
-        <div>
-          <div>
-            {carts.map(item => (
-              <CartItem
+        <div className='p-2'>
+          <Separator className='mb-2 w-full bg-[#90908e50]' />
+          <div className='flex flex-col gap-4'>
+            {data.map(item => (
+              <MobileCartItem
                 key={item.productId}
                 item={item}
                 onQuantity={handleQuantity}
@@ -333,7 +324,7 @@ function CartMobileView() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

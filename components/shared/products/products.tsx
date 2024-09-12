@@ -30,7 +30,7 @@ const products: Product[] = [
     title: 'Apple Watch SE',
     description:
       'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-    price: 249,
+    price: 100,
     oldPrice: 299,
     discount: '05%',
     tag: 'New',
@@ -49,7 +49,7 @@ const products: Product[] = [
     title: 'Apple Watch SE',
     description:
       'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-    price: 249,
+    price: 100,
     oldPrice: 299,
     discount: '05%',
     tag: 'New',
@@ -68,7 +68,7 @@ const products: Product[] = [
     title: 'Apple Watch SE',
     description:
       'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
-    price: 249,
+    price: 100,
     oldPrice: 299,
     discount: '05%',
     tag: 'New',
@@ -76,7 +76,235 @@ const products: Product[] = [
     isAddedToCart: true,
     quantity: 1,
     category: 'Man'
-  }
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
+  {
+    productId: idGenerator(6),
+    media: {
+      alt: 'Samsung Watch',
+      url: image
+    },
+    name: 'Watch',
+    title: 'Apple Watch SE',
+    description:
+      'Easy ways to stay connected. Motivating fitness metrics. Innovative health and safety features. And carbon neutral case and band combinations. Apple Watch SE offers totally lovable features at a feel‑good price.',
+    price: 100,
+    oldPrice: 299,
+    discount: '05%',
+    tag: 'New',
+    isAddFavorite: false,
+    isAddedToCart: true,
+    quantity: 1,
+    category: 'Man'
+  },
   // other products...
 ]
 
