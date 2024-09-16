@@ -1,19 +1,16 @@
-import CartPage from '@/components/shared/cart/cart'
-import CartMobileView from '@/components/shared/cart/cartMobile'
-import { idGenerator } from '@/lib/utils'
-import image from '@/public/uploads/6.png'
-
+import CartPage from '@/app/(root)/cart/_components/cart'
+import CartMobileView from '@/app/(root)/cart/_components/cartMobile'
 
 function Cart() {
   return (
-    <div>
-      <div className='hidden sm:block'>
+    <>
+      <div className='hidden text-[#222] sm:block'>
         <CartPage />
       </div>
-      <div className='sm:hidden'>
+      <div className='text-[#222] sm:hidden'>
         <CartMobileView />
       </div>
-    </div>
+    </>
   )
 }
 

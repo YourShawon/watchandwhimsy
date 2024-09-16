@@ -9,47 +9,44 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useStoreActions } from 'easy-peasy'
 import { Trash } from 'lucide-react'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 
-function MobileCartItem({ item, onQuantity }) {
-  const [quantity, setQuantity] = useState(1)
+interface CartItem {
+  productId: string
+  image: string
+  title: string
+  description: string
+  price: number
+  quantity: number
+}
 
-  const increment = () => {
-    setQuantity(prev => {
-      const newQuantity = prev < 10 ? prev + 1 : 10
-      onQuantity(item.productId, newQuantity)
-      return newQuantity
-    })
-  }
+interface MobileCartItemProps {
+  item: CartItem
+}
 
-  const decrement = () => {
-    setQuantity(prev => {
-      const newQuantity = prev > 1 ? prev - 1 : 1
-      onQuantity(item.productId, newQuantity)
-      return newQuantity
-    })
-  }
-
-  const carts = useStoreActions(actions => actions.addToCarts)
+const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
+  const carts = useStoreActions((actions: any) => actions.addToCarts)
 
   return (
     <div>
+      {/* image, title and description */}
       <div className='flex flex-col items-center justify-center'>
         <Image
           className=''
           src={item.image}
-          alt='Samsung Watch.'
+          alt={item.title}
           width={100}
           height={100}
         />
         <Separator className='my-3 w-full bg-[#90908e50]' />
-        <div className='space-y-1 text-center'>
+        <div className='w-full space-y-1 text-center'>
           <h2 className='text-lg text-[#088178]'>{item.title}</h2>
-          <p className='text-sm text-[#90908e]'>
+          <p className='m-auto w-4/5 text-sm text-[#90908e]'>
             {item.description.length > 60
               ? item.description.slice(0, 60) + ' ....'
               : item.description}
@@ -58,43 +55,51 @@ function MobileCartItem({ item, onQuantity }) {
       </div>
 
       <div className='mt-5 flex flex-col'>
+        {/* price */}
         <div className='flex border-y border-[#90908e50] p-2'>
           <h2 className='w-1/2 font-semibold'>Price</h2>
           <h2 className='w-1/2'>{`$${item.price}`}</h2>
         </div>
 
+        {/* quantity */}
         <div className='flex border-b border-[#90908e50] p-2'>
           <h2 className='w-1/2 font-semibold'>Quantity</h2>
           <div className='relative flex w-28 items-center justify-center border border-[#90908e50] p-1'>
-            <h2>{`${quantity}`}</h2>
-            <button
-              className='absolute right-0 h-full bg-[#90908e50] px-3'
-              onClick={increment}
+            <h2>{`${item.quantity}`}</h2>
+            <Button
+              className={`absolute right-0 h-full bg-[#F0F0F0] text-lg hover:bg-[#F0F0F0]`}
+              onClick={() => {
+                carts.incrementQuantity(item.productId)
+              }}
+              disabled={item.quantity > 9}
             >
               +
-            </button>
-            <button
-              className='absolute left-0 h-full bg-[#90908e50] px-3'
-              onClick={decrement}
+            </Button>
+            <Button
+              className={`absolute left-0 h-full bg-[#F0F0F0] text-lg hover:bg-[#F0F0F0]`}
+              onClick={() => {
+                carts.decrementQuantity(item.productId)
+              }}
+              disabled={item.quantity < 2}
             >
               -
-            </button>
+            </Button>
           </div>
         </div>
 
+        {/* subtotal */}
         <div className='flex border-b border-[#90908e50] p-2'>
           <h2 className='w-1/2 font-semibold'>Subtotal</h2>
-          <h2 className='w-1/2'>{`$${item.price * quantity}`}</h2>
+          <h2 className='w-1/2'>{`$${item.price * item.quantity}`}</h2>
         </div>
 
+        {/* remove button */}
         <div className='flex border-b border-[#90908e50] p-2'>
           <h2 className='w-1/2 font-semibold'>Remove</h2>
           <div>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                {/* <Button variant='outline' size='icon' className='border-none'> */}
-                  <Trash className='w-5 text-[#90908e]'/>
-                {/* </Button> */}
+                <Trash className='w-5 text-[#90908e]' />
               </AlertDialogTrigger>
               <AlertDialogContent
                 className='w-64 rounded border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'

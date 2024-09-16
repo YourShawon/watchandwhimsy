@@ -2,16 +2,14 @@
 
 import { useState, ChangeEvent, FormEvent } from 'react'
 import { Input } from '@/components/ui/input'
-import { Button } from "@/components/ui/button"
-import {
-  ArrowRightIcon,
-} from '@radix-ui/react-icons'
+import { Button } from '@/components/ui/button'
+import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import Logo from '../../icons/logo'
-import Facebook from '../../icons/facebook'
-import Twitter from '../../icons/twitter'
-import Instagram from '../../icons/instagram'
-import Youtube from '../../icons/youtube'
+import Logo from '../../../public/icons/logo'
+import Facebook from '../../../public/icons/facebook'
+import Twitter from '../../../public/icons/twitter'
+import Instagram from '../../../public/icons/instagram'
+import Youtube from '../../../public/icons/youtube'
 import { Separator } from '@radix-ui/react-separator'
 
 const Footer = () => {
@@ -31,7 +29,7 @@ const Footer = () => {
   return (
     <div className='bg-[#E8F6EA] py-6 sm:pb-2 sm:pt-10'>
       <div className='container flex flex-wrap items-start justify-between gap-y-5 font-spartan text-base text-[#222] xl:text-lg'>
-        <div className='lg:w-1/3 flex w-full flex-col gap-1 sm:w-1/2 xl:w-1/4'>
+        <div className='flex w-full flex-col gap-1 sm:w-1/2 lg:w-1/3 xl:w-1/4'>
           <Link href={'#'}>
             <div className='flex items-end justify-start'>
               <Logo />
@@ -50,7 +48,7 @@ const Footer = () => {
           <p>+880 19** - ****62</p>
         </div>
 
-        <div className='lg:w-1/3 flex w-1/2 flex-col gap-1 xl:w-1/4'>
+        <div className='flex w-1/2 flex-col gap-1 lg:w-1/3 xl:w-1/4'>
           <span className='font-semibold text-[#088178]'>INFORMATION</span>
           <ul>
             <li>
@@ -76,7 +74,9 @@ const Footer = () => {
             </li>
             <li>
               <Link href='/'>
-                <span className='hover:ml-2 hover:mr-0 hover:text-[#088178] transition-all duration-500'>Cart</span>
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
+                  Cart
+                </span>
               </Link>
             </li>
             <li>
@@ -89,7 +89,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className='lg:w-1/3 flex w-1/2 flex-col gap-1 xl:w-1/4'>
+        <div className='flex w-1/2 flex-col gap-1 lg:w-1/3 xl:w-1/4'>
           <span className='font-semibold text-[#088178]'>ABOUT</span>
           <ul>
             <li>
@@ -118,9 +118,7 @@ const Footer = () => {
 
             <li>
               <Link href='/'>
-                <span
-                  className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'
-                >
+                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
                   Contact
                 </span>
               </Link>
@@ -128,7 +126,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className='lg:w-full lg:flex-row lg:justify-start lg:items-start lg:gap-12 flex w-full flex-col gap-4 sm:w-1/2 xl:w-1/4 xl:flex-col xl:gap-4'>
+        <div className='flex w-full flex-col gap-4 sm:w-1/2 lg:w-full lg:flex-row lg:items-start lg:justify-start lg:gap-12 xl:w-1/4 xl:flex-col xl:gap-4'>
           <div className='lg:w-1/2 xl:w-full'>
             <h3 className='mb-2 font-semibold text-[#088178]'>SUBSCRIBE</h3>
             <form
@@ -141,7 +139,7 @@ const Footer = () => {
                 name='email'
                 onChange={handleChange}
                 placeholder='Enter your email'
-                className='lg:text-lg border border-[#088178] text-base text-[#222]'
+                className='border border-[#088178] text-base text-[#222] lg:text-lg'
               />
               <Button
                 type='submit'

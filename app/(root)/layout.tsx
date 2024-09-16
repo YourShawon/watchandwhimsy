@@ -10,7 +10,7 @@ export default function RootLayout({
     <div>
       <Provider>
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </Provider>
     </div>
   )

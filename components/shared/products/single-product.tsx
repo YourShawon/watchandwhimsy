@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -22,14 +21,13 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-
 import Image from 'next/image'
 import { useStoreActions, useStoreState } from 'easy-peasy'
 import Link from 'next/link'
 import { EyeIcon } from 'lucide-react'
 
-import Cart from '../../icons/cart'
-import FavoriteIcon from '../../icons/FavoriteIcon'
+import Cart from '../../../public/icons/cart'
+import FavoriteIcon from '../../../public/icons/FavoriteIcon'
 
 interface ItemMedia {
   url: string
@@ -37,6 +35,7 @@ interface ItemMedia {
 }
 
 interface Item {
+  productId: string
   media: ItemMedia
   discount: string
   tag: string
@@ -46,6 +45,8 @@ interface Item {
   oldPrice: number
   isAddFavorite: boolean
   isAddedToCart: boolean
+  quantity: number
+  description: string
 }
 
 interface SingleProductProps {
@@ -58,20 +59,20 @@ export default function SingleProduct({ item }: SingleProductProps) {
 
   const { productId } = item
 
-  const addToCart = useStoreActions(actions => actions.addToCarts)
-  const carts = useStoreState(states => states.addToCarts)
-  const cartIds = carts.items.map(i => i.productId)
+  const addToCart = useStoreActions((actions: any) => actions.addToCarts)
+  const carts = useStoreState((state: any) => state.addToCarts)
+  const cartIds = carts.items.map((i: any) => i.productId)
 
-  const setFavorites = useStoreActions(actions => actions.favorites)
-  const favorites = useStoreState(states => states.favorites)
+  const setFavorites = useStoreActions((actions: any) => actions.favorites)
+  const favorites = useStoreState((state: any) => state.favorites)
 
   useEffect(() => {
     setCart(cartIds.includes(productId))
-  }, [carts])
+  }, [carts, cartIds, productId])
 
   useEffect(() => {
     setHasFavorite(favorites.items.includes(productId))
-  }, [favorites])
+  }, [favorites, productId])
 
   return (
     <Card className='bg-red-00 bg-red-60 group rounded-3xl border border-[#E8F6EA]'>
