@@ -14,18 +14,18 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion'
-import Bars from '@/components/icons/bars'
-import X from '@/components/icons/crossIcon'
-import Category from '@/components/icons/browsCategory'
-import Facebook from '@/components/icons/facebook'
-import Twitter from '@/components/icons/twitter'
-import Instagram from '@/components/icons/instagram'
-import Youtube from '@/components/icons/youtube'
-import SearchIcon from '@/components/icons/search'
+import X from '@/public/icons/crossIcon'
+import Category from '@/public/icons/browsCategory'
+import Facebook from '@/public/icons/facebook'
+import Twitter from '@/public/icons/twitter'
+import Instagram from '@/public/icons/instagram'
+import Youtube from '@/public/icons/youtube'
+import SearchIcon from '@/public/icons/search'
 import { FC } from 'react'
 import { MobileNavProps } from '@/interface/header-interface'
 import { headerCategoryList, NavbarList } from '@/constants/header'
 import Link from 'next/link'
+import Bars from '@/public/icons/bars'
 
 const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
   return (

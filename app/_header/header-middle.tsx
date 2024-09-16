@@ -1,7 +1,6 @@
-import Logo from '@/components/icons/logo'
-import SearchIcon from '@/components/icons/search'
-import SearchModal from '../search-modal'
-import Cart from '@/components/icons/cart'
+import Logo from '@/public/icons/logo'
+import SearchIcon from '@/public/icons/search'
+import Cart from '@/public/icons/cart'
 import BagImage from '@/public/image/thumbnail-3.jpg'
 import DressImage from '@/public/image/thumbnail-2.jpg'
 import {
@@ -9,13 +8,13 @@ import {
   HoverCardContent,
   HoverCardTrigger
 } from '@/components/ui/hover-card'
-
-import ShortCartItem from '../short-cart-item'
-import Button from '../button'
 import { FC } from 'react'
 import { HeaderMiddleProps } from '@/interface/header-interface'
 import Link from 'next/link'
 import MobileNav from './mobile-nav'
+import SearchModal from '@/components/shared/search-modal'
+import ShortCartItem from '@/components/shared/short-cart-item'
+import Button from '@/components/shared/button'
 
 const HeaderMiddle: FC<HeaderMiddleProps> = ({
   handleSearch,

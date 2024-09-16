@@ -1,9 +1,7 @@
+import { ButtonComponentProps } from "@/interface/shared";
 import { FC } from "react";
 
-interface ButtonComponentProps {
-    text: string;
-    outline?: boolean;
-  }
+
 
 const Button:FC<ButtonComponentProps> = ({text, outline=false}) => {
     return (

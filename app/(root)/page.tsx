@@ -1,5 +1,3 @@
-import Navbar from "@/components/shared/header/navbar";
-
 
 export default function Home() {
   return (

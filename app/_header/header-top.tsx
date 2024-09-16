@@ -1,6 +1,6 @@
-import LocationIcon from '@/components/icons/locationIcon'
-import MobileIcon from '@/components/icons/mobileIcon'
-import UserIcon from '@/components/icons/userIcon'
+import LocationIcon from '@/public/icons/locationIcon'
+import MobileIcon from '@/public/icons/mobileIcon'
+import UserIcon from '@/public/icons/userIcon'
 import Link from 'next/link'
 
 const HeaderTop = () => {

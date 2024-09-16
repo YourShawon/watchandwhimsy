@@ -3,11 +3,12 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-import Category from '../../icons/browsCategory'
+// import Category from '../../../public/icons/browsCategory'
 import { FC } from 'react'
 import { HeaderBottomProps } from '@/interface/header-interface'
 import { headerCategoryList, NavbarList } from '@/constants/header'
 import Link from 'next/link'
+import Category from '@/public/icons/browsCategory'
 
 const HeaderBottom: FC<HeaderBottomProps> = ({
   isOpen,

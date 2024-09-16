@@ -9,12 +9,10 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { headerCategoryList } from "@/constants/header";
-import { Dispatch, FC, SetStateAction } from "react";
+import { SearchProps } from "@/interface/shared";
+import { FC } from "react";
 
-interface SearchProps {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}
+
 
 const SearchModal:FC<SearchProps> = ({open, setOpen}) => {
 
