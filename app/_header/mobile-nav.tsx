@@ -35,6 +35,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
           <Bars />
         </SheetTrigger>
         <SheetContent className='bg-white'>
+          <SheetTitle></SheetTitle>
           <SheetClose className='absolute right-3 top-3'>
             <X />
           </SheetClose>
@@ -52,13 +53,11 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
           <SheetDescription>
             <Accordion type='single' collapsible>
               <AccordionItem value='item-1'>
-                <AccordionTrigger>
-                  <div className='flex items-center gap-2 text-lg font-bold text-green'>
+                <AccordionTrigger className='flex items-center gap-2 text-lg font-bold text-green justify-normal'>
                     <Category />
                     Browse Categories
-                  </div>
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent >
                   <ul className='flex flex-col'>
                     {headerCategoryList.map(category => (
                       <li

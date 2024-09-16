@@ -40,7 +40,7 @@ const HeaderMiddle: FC<HeaderMiddleProps> = ({
 
                 <input
                   onFocus={handleSearch}
-                  className='w-full rounded-lg bg-transparent px-4 py-2 text-[#414648] focus:outline-none'
+                  className='w-full border-none hover:outline-none rounded-lg bg-transparent px-4 py-2 text-[#414648] focus:outline-none'
                   placeholder={`Search ${text}`}
                   type='text'
                 />

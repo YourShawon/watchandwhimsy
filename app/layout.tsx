@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.variable} ${spartan.variable} ${lato.className}`}>{children}</body>
+      <body suppressHydrationWarning={true} className={`${lato.variable} ${spartan.variable} ${lato.className}`}>{children}</body>
     </html>
   );
 }

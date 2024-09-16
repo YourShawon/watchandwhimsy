@@ -1,10 +1,9 @@
+import HeroSlider from "./_components/_hero/hero-slider";
 
 export default function Home() {
   return (
     <>
-    <h1>
-    this is index page
-    </h1>
+    <HeroSlider/>
     </>
   );
 }
