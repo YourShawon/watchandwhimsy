@@ -47,6 +47,7 @@ interface Item {
   isAddedToCart: boolean
   quantity: number
   description: string
+  stock: boolean
 }
 
 interface SingleProductProps {
@@ -54,25 +55,23 @@ interface SingleProductProps {
 }
 
 export default function SingleProduct({ item }: SingleProductProps) {
-  const [cart, setCart] = useState(false)
-  const [hasFavorite, setHasFavorite] = useState(false)
+  const [cartAdded, setCartAdded] = useState(false)
+  const [favoriteAdded, setFavoriteAdded] = useState(false)
 
   const { productId } = item
 
-  const addToCart = useStoreActions((actions: any) => actions.addToCarts)
+  const addToCartAction = useStoreActions((actions: any) => actions.addToCarts)
   const carts = useStoreState((state: any) => state.addToCarts)
   const cartIds = carts.items.map((i: any) => i.productId)
 
-  const setFavorites = useStoreActions((actions: any) => actions.favorites)
+  const favoritesAction = useStoreActions((actions: any) => actions.favorites)
   const favorites = useStoreState((state: any) => state.favorites)
+  const favoriteIds = favorites.items.map((i: any) => i.productId)
 
   useEffect(() => {
-    setCart(cartIds.includes(productId))
-  }, [carts, cartIds, productId])
-
-  useEffect(() => {
-    setHasFavorite(favorites.items.includes(productId))
-  }, [favorites, productId])
+    setCartAdded(cartIds.includes(productId))
+    setFavoriteAdded(favoriteIds.includes(productId))
+  }, [cartIds, favoriteIds])
 
   return (
     <Card className='bg-red-00 bg-red-60 group rounded-3xl border border-[#E8F6EA]'>
@@ -116,7 +115,7 @@ export default function SingleProduct({ item }: SingleProductProps) {
             </Tooltip>
           </TooltipProvider>
 
-          {hasFavorite ? (
+          {favoriteAdded ? (
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
@@ -149,7 +148,7 @@ export default function SingleProduct({ item }: SingleProductProps) {
                   </AlertDialogCancel>
                   <AlertDialogAction
                     onClick={() => {
-                      setFavorites.removeItem(productId)
+                      favoritesAction.removeItem(productId)
                     }}
                     className='hover:text-[#fff rounded border-none bg-[#088178] text-[#fff] hover:bg-[#088178]'
                   >
@@ -167,13 +166,21 @@ export default function SingleProduct({ item }: SingleProductProps) {
                     className='group/btn h-8 w-8 rounded-full border-none bg-[#E8F6EA] transition-all duration-700 hover:-translate-y-1 hover:bg-[#088178]'
                     size='icon'
                     onClick={() => {
-                      setFavorites.addItem(productId)
+                      favoritesAction.addItem({
+                        productId: item.productId,
+                        title: item.title,
+                        description: item.description,
+                        image: item.media.url,
+                        stock: item.stock,
+                        quantity: item.quantity,
+                        price: item.price
+                      })
                     }}
                   >
                     <FavoriteIcon
-                      isFilled={hasFavorite}
+                      isFilled={false}
                       size={20}
-                      color={hasFavorite ? '#088178' : '#088178'}
+                      color={'#088178'}
                       className={`-ml-0.5 fill-none stroke-[#088178] group-hover/btn:stroke-[#fff]`}
                     />
                   </Button>
@@ -206,7 +213,7 @@ export default function SingleProduct({ item }: SingleProductProps) {
           </div>
 
           {/* add to cart btn */}
-          {cart ? (
+          {cartAdded ? (
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
@@ -236,7 +243,7 @@ export default function SingleProduct({ item }: SingleProductProps) {
                   </AlertDialogCancel>
                   <AlertDialogAction
                     onClick={() => {
-                      addToCart.removeItem(item.productId)
+                      addToCartAction.removeItem(item.productId)
                     }}
                     className='hover:text-[#fff rounded border-none bg-[#088178] text-[#fff] hover:bg-[#088178]'
                   >
@@ -251,10 +258,10 @@ export default function SingleProduct({ item }: SingleProductProps) {
                 <TooltipTrigger asChild>
                   <Button
                     variant='outline'
-                    className={`group/btn hover:bg-[#088178]} h-8 w-8 rounded-full border-none bg-[#E8F6EA] transition-all duration-700 hover:-translate-y-1`}
+                    className={`group/btn hover:bg-[#088178] h-8 w-8 rounded-full border-none bg-[#E8F6EA] transition-all duration-700 hover:-translate-y-1`}
                     size='icon'
                     onClick={() => {
-                      addToCart.addItem({
+                      addToCartAction.addItem({
                         productId: item.productId,
                         title: item.title,
                         description: item.description,
@@ -265,7 +272,7 @@ export default function SingleProduct({ item }: SingleProductProps) {
                     }}
                   >
                     <Cart
-                      className={`group-hover/btn:fill-[#fff]} fill-[#088178]`}
+                      className={`group-hover/btn:fill-[#fff] fill-[#088178]`}
                     />
                   </Button>
                 </TooltipTrigger>

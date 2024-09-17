@@ -1,5 +1,5 @@
-import CartPage from '@/app/(root)/cart/_components/cart'
-import CartMobileView from '@/app/(root)/cart/_components/cartMobile'
+import CartPage from '@/app/(root)/cart/_components/large/cart'
+import CartMobileView from '@/app/(root)/cart/_components/small/cartMobile'
 
 function Cart() {
   return (

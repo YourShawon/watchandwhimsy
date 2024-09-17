@@ -68,7 +68,7 @@ const CartMobileView: React.FC = () => {
     setLocations(allLocation)
   }, [])
 
-  if (carts.length === 0) {
+  if (carts.length <= 0) {
     return (
       <div className='flex items-center justify-center border-2 border-[#E8F6EA] p-10'>
         <h2>404 Product not found</h2>
@@ -78,7 +78,7 @@ const CartMobileView: React.FC = () => {
 
   return (
     <div className='flex flex-col gap-10 p-2'>
-      <Separator className='mb-2 w-full bg-[#90908e50]' />
+      <Separator className='mb-2 w-full border-t border-[#90908e50]' />
       <div className='flex flex-col gap-4'>
         {carts.map((item: CartItemType) => (
           <MobileCartItem key={item.productId} item={item} />

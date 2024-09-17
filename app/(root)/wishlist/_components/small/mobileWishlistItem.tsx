@@ -14,35 +14,39 @@ import { Separator } from '@/components/ui/separator'
 import { useStoreActions } from 'easy-peasy'
 import { Trash } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
 
 interface CartItem {
   productId: string
-  image: string
   title: string
   description: string
-  price: number
+  image: string
+  stock: boolean
   quantity: number
+  price: number
 }
 
-interface MobileCartItemProps {
+interface MobileWishlistItemProps {
   item: CartItem
 }
 
-const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
-  const carts = useStoreActions((actions: any) => actions.addToCarts)
+const MobileWishlistItem: React.FC<MobileWishlistItemProps> = ({ item }) => {
+  const favoritesAction = useStoreActions((actions: any) => actions.favorites)
+  const addToCartAction = useStoreActions((actions: any) => actions.addToCarts)
 
   return (
     <div>
       {/* image, title and description */}
       <div className='flex flex-col items-center justify-center'>
+        {/* <Link href={"#"}> // single product page a niye jabo. */}
         <Image
-          className=''
           src={item.image}
           alt={item.title}
           width={100}
           height={100}
         />
+        {/* </Link> */}
         <Separator className='my-3 w-full bg-[#90908e50]' />
         <div className='w-full space-y-1 text-center'>
           <h2 className='text-lg text-[#088178]'>{item.title}</h2>
@@ -61,36 +65,40 @@ const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
           <h2 className='w-1/2'>{`$${item.price}`}</h2>
         </div>
 
-        {/* quantity */}
+        {/* stock */}
         <div className='flex border-b border-[#90908e50] p-2'>
-          <h2 className='w-1/2 font-semibold'>Quantity</h2>
-          <div className='relative flex w-28 items-center justify-center border border-[#90908e50] p-1'>
-            <h2>{`${item.quantity}`}</h2>
-            <Button
-              className={`absolute right-0 h-full bg-[#F0F0F0] text-lg hover:bg-[#F0F0F0]`}
-              onClick={() => {
-                carts.incrementQuantity(item.productId)
-              }}
-              disabled={item.quantity > 9}
-            >
-              +
-            </Button>
-            <Button
-              className={`absolute left-0 h-full bg-[#F0F0F0] text-lg hover:bg-[#F0F0F0]`}
-              onClick={() => {
-                carts.decrementQuantity(item.productId)
-              }}
-              disabled={item.quantity < 2}
-            >
-              -
-            </Button>
-          </div>
+          <h2 className='w-1/2 font-semibold'>Stock</h2>
+          <h2
+            className={`w-1/2 ${item.stock ? 'text-[#222]' : 'text-red-600'}`}
+          >{`${item.stock ? 'In Stock' : 'Out of Stock'}`}</h2>
         </div>
 
-        {/* subtotal */}
+        {/* Add to Cart */}
         <div className='flex border-b border-[#90908e50] p-2'>
-          <h2 className='w-1/2 font-semibold'>Subtotal</h2>
-          <h2 className='w-1/2'>{`$${item.price * item.quantity}`}</h2>
+          <h2 className='w-1/2 font-semibold'>Cart</h2>
+          {item.stock ? (
+            <Button
+              onClick={() => {
+                addToCartAction.addItem({
+                  productId: item.productId,
+                  title: item.title,
+                  description: item.description,
+                  image: item.image,
+                  quantity: item.quantity,
+                  price: item.price
+                })
+              }}
+              className='rounded border-none bg-[#088178] text-sm text-[#fff] hover:bg-[#088178] hover:text-[#fff]'
+            >
+              Add to Cart
+            </Button>
+          ) : (
+            <Link href={'#'}>
+              <Button className='rounded border-none bg-[#41506B] text-sm text-[#fff] hover:bg-[#41506B] hover:text-[#fff]'>
+                Contact Us
+              </Button>
+            </Link>
+          )}
         </div>
 
         {/* remove button */}
@@ -118,9 +126,9 @@ const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
                   </AlertDialogCancel>
                   <AlertDialogAction
                     onClick={() => {
-                      carts.removeItem(item.productId)
+                      favoritesAction.removeItem(item.productId)
                     }}
-                    className='hover:text-[#fff rounded border-none bg-[#088178] text-[#fff] hover:bg-[#088178]'
+                    className='rounded border-none bg-[#088178] text-[#fff] hover:bg-[#088178] hover:text-[#fff]'
                   >
                     Continue
                   </AlertDialogAction>
@@ -134,4 +142,4 @@ const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
   )
 }
 
-export default MobileCartItem
+export default MobileWishlistItem

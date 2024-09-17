@@ -67,10 +67,12 @@ const CartView: React.FC = () => {
     setLocations(allLocation)
   }, [])
 
-  if (carts.length < 1){
-    return (    <div className='flex items-center justify-center border-2 border-[#E8F6EA] p-10'>
-      <span>404 Product not found</span>
-    </div>)
+  if (carts.length <= 0) {
+    return (
+      <div className='flex items-center justify-center border-2 border-[#E8F6EA] p-10'>
+        <span>404 Product not found</span>
+      </div>
+    )
   }
 
   return (
@@ -98,7 +100,7 @@ const CartView: React.FC = () => {
         </Button>
       </div>
 
-      <Separator className='h-1 w-full bg-[#E8F6EA] my-10' />
+      <Separator className='my-10 h-1 w-full bg-[#E8F6EA]' />
 
       {/* Calculate shipping Price */}
       <div className='xl:flex'>

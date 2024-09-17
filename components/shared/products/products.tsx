@@ -18,6 +18,7 @@ interface Product {
   isAddFavorite: boolean
   isAddedToCart: boolean
   category: string
+  stock: number
 }
 const products: Product[] = [
   {
@@ -37,7 +38,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -56,7 +58,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 0
   },
   {
     productId: idGenerator(6),
@@ -75,7 +78,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -94,7 +98,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -113,7 +118,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -132,7 +138,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -151,7 +158,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -170,7 +178,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -189,7 +198,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -208,7 +218,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -227,7 +238,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -246,7 +258,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -265,7 +278,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -284,7 +298,8 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
+    category: 'Man',
+    stock: 10
   },
   {
     productId: idGenerator(6),
@@ -303,8 +318,9 @@ const products: Product[] = [
     isAddFavorite: false,
     isAddedToCart: true,
     quantity: 1,
-    category: 'Man'
-  },
+    category: 'Man',
+    stock: 10
+  }
   // other products...
 ]
 
