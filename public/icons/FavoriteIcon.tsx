@@ -1,17 +1,12 @@
 import { FC } from 'react'
 
 interface FavoriteIconProps {
-  isFilled?: boolean // Optional prop to determine if the heart is filled or outlined
-  size?: number // Optional prop to set the size of the icon
-  color?: string // Optional prop to set the color of the icon
-  // onClick?: () => void // Optional click handler for the icon
+  size?: number
+  color?: string
   className?: string
 }
 
-const FavoriteIcon: FC<FavoriteIconProps> = ({
-  size = 24,
-  className
-}) => {
+const FavoriteIcon: FC<FavoriteIconProps> = ({ size = 24, className }) => {
   return (
     <svg
       width={size}

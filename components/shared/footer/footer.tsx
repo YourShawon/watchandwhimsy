@@ -6,11 +6,8 @@ import { Button } from '@/components/ui/button'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import Logo from '../../../public/icons/logo'
-import Facebook from '../../../public/icons/facebook'
-import Twitter from '../../../public/icons/twitter'
-import Instagram from '../../../public/icons/instagram'
-import Youtube from '../../../public/icons/youtube'
 import { Separator } from '@radix-ui/react-separator'
+import FollowIcons from '../followIcons'
 
 const Footer = () => {
   const [value, setValue] = useState<string>('')
@@ -151,33 +148,7 @@ const Footer = () => {
             </form>
           </div>
 
-          <div className='lg:w-1/2 xl:w-full'>
-            <h5 className='font-spartan text-lg font-semibold text-[#90908c]'>
-              Follow Us
-            </h5>
-            <ul className='mt-3 flex gap-3'>
-              <Link href={'#'}>
-                <li>
-                  <Facebook />
-                </li>
-              </Link>
-              <Link href={'#'}>
-                <li>
-                  <Twitter />
-                </li>
-              </Link>
-              <Link href={'#'}>
-                <li>
-                  <Instagram />
-                </li>
-              </Link>
-              <Link href={'#'}>
-                <li>
-                  <Youtube />
-                </li>
-              </Link>
-            </ul>
-          </div>
+          <FollowIcons />
         </div>
       </div>
 

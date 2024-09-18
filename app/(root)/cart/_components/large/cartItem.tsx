@@ -1,3 +1,4 @@
+import ReuseAlertDialog from '@/components/shared/alertDialog'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,6 +25,7 @@ type CartItemType = {
     price: number
     quantity: number
     total: number
+    name: string
   }
 }
 
@@ -75,36 +77,9 @@ const CartItem: React.FC<CartItemType> = ({ item }) => {
       <h2 className='flex w-[10%] items-center justify-center'>{`$${item.price * item.quantity}`}</h2>
 
       <div className='flex w-[10%] items-center justify-center'>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Trash className='w-6 cursor-pointer text-[#90908e]' />
-          </AlertDialogTrigger>
-          <AlertDialogContent
-            className='w-72 rounded border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'
-            style={{ borderRadius: '8px' }}
-          >
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel className='rounded border border-[#088178]'>
-                Cancel
-              </AlertDialogCancel>
-              <AlertDialogAction
-                onClick={() => {
-                  carts.removeItem(item.productId)
-                }}
-                className='hover:text-[#fff rounded border-none bg-[#088178] text-[#fff] hover:bg-[#088178]'
-              >
-                Continue
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <ReuseAlertDialog isTrash={true} cb={() => carts.removeItem(item.productId)}>
+          <Trash className='w-6 cursor-pointer text-[#90908e]' />
+        </ReuseAlertDialog>
       </div>
     </div>
   )

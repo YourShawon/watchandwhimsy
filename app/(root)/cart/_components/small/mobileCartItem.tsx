@@ -1,3 +1,4 @@
+import ReuseAlertDialog from '@/components/shared/alertDialog'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -99,7 +100,7 @@ const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
         <div className='flex border-b border-[#90908e50] p-2'>
           <h2 className='w-1/2 font-semibold'>Remove</h2>
           <div>
-            <AlertDialog>
+            {/* <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Trash className='w-5 text-[#90908e]' />
               </AlertDialogTrigger>
@@ -128,7 +129,10 @@ const MobileCartItem: React.FC<MobileCartItemProps> = ({ item }) => {
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
-            </AlertDialog>
+            </AlertDialog> */}
+            <ReuseAlertDialog isTrash={true} cb={() => carts.removeItem(item.productId)}>
+              <Trash className='w-5 text-[#90908e]' />
+            </ReuseAlertDialog>
           </div>
         </div>
       </div>

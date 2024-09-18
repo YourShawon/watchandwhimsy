@@ -2,7 +2,13 @@ import { createStore } from 'easy-peasy'
 import favoriteModel from './favoriteStore'
 import addToCartModel from './addToCartStore'
 
-const store = createStore({
+// Define the type for the store model
+interface StoreModel {
+  addToCarts: typeof addToCartModel
+  favorites: typeof favoriteModel
+}
+
+const store = createStore<StoreModel>({
   addToCarts: addToCartModel,
   favorites: favoriteModel
 })

@@ -1,14 +1,13 @@
-import WishlistLarge from './_components/large/wishlistItems'
-import WishlistSmall from './_components/small/wishlistItems'
+import WishlistItems from './_components/wishlist'
 
 function Wishlist() {
   return (
     <div className='py-10'>
       <div className='hidden sm:block'>
-        <WishlistLarge />
+        <WishlistItems large={true} />
       </div>
       <div className='sm:hidden'>
-        <WishlistSmall />
+        <WishlistItems large={false} />
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { locations as allLocation } from '@/lib/utils'
+import { locations as allLocation } from '@/constants/locations'
 import {
   Card,
   CardContent,
@@ -24,15 +24,18 @@ import MobileCartItem from './mobileCartItem'
 import { Separator } from '@/components/ui/separator'
 import useCart from '@/hooks/cart/useCart'
 import { useEffect, useState } from 'react'
+import SelectTownForm from '../selectTown'
 
 // Define types for cart item and location
 type CartItemType = {
   productId: string
-  name: string
+  title: string
+  description: string
+  image: string
   price: number
   quantity: number
   total: number
-  image: string
+  name: string
 }
 
 type LocationType = {
@@ -97,58 +100,12 @@ const CartMobileView: React.FC = () => {
 
       <div>
         <h2 className='mb-4 text-2xl'>Calculate Shipping</h2>
-        <form onSubmit={e => handleSubmit(e)}>
-          <Select onValueChange={setSelectedLocation}>
-            {' '}
-            {/* No need for value || '' */}
-            <SelectTrigger className='w-40 rounded border-[#E8F6EA]'>
-              <SelectValue placeholder='Select a District' />
-            </SelectTrigger>
-            <SelectContent className='h-80 rounded border-[#E8F6EA] bg-[#f5fff6] text-[#222]'>
-              <SelectGroup>
-                <SelectLabel className='bg-[#E8F6EA]'>Dhaka</SelectLabel>
-                {locations
-                  .filter((item: any) => item.department === 'dhaka')
-                  .map((item: any, index: number) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel className='bg-[#E8F6EA]'>Rajshahi</SelectLabel>
-                {locations
-                  .filter((item: any) => item.department === 'rajshahi')
-                  .map((item: any, index: number) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel className='bg-[#E8F6EA]'>Rangpur</SelectLabel>
-                {locations
-                  .filter((item: any) => item.department === 'rangpur')
-                  .map((item: any, index: number) => (
-                    <SelectItem key={index} value={item.name}>
-                      {item.name}
-                    </SelectItem>
-                  ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-
-          {selectErrorMessage && (
-            <p className='mt-2 text-red-500'>{selectErrorMessage}</p>
-          )}
-
-          <Button
-            type='submit'
-            className='mt-4 rounded bg-[#088178] px-6 text-base font-medium text-white hover:bg-[#088178] hover:text-white'
-          >
-            Update
-          </Button>
-        </form>
+        <SelectTownForm
+          handleSubmit={handleSubmit}
+          setSelectedLocation={setSelectedLocation}
+          errorMessage={selectErrorMessage}
+          locations={locations}
+        />
       </div>
 
       <Card className='flex flex-col gap-4 rounded border-[#E8F6EA] p-6'>
