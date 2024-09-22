@@ -35,7 +35,7 @@ function ReuseAlertDialog({
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent
-        className='w-64 rounded border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'
+        className='w-64 border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'
         style={{ borderRadius: '8px' }}
       >
         <AlertDialogHeader>

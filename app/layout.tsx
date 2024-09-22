@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import './globals.css';  // Ensure this is pointing to your global styles
+
 import { Lato, League_Spartan } from 'next/font/google'
 
 const lato = Lato({

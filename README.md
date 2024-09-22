@@ -31,3 +31,7 @@ jay tahole seti ke alada component a rekhe reuse korte hobe.
 product page small view te kisu poriborton ante hobe. karon sekhane hover effect
 diye kono lav nai. so hover korle je addToWishlist ase seti niche niye aste
 hobe. and hover a zoom toom kisu korar dorkar nai. ------ dorkar nai.
+
+![alt text](image.png) status icon tar color niye kaj korte hobe. and,
+responsive niye kaj korte hobe. product item gula dane bame Scrollable korte
+hobe jemon ta orders page a hoy.
