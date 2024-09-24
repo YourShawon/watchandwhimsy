@@ -5,8 +5,8 @@ import { slideData } from '@/constants/hero-slider'
 
 const HeroSlider = () => {
   return (
-    <div className='h-56 sm:h-64 xl:h-80 2xl:h-96 px-5'>
-      <Carousel slideInterval={5000} leftControl={<SliderIcon left/>} rightControl={<SliderIcon right/>} >
+    <div className='h-72 lg:h-[350px] 2xl:h-96 px-5 group'>
+      <Carousel indicators={false} slideInterval={5000} leftControl={<SliderIcon left/>} rightControl={<SliderIcon right/>} >
       {
         slideData.map(item => (
             <SlideItem key={item.id} item={item}/>
