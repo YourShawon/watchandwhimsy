@@ -43,7 +43,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
             <SheetTitle className='mb-5 mt-10 flex items-center rounded-[5px] border border-green pr-4'>
               <input
                 onFocus={handleSearch}
-                className='w-full border-none bg-transparent px-4 py-2 font-normal text-[#222] outline-none duration-200 placeholder:text-base placeholder:text-black focus:outline-none'
+                className='w-full border-none bg-transparent px-4 py-2 font-normal text-black-solid outline-none duration-200 placeholder:text-base placeholder:text-black focus:outline-none'
                 placeholder='Search for items...'
                 type='text'
               />
@@ -62,7 +62,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
                     {headerCategoryList.map(category => (
                       <li
                         key={category.id}
-                        className='cursor-pointer px-5 py-2 text-base capitalize transition duration-200 hover:bg-[#4e97fd19] hover:text-green'
+                        className='cursor-pointer px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green'
                       >
                         {category.title}
                       </li>
@@ -110,7 +110,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
             </ul>
           </SheetFooter>
           <div>
-            <h5 className='font-spartan text-lg font-semibold text-[#90908c]'>
+            <h5 className='font-spartan text-lg font-semibold text-gray-2x' >
               Follow Us
             </h5>
             <ul className='mt-3 flex gap-3'>

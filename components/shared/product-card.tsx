@@ -23,7 +23,7 @@ const ProductCard = ({ imgUrl, category, title, rating, price, prevPrice, addToC
          - for horizontal product card - [ productDetails paeg and new product it will be flex]
          so the only class will be rendered conditionally "flex-col"
         */}
-        <div className="relative bg-[#F1F1F1] flex items-center justify-center rounded-[25px] py-[10px] px-[12px]">
+        <div className="relative bg-white-1x flex items-center justify-center rounded-[25px] py-[10px] px-[12px]">
           {/* Product img wrapper */}
           <Image 
             src="/watch1/img1.jpg"
@@ -35,19 +35,19 @@ const ProductCard = ({ imgUrl, category, title, rating, price, prevPrice, addToC
         </div>
         <div className="relative">
           {/* Product content wrapper */}
-          <h2 className="text-[16px] text-[#1A1A1A] font-spartan font-spartanSemiBold leading-[19px]">
+          <h2 className="text-[16px] text-black-1x font-spartan font-spartanSemiBold leading-[19px]">
             {/* Product title */}
             Orient kamasu Mako ||| Red Dial Automatic Diver Watch
           </h2>
           <div className="pt-1">
             {/* product price */}
-            <span className="text-[18px] font-bold text-[#088178]">$238.86</span>
-            <span className="text-[14px] font-[400] text-[#90908e] m-[7px] line-through">$245.8</span>
+            <span className="text-[18px] font-bold text-green">$238.86</span>
+            <span className="text-[14px] font-[400] text-gray-2x m-[7px] line-through">$245.8</span>
           </div>
           <div className="absolute bottom-2 right-0">
             {/* add to cart btn */}
-            <Button variant="outline" size="icon" className="rounded-full bg-[#e8f6ea] border border-[#cce7d0]">
-              <ShoppingCartIcon className="h-4 w-4 text-[#088178]"/>
+            <Button variant="outline" size="icon" className="rounded-full bg-green-2x border border-green-4x">
+              <ShoppingCartIcon className="h-4 w-4 text-green"/>
             </Button>
           </div>
         </div>

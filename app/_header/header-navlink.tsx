@@ -3,7 +3,6 @@ import {
   PopoverContent,
   PopoverTrigger
 } from '@/components/ui/popover'
-// import Category from '../../../public/icons/browsCategory'
 import { FC } from 'react'
 import { HeaderBottomProps } from '@/interface/header-interface'
 import { headerCategoryList, NavbarList } from '@/constants/header'
@@ -38,7 +37,7 @@ const HeaderBottom: FC<HeaderBottomProps> = ({
                   {headerCategoryList.map(category => (
                     <li
                       key={category.id}
-                      className='cursor-pointer border-b border-[#E5E7EB] px-5 py-2 text-base capitalize transition duration-200 hover:bg-[#4e97fd19] hover:text-green'
+                      className='cursor-pointer border-b border-white-3x px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green'
                     >
                       {category.title}
                     </li>

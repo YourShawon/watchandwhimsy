@@ -29,7 +29,7 @@ const ProductDetails = () => {
         Navbar
       </nav>
 
-      <div className='bg-[#F1F5F9]'>
+      <div className='bg-white-2x'>
         <DynamicBreadcrumb />
       </div>
 
@@ -61,13 +61,13 @@ const ProductDetails = () => {
               </div>
 
               <div className='md:px-3 md:w-1/2 '>
-                <h2 className='font-spartan font-spartanSemiBold text-[#222222] leading-[1.2] text-[30px]'>
+                <h2 className='font-spartan font-spartanSemiBold text-black-solid leading-[1.2] text-[30px]'>
                   {product.title}
                 </h2>
                 <div className='flex justify-between items-center py-4'>
-                  <div className='text-[#465b52]'>
+                  <div className='text-slate-5x'>
                     Brand:  
-                    <Link href="/" className='ml-1 text-[#088178]'>{product.brand}</Link>
+                    <Link href="/" className='ml-1 text-green'>{product.brand}</Link>
                   </div>
 
                   <div className='flex gap-2 items-center'>
@@ -77,36 +77,36 @@ const ProductDetails = () => {
                       value={product.rating}
                       actionColor='#ffd700'
                     />
-                    <span className='text-[#465b52]'>({product.reviews} reviews)</span>
+                    <span className='text-gray-3x'>({product.reviews} reviews)</span>
                   </div>
                 </div>
 
-                <div className='py-4 border-y border-[#e2e9e1] my-4'>
+                <div className='py-4 border-y border-green-1x my-4'>
                   <ins className='no-underline'>
-                    <span className='text-[#088178] font-[600] text-[30px] leading-[30px]'>${priceAfterDiscount}</span>
+                    <span className='text-green font-[600] text-[30px] leading-[30px]'>${priceAfterDiscount}</span>
                   </ins>
                   <ins className='no-underline'>
-                    <span className='font-[500] text-[#888888] text-[16px] ml-4 line-through'>${product.price}</span>
+                    <span className='font-[500] text-gray-3x text-[16px] ml-4 line-through'>${product.price}</span>
                   </ins>
-                  <span className='ml-4 text-[15px] leading-4 text-[#4F5D77]'>{product.discount}% Off</span>
+                  <span className='ml-4 text-[15px] leading-4 text-slate-5x'>{product.discount}% Off</span>
                 </div>
 
                 <div className=''>
-                  <p className='leading-6 text-[#465b52]'>{product.description}</p>
+                  <p className='leading-6 text-green-7x'>{product.description}</p>
                 </div>
 
-                <div className='my-8 text-[13px] leading-6 text-[#4F5d77]'>
+                <div className='my-8 text-[13px] leading-6 text-slate-5x'>
                   <ul className='space-y-[10px]'>
                     <li className='flex gap-2 items-center'>
-                      <Castle className='text-[#4f5d77] w-4 h-4'/>
+                      <Castle className='text-slate-5x w-4 h-4'/>
                       {product.warranty} Year Al Jazeera Brand Warranty
                     </li>
                     <li className='flex gap-2 items-center'>
-                      <RefreshCw className='text-[#4f5d77] w-4 h-4'/>
+                      <RefreshCw className='text-slate-5x w-4 h-4'/>
                       30 Day Return Policy
                     </li>
                     <li className='flex gap-2 items-center'>
-                      <CreditCard className='text-[#4f5d77] w-4 h-4'/>
+                      <CreditCard className='text-slate-5x w-4 h-4'/>
                       Cash on Delivery available
                     </li>
                   </ul>
@@ -130,10 +130,10 @@ const ProductDetails = () => {
                 <div className='mt-5'>
                   {/* product meta data */}
                   {/* SKU, tags, availability: 8 items in stock */}
-                  <ul className='space-y-1 text-[13px] leading-6 font-[400] text-[#4f5d77]'>
-                    <li>SKU: <span className='text-[#3ed092]'>{product.sku}</span></li>
-                    <li>Gender: <span className='text-[#3ed092]'>{product.gender}</span></li>
-                    <li>Availability: <span className='text-[#3ed092]'>{product.stock} items In Stock</span></li>
+                  <ul className='space-y-1 text-[13px] leading-6 font-[400] text-slate-5x'>
+                    <li>SKU: <span className='text-light-green'>{product.sku}</span></li>
+                    <li>Gender: <span className='text-light-green'>{product.gender}</span></li>
+                    <li>Availability: <span className='text-light-green'>{product.stock} items In Stock</span></li>
                   </ul>
                 </div>
               </div>

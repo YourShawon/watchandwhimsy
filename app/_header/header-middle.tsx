@@ -33,14 +33,14 @@ const HeaderMiddle: FC<HeaderMiddleProps> = ({
           {/* Search field */}
           <div className='hidden w-[800px] lg:block'>
             <form>
-              <div className='flex items-center border border-[#dedfe2]'>
+              <div className='flex items-center border border-black-1/10'>
                 <span className='p-3'>
                   <SearchIcon />
                 </span>
 
                 <input
                   onFocus={handleSearch}
-                  className='w-full border-none hover:outline-none rounded-lg bg-transparent px-4 py-2 text-[#414648] focus:outline-none'
+                  className='w-full border-none hover:outline-none rounded-lg bg-transparent px-4 py-2 text-slate-4x focus:outline-none'
                   placeholder={`Search ${text}`}
                   type='text'
                 />
@@ -53,7 +53,7 @@ const HeaderMiddle: FC<HeaderMiddleProps> = ({
 
           <div className='flex items-center gap-3'>
             <HoverCard>
-              <HoverCardTrigger className='cursor-pointer rounded-full p-3 transition duration-500 hover:bg-[#E5F0EF]'>
+              <HoverCardTrigger className='cursor-pointer rounded-full p-3 transition duration-500 hover:bg-green-3x'>
                 <Cart />
               </HoverCardTrigger>
               <HoverCardContent
@@ -77,7 +77,7 @@ const HeaderMiddle: FC<HeaderMiddleProps> = ({
                 />
                 <hr />
                 <div className='flex justify-between'>
-                  <span className='font-spartan text-lg font-medium text-[#9b9b9b]'>
+                  <span className='font-spartan text-lg font-medium text-gray-1x'>
                     Total
                   </span>
                   <span className='font-spartan text-2xl font-medium text-green'>

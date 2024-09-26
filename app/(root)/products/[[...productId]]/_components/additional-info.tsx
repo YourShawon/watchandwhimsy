@@ -41,7 +41,7 @@ const AdditionalInfo = () => {
               {/* Review Top */}
               <div className='px-3 lg:w-[66.666%] '>
                 {/* Reviews with profiles */}
-                <h2 className='font-spartan font-spartanSemiBold text-[18px] leading-5 text-[#2A2A2A] mb-8'>Customer questions & answers</h2>
+                <h2 className='font-spartan font-spartanSemiBold text-[18px] leading-5 text-black-2x mb-8'>Customer questions & answers</h2>
                 <div className='flex flex-row font-lato'>
                   {/* Review card */}
                   <div className='mr-5 text-center'>
@@ -54,8 +54,8 @@ const AdditionalInfo = () => {
                       alt='User Image'
                       className='rounded-full mb-2'
                     />
-                    <h6 className='text-xs leading-[1.2] font-spartan font-spartanSemiBold text-[#222222]'>Jacky Chan</h6>
-                    <p className='text-xs leading-6 font-[400] text-[#465b52]'>since 2008</p>
+                    <h6 className='text-xs leading-[1.2] font-spartan font-spartanSemiBold text-black-solid'>Jacky Chan</h6>
+                    <p className='text-xs leading-6 font-[400] text-green-7x'>since 2008</p>
                   </div>
                   <div className='space-y-2'>
                     {/* Review info */}
@@ -63,16 +63,16 @@ const AdditionalInfo = () => {
                       {/* rating component */}
                       rating
                     </div>
-                    <p className='font-[400] leading-6 text-[#465b52]'>
+                    <p className='font-[400] leading-6 text-green-7x'>
                       {/* Review comment */}
                       Like it allot. My last eco-drive lasted about 25 years before battery died. I decided to treat myself to a new one for Christmas & am very happy with it. Even got a good deal thanks Watch and Whimsy. 
                     </p>
                     <div className='flex items-center'>
                       {/* comment time details */}
-                      <p className='mr-8 text-xs leading-6 text-[#465b52]'>
+                      <p className='mr-8 text-xs leading-6 text-green-7x'>
                         December 4, 2020 at 3:12pm
                       </p>
-                      <Link href="/" className='text-sm font-[400] text-[#088178] cursor-pointer flex gap-1'>
+                      <Link href="/" className='text-sm font-[400] text-green cursor-pointer flex gap-1'>
                         Reply
                         <ArrowRight className='h-5 mt-[2px]'/>
                       </Link>
@@ -83,7 +83,7 @@ const AdditionalInfo = () => {
 
               <div className='lg:w-[33.33%]'>
                 {/* Customer review summary */}
-                <h2 className='font-spartan font-spartanSemiBold text-[18px] leading-5 text-[#2A2A2A]'>Customer reviews</h2>
+                <h2 className='font-spartan font-spartanSemiBold text-[18px] leading-5 text-black-2x'>Customer reviews</h2>
                 <div>rating component</div>
                 <div>
                   {/* summary with percentage */}

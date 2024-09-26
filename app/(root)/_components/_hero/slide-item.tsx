@@ -6,16 +6,16 @@ const SlideItem: FC<SliderItemProps> = ({item}) => {
         <>
             <div className='container lg:pt-[100px] lg:pl-[350px] pt-20 flex items-start sm:justify-between'>
           <div className='w-full sm:w-1/2 text-center'>
-            <h5 className='font-spartan text-base lg:text-lg font-semibold text-[#222]'>
+            <h5 className='font-spartan text-base lg:text-lg font-semibold text-black-solid'>
               {item.title}
             </h5>
-            <h3 className='mt-1 font-spartan text-2xl sm:text-3xl lg:text-4xl font-bold text-[#222]'>
+            <h3 className='mt-1 font-spartan text-2xl sm:text-3xl lg:text-4xl font-bold text-black-solid'>
               {item.header1}
             </h3>
             <h3 className='font-spartan text-[28px] sm:text-4xl xl:text-[46px] font-black text-green'>
             {item.header2}
             </h3>
-            <p className='text-base xl:text-lg text-[#465b52]'>
+            <p className='text-base xl:text-lg text-green-7x'>
             {item.description}
             </p>
             <button

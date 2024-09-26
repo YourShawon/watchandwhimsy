@@ -6,7 +6,7 @@ import Link from 'next/link'
 const HeaderTop = () => {
   return (
     <>
-      <div className='hidden border-b-[3px] border-solid border-green lg:block'>
+      <div className='hidden bg-green-3x border-b-[3px] border-solid border-green lg:block'>
         <div className='container'>
           {/* header top */}
           <div className='flex items-center justify-between py-[10px]'>
@@ -18,7 +18,7 @@ const HeaderTop = () => {
                   (+8801) - 23454 - 6789
                 </Link>
               </li>
-              <span className='text-[#dedfe2]'>|</span>
+              <span className='text-white-4x'>|</span>
 
               <li className='flex items-center gap-1 text-sm'>
                 <LocationIcon />
