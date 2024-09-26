@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss"
 
+import flowbite from "flowbite-react/tailwind"
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -7,6 +9,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    flowbite.content(),
 	],
   prefix: "",
   theme: {
@@ -26,6 +29,7 @@ const config = {
     },
     extend: {
       colors: {
+        green: "#088178",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -103,12 +107,12 @@ const config = {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down .7s ease-out",
+        "accordion-up": "accordion-up .7s ease-out",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), flowbite.plugin(),],
 } satisfies Config
 
 export default config
