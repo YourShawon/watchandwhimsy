@@ -14,3 +14,35 @@ datasource db {
   // directUrl = env("DIRECT_URL")
 }
 
+
+model User {
+  id String @id @default(uuid())
+  name String 
+  avatar String?
+  email String
+  phoneNo String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id String @id @default(uuid())
+  title String
+  description String? @db.Text
+  price Float?
+  isPublished Boolean @default(false)
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id String @id @default(uuid())
+  name String @unique
+  img String?
+  productId String
+  product Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
