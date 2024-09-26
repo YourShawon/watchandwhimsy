@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['wp.alithemes.com', 'data:image/svg+xml'] // Add the hostname here
+    domains: ['res.cloudinary.com'] // Add the hostname here
   }
 }
 

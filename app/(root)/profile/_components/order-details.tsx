@@ -1,9 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-import Link from 'next/link'
 import {
-  ArrowLeft,
   Package,
   Truck,
   CheckCircle,
@@ -11,15 +6,6 @@ import {
   Clock,
   XCircle
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -28,8 +14,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { Badge } from '@/components/ui/badge'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import {
   DialogContent,
   DialogHeader,
@@ -73,7 +58,7 @@ export default function OrderDetails() {
   const orderDetails: OrderDetails = {
     id: '12345',
     date: '2023-06-01',
-    status: 'shipped',
+    status: 'success',
     total: 129.99,
     shippingInfo: {
       name: 'John Doe',
@@ -95,34 +80,78 @@ export default function OrderDetails() {
     ]
   }
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return <Clock className='mr-1 h-4 w-4' />
-      case 'processing':
-        return <Package className='mr-1 h-4 w-4' />
-      case 'shipped':
-        return <Truck className='mr-1 h-4 w-4' />
-      case 'delivered':
-        return <CheckCircle className='mr-1 h-4 w-4' />
-      case 'success':
-        return <CheckCircle className='mr-1 h-4 w-4' />
-      case 'failed':
-        return <XCircle className='mr-1 h-4 w-4' />
-      default:
-        return null
+  const statusOptions = {
+    pending: {
+      label: 'pending',
+      bgColor: 'bg-yellow-100',
+      textColor: 'text-yellow-800',
+      hoverColor: 'hover:bg-yellow-200',
+      icon: Clock
+    },
+    processing: {
+      label: 'processing',
+      bgColor: 'bg-blue-100',
+      textColor: 'text-blue-800',
+      hoverColor: 'hover:bg-blue-200',
+      icon: Package
+    },
+    shipped: {
+      label: 'shipped',
+      bgColor: 'bg-purple-100',
+      textColor: 'text-purple-800',
+      hoverColor: 'hover:bg-purple-200',
+      icon: Truck
+    },
+    delivered: {
+      label: 'delivered',
+      bgColor: 'bg-teal-100',
+      textColor: 'text-teal-800',
+      hoverColor: 'hover:bg-teal-200',
+      icon: CheckCircle
+    },
+    success: {
+      label: 'success',
+      bgColor: 'bg-green-100',
+      textColor: 'text-green-800',
+      hoverColor: 'hover:bg-green-200',
+      icon: CheckCircle
+    },
+    failed: {
+      label: 'failed',
+      bgColor: 'bg-red-100',
+      textColor: 'text-red-800',
+      hoverColor: 'hover:bg-red-200',
+      icon: XCircle
     }
   }
 
+  const getStatusIcon = (status: string) => {
+    const option = statusOptions[status as keyof typeof statusOptions]
+
+    if (!option) return null
+
+    const { label, bgColor, textColor, hoverColor, icon: Icon } = option
+
+    return (
+      <span
+        className={`inline-flex items-center rounded-full ${bgColor} px-2.5 py-0.5 text-sm font-medium ${textColor} ${hoverColor}`}
+      >
+        <Icon className='mr-2 h-4 w-4' />
+        {label}
+      </span>
+    )
+  }
+
   return (
-    <DialogContent className='sm:max-w-[725px]'>
+    <DialogContent className='w-[95%] rounded-md border-none px-2 sm:max-w-[725px] sm:p-6'>
       <DialogHeader>
         <DialogTitle>Order Details #{orderDetails.id}</DialogTitle>
       </DialogHeader>
-      <ScrollArea className='max-h-[80vh] overflow-y-auto pr-6'>
+
+      <ScrollArea className='max-h-[70vh] overflow-auto pr-4 sm:max-h-[80vh] sm:pr-6'>
         <div className='grid gap-4'>
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-            <div className='rounded-lg border p-4'>
+            <div className='rounded-lg border-border border p-4'>
               <h3 className='mb-2 font-semibold'>Order Summary</h3>
               <p className='mb-2 text-sm text-gray-500'>
                 Overview of your order
@@ -135,10 +164,8 @@ export default function OrderDetails() {
 
                 <div className='flex items-center justify-between'>
                   <span className='text-sm font-medium'>Status:</span>
-                  <span className='inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-sm font-medium text-green-800'>
-                    {getStatusIcon(orderDetails.status)}
-                    {orderDetails.status}
-                  </span>
+                  {getStatusIcon(orderDetails.status)}
+                  {/* {orderDetails.status} */}
                 </div>
 
                 <div className='flex justify-between'>
@@ -147,7 +174,7 @@ export default function OrderDetails() {
                 </div>
               </div>
             </div>
-            <div className='rounded-lg border p-4'>
+            <div className='rounded-lg border border-border p-4'>
               <h3 className='mb-2 font-semibold'>Shipping Information</h3>
               <p className='mb-2 text-sm text-gray-500'>
                 Delivery address for your order
@@ -165,38 +192,34 @@ export default function OrderDetails() {
             </div>
           </div>
 
-          <div className='rounded-lg border p-4'>
+          <div className='rounded-lg border border-border p-4'>
             <h3 className='mb-2 font-semibold'>Order Items</h3>
             <p className='mb-2 text-sm text-gray-500'>
               Details of items in your order
             </p>
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className='border-border'>
                   <TableHead>Product</TableHead>
-                  <TableHead className='text-right'>Price</TableHead>
-                  <TableHead className='text-right'>Quantity</TableHead>
-                  <TableHead className='text-right'>Total</TableHead>
+                  <TableHead>Price</TableHead>
+                  <TableHead>Quantity</TableHead>
+                  <TableHead>Total</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {orderDetails.items.map((item, index) => (
-                  <TableRow key={index}>
+                  <TableRow key={index} className='border-border'>
                     <TableCell>{item.product}</TableCell>
-                    <TableCell className='text-right'>${item.price}</TableCell>
-                    <TableCell className='text-right'>
-                      {item.quantity}
-                    </TableCell>
-                    <TableCell className='text-right'>
-                      ${item.price * item.quantity}
-                    </TableCell>
+                    <TableCell>${item.price}</TableCell>
+                    <TableCell>{item.quantity}</TableCell>
+                    <TableCell>${item.price * item.quantity}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
 
-          <div className='rounded-lg border p-4'>
+          <div className='rounded-lg border border-border p-4'>
             <h3 className='mb-2 font-semibold'>Payment Information</h3>
             <p className='mb-2 text-sm text-gray-500'>Payment method used</p>
             <div className='space-y-1'>
@@ -213,6 +236,7 @@ export default function OrderDetails() {
             </div>
           </div>
         </div>
+        <ScrollBar orientation='horizontal' className='h-2' />
       </ScrollArea>
     </DialogContent>
   )

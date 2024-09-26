@@ -1,6 +1,13 @@
 import { Button } from '@/components/ui/button'
-import { CardContent } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
 import { format } from 'date-fns'
 import { Search } from 'lucide-react'
 import Image from 'next/image'
@@ -62,65 +69,74 @@ function TrackOrder() {
   }
 
   return (
-    <CardContent>
-      <form
-        onSubmit={(e: FormEvent) => {
-          e.preventDefault()
-          handleTrackOrder()
-        }}
-        className='flex space-x-2'
-      >
-        <Input
-          placeholder='Enter Order ID'
-          value={trackingId}
-          onChange={e => setTrackingId(e.target.value)}
-          className='focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
-        />
-        <Button type='submit'>
-          <Search className='mr-2 h-4 w-4' /> Track Order
-        </Button>
-      </form>
-      {trackingResult && (
-        <div className='mt-6 space-y-4'>
-          <div className='grid grid-cols-2 gap-4'>
-            <div>
-              <p className='font-semibold'>Order ID:</p>
-              <p>{trackingResult.orderId}</p>
+    <Card className='space-y-5 border border-border'>
+      <CardHeader>
+        <CardTitle>Order Tracking</CardTitle>
+        <CardDescription>Track the status of your order</CardDescription>
+      </CardHeader>
+
+      <Separator className='m-0 h-[1px] w-full bg-border' />
+
+      <CardContent>
+        <form
+          onSubmit={(e: FormEvent) => {
+            e.preventDefault()
+            handleTrackOrder()
+          }}
+          className='flex space-x-2'
+        >
+          <Input
+            placeholder='Enter Order ID'
+            value={trackingId}
+            onChange={e => setTrackingId(e.target.value)}
+            className='focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+          />
+          <Button type='submit' className='bg-green hover:bg-green-hover text-white'>
+            <Search className='mr-2 h-4 w-4' /> Track Order
+          </Button>
+        </form>
+        {trackingResult && (
+          <div className='mt-6 space-y-4'>
+            <div className='grid grid-cols-2 gap-4'>
+              <div>
+                <p className='font-semibold'>Order ID:</p>
+                <p>{trackingResult.orderId}</p>
+              </div>
+              <div>
+                <p className='font-semibold'>Order Date:</p>
+                <p>{trackingResult.orderDate}</p>
+              </div>
+              <div>
+                <p className='font-semibold'>Status:</p>
+                <p>{trackingResult.status}</p>
+              </div>
             </div>
             <div>
-              <p className='font-semibold'>Order Date:</p>
-              <p>{trackingResult.orderDate}</p>
-            </div>
-            <div>
-              <p className='font-semibold'>Status:</p>
-              <p>{trackingResult.status}</p>
-            </div>
-          </div>
-          <div>
-            <p className='mb-2 font-semibold'>Products:</p>
-            <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-              {trackingResult.products.map(product => (
-                <div key={product.id} className='flex items-center space-x-4'>
-                  <Link href={`/product/${product.id}`}>
-                    <Image
-                      src={product.photo}
-                      alt={product.name}
-                      width={100}
-                      height={100}
-                      className='h-16 w-16 rounded object-cover'
-                    />
-                  </Link>
-                  <div>
-                    <p className='font-medium'>{product.name}</p>
-                    <p className='text-sm text-gray-500'>ID: {product.id}</p>
+              <p className='mb-2 font-semibold'>Products:</p>
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                {trackingResult.products.map(product => (
+                  <div key={product.id} className='flex items-center space-x-4'>
+                    <Link href={`/product/${product.id}`}>
+                      <Image
+                        src={product.photo}
+                        alt={product.name}
+                        width={100}
+                        height={100}
+                        className='h-16 w-16 rounded object-cover'
+                      />
+                    </Link>
+                    <div>
+                      <p className='font-medium'>{product.name}</p>
+                      <p className='text-sm text-gray-500'>ID: {product.id}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </CardContent>
+        )}
+      </CardContent>
+    </Card>
   )
 }
 

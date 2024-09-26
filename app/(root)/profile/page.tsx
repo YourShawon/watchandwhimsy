@@ -13,14 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  ClockIcon,
-  ExitIcon,
-  TokensIcon,
-  CheckCircledIcon,
-  ExternalLinkIcon,
-  EyeOpenIcon
-} from '@radix-ui/react-icons'
+import { TokensIcon } from '@radix-ui/react-icons'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,115 +28,152 @@ import {
 import { Separator } from '@radix-ui/react-select'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import ChangePass from './_components/changePass'
-import ChangePhoto from './_components/changePhoto'
 import { Key, LogOut, MapPin, Package, Trash, Truck } from 'lucide-react'
+import ChangePass from './_components/changePass'
 import Orders from './_components/orders'
 import TrackOrder from './_components/trackOrder'
+import AddressSection from './_components/address'
+import axios from 'axios'
+
+interface ProfileData {
+  name: string
+  username: string
+  email: string
+  phone: string
+}
 
 export default function Profile() {
   const [deleteAccount, setDeleteAccount] = useState('')
-
-  const [profileData, setProfileData] = useState({
-    username: 'anamulhoquewd',
-    name: 'Anamul Hoque',
-    email: 'anamulhoquewd@gmail.com',
-    phone: '+880 1975 024262'
+  const [_, setLoading] = useState(false)
+  const [profileData, setProfileData] = useState<ProfileData>({
+    name: '',
+    username: '',
+    email: '',
+    phone: ''
   })
-
-  const handleChange = e => {
-    setDeleteAccount(e.target.value)
-  }
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      const response = await fetch('/api/profile')
-      const data = await response.json()
-      setProfileData(data)
-    }
-
-    fetchProfileData()
-  }, [])
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
-    defaultValues: profileData || {
-      username: '',
-      name: '',
-      email: '',
-      phone: ''
-    }
+    defaultValues: profileData
   })
 
-  const onSubmit = data => {
+  // get profile data
+  const fetchProfileData = async () => {
+    setLoading(true)
+    try {
+      const response = await axios.get(
+        'https://c45143fa-b1d2-41f5-8445-a488e6931b78.mock.pstmn.io/users',
+        {
+          headers: {
+            'x-mock-response-code': '200'
+          }
+        }
+      )
+      const fetchedData = response.data.user
+      setProfileData(fetchedData)
+      console.log(response.data.message)
+      reset(fetchedData) // Update form values with fetched data
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchProfileData()
+  }, [])
+
+  const onSubmit = async (data: any) => {
     setProfileData(data)
-    console.log(data)
+    // try {
+    //   const response = await axios.post(
+    //     'https://c45143fa-b1d2-41f5-8445-a488e6931b78.mock.pstmn.io/users',
+    //     data,
+    //     {
+    //       headers: {
+    //         'x-mock-response-code': '201'
+    //       }
+    //     }
+    //   )
+    //   const fetchedData = response.data.user
+    //   setProfileData(fetchedData)
+    //   console.log(response.data.message)
+    //   reset(fetchedData) // Update form values with fetched data
+    // } catch (error) {
+    //   console.error(error)
+    // }
+
+    console.log('Post data')
   }
 
   const handleDeleteAccount = () => {
     console.log('Deleting account')
   }
 
+  // if (loading) {
+  //   return <div>Loading...</div>
+  // }
+
   return (
     <Tabs
       defaultValue='dashboard'
-      className='flex flex-col gap-5 p-2 py-5 text-[#222] md:container md:flex-row md:py-10'
+      className='flex flex-col gap-5 p-2 py-5 md:container md:flex-row md:py-10'
     >
       <div className='flex h-full flex-col gap-4 md:w-1/4'>
-        <TabsList className='flex h-auto flex-col items-start justify-start rounded border-none bg-[#088178] p-2 text-[#fff]'>
-          <div className='flex gap-2'>
-            <Avatar className='h-12 w-12'>
-              <AvatarImage
-                src='/placeholder.svg?height=50&width=50'
-                alt={profileData.name}
-              />
-              <AvatarFallback className='font-bold text-[#222]'>
-                {profileData.username.charAt(0).toLocaleUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <div className='flex flex-col gap-0'>
-              <h2 className='font-semibold'>
-                {profileData?.name || 'Dear User'}
-              </h2>
-              <p className='text-sm'>{`@${profileData?.username}`}</p>
-            </div>
+        <div className='flex h-auto items-center gap-5 rounded border-none bg-border p-2'>
+          <Avatar className='h-12 w-12'>
+            <AvatarImage
+              src='/placeholder.svg?height=50&width=50'
+              alt={profileData?.name}
+            />
+            <AvatarFallback className='bg-[#fff] font-bold'>
+              {profileData?.username?.charAt(0).toLocaleUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+          <div className='flex flex-col gap-0'>
+            <h2 className='font-semibold'>
+              {profileData?.name || 'Dear User'}
+            </h2>
+            <p className='text-sm lowercase'>{`@${profileData?.username}`}</p>
           </div>
-        </TabsList>
+        </div>
 
-        <TabsList className='flex h-auto flex-col overflow-hidden rounded border border-[#e2e9e1] bg-[#fff] p-0'>
+        <TabsList className='flex h-auto flex-col overflow-hidden rounded bg-border p-2'>
           <TabsTrigger
-            className='w-full justify-start leading-9 text-[#90908e] hover:bg-[#F3F4F6] data-[state=active]:bg-[#088178] data-[state=active]:text-[#fff] md:font-semibold'
+            className='w-full justify-start leading-9 md:font-medium'
             value='dashboard'
           >
             <TokensIcon className='mr-2' />
             Dashboard
           </TabsTrigger>
           <TabsTrigger
-            className='w-full justify-start leading-9 text-[#90908e] hover:bg-[#F3F4F6] data-[state=active]:bg-[#088178] data-[state=active]:text-[#fff] md:font-semibold'
+            className='w-full justify-start leading-9 md:font-medium'
             value='orders'
           >
             <Package className='mr-2 h-4 w-4' />
             Orders
           </TabsTrigger>
           <TabsTrigger
-            className='w-full justify-start leading-9 text-[#90908e] hover:bg-[#F3F4F6] data-[state=active]:bg-[#088178] data-[state=active]:text-[#fff] md:font-semibold'
+            className='w-full justify-start leading-9 md:font-medium'
             value='trackYourOrder'
           >
             <Truck className='mr-2 h-4 w-4' />
             Track Your Order
           </TabsTrigger>
           <TabsTrigger
-            className='w-full justify-start leading-9 text-[#90908e] hover:bg-[#F3F4F6] data-[state=active]:bg-[#088178] data-[state=active]:text-[#fff] md:font-semibold'
+            className='w-full justify-start leading-9 md:font-medium'
             value='changePass'
           >
             <Key className='mr-2 h-4 w-4' />
             Change Password
           </TabsTrigger>
           <TabsTrigger
-            className='w-full justify-start leading-9 text-[#90908e] hover:bg-[#F3F4F6] data-[state=active]:bg-[#088178] data-[state=active]:text-[#fff] md:font-semibold'
+            className='w-full justify-start leading-9 md:font-medium'
             value='address'
           >
             <MapPin className='mr-2 h-4 w-4' />
@@ -153,12 +183,12 @@ export default function Profile() {
           <Separator className='h-[1px] w-full bg-[#e2e9e1]' />
 
           <AlertDialog>
-            <AlertDialogTrigger className='flex w-full items-center justify-start pl-3 text-sm leading-10 text-red-500 hover:bg-[#F3F4F6] md:font-semibold'>
+            <AlertDialogTrigger className='flex w-full items-center justify-start pl-3 text-sm leading-10 text-danger md:font-medium'>
               <LogOut className='mr-2 h-4 w-4' />
               Log Out
             </AlertDialogTrigger>
             <AlertDialogContent
-              className='w-64 border-none bg-[#E8F6EA] sm:w-96 lg:w-[32rem]'
+              className='w-64 border-none sm:w-96 lg:w-[32rem]'
               style={{ borderRadius: '6px' }}
             >
               <AlertDialogHeader>
@@ -169,10 +199,10 @@ export default function Profile() {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel className='rounded border border-[#088178]'>
+                <AlertDialogCancel className='rounded border-border'>
                   Cancel
                 </AlertDialogCancel>
-                <AlertDialogAction className='rounded border-none bg-red-500 text-[#fff] hover:bg-red-600 hover:text-[#fff]'>
+                <AlertDialogAction className='rounded border-none bg-danger text-white hover:bg-danger-hover'>
                   Continue
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -182,10 +212,10 @@ export default function Profile() {
       </div>
 
       <TabsContent value='dashboard' className='mt-0 md:w-3/4'>
-        <Card className='space-y-5 border border-[#e2e9e1]'>
+        <Card className='space-y-5 border-border'>
           <CardHeader>
             <CardTitle>My Account</CardTitle>
-            <CardDescription className='flex flex-col gap-2 text-[#90908e]'>
+            <CardDescription className='flex flex-col gap-2 text-gray'>
               <span>{`Hello ${profileData?.name || 'Dear User'}. Welcome to our website!`}</span>
               <span>
                 {
@@ -195,33 +225,33 @@ export default function Profile() {
             </CardDescription>
           </CardHeader>
 
-          <Separator className='m-0 h-[1px] w-full bg-[#e2e9e1]' />
+          <Separator className='m-0 h-[1px] w-full bg-border' />
 
           <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='mt-5 grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div>
                   <Label
-                    className='cursor-pointer font-semibold text-[#90908e]'
+                    className='cursor-pointer font-semibold text-gray'
                     htmlFor='username'
                   >
                     Username
                   </Label>
                   <Input
                     id='username'
-                    className='rounded border-[#e2e9e1] font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+                    className='rounded border-border font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
                     type='text'
                     {...register('username', {
                       required: 'Username is required'
                     })}
                   />
-                  <p className='text-sm text-red-500'>
+                  <p className='text-red-500 text-sm'>
                     {errors.username?.message}
                   </p>
                 </div>
                 <div>
                   <Label
-                    className='cursor-pointer font-semibold text-[#90908e]'
+                    className='cursor-pointer font-semibold text-gray'
                     htmlFor='email'
                   >
                     Email
@@ -229,49 +259,52 @@ export default function Profile() {
                   <Input
                     disabled
                     id='email'
-                    className='rounded border-[#e2e9e1] font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+                    className='rounded border-border font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
                     type='text'
                     {...register('email')}
                   />
                 </div>
                 <div>
                   <Label
-                    className='cursor-pointer font-semibold text-[#90908e]'
+                    className='cursor-pointer font-semibold text-gray'
                     htmlFor='name'
                   >
                     Name
                   </Label>
                   <Input
                     id='name'
-                    className='rounded border-[#e2e9e1] font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+                    className='rounded border-border font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
                     type='text'
                     {...register('name', { required: 'Name is required!' })}
                   />
-                  <p className='text-sm text-red-500'>{errors.name?.message}</p>
+                  <p className='text-red-500 text-sm'>{errors.name?.message}</p>
                 </div>
                 <div>
                   <Label
-                    className='cursor-pointer font-semibold text-[#90908e]'
+                    className='cursor-pointer font-semibold text-gray'
                     htmlFor='phone'
                   >
                     Phone
                   </Label>
                   <Input
                     id='phone'
-                    className='rounded border-[#e2e9e1] font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+                    className='rounded border-border font-semibold focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
                     type='text'
                     {...register('phone', {
                       required: 'Phone number is required'
                     })}
                   />
-                  <p className='text-sm text-red-500'>
+                  <p className='text-red-500 text-sm'>
                     {errors.phone?.message}
                   </p>
                 </div>
               </div>
 
               <div className='mt-4 flex w-full justify-end'>
-                <Button type='submit' className='font-semibold'>
+                <Button
+                  type='submit'
+                  className='bg-green font-semibold text-white hover:bg-green-hover'
+                >
                   Save changes
                 </Button>
               </div>
@@ -279,7 +312,7 @@ export default function Profile() {
           </CardContent>
         </Card>
 
-        <Card className='mt-6'>
+        <Card className='mt-6 border-border'>
           <CardHeader>
             <CardTitle>Delete Account</CardTitle>
           </CardHeader>
@@ -296,7 +329,7 @@ export default function Profile() {
                   Delete Account
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent>
+              <AlertDialogContent className='w-72 rounded-md border-none sm:w-96 lg:w-[32rem]'>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Delete account</AlertDialogTitle>
                   <AlertDialogDescription>
@@ -306,13 +339,13 @@ export default function Profile() {
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <br />
-                <Label htmlFor='delete' className='font-semibold text-[#222]'>
+                <Label htmlFor='delete' className='font-semibold'>
                   Please type “DELETE ACCOUNT” below
                 </Label>
                 <Input
                   id='delete'
                   autoFocus
-                  onChange={handleChange}
+                  onChange={e => setDeleteAccount(e.target.value)}
                   className='focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
                 />
                 <AlertDialogFooter>
@@ -320,6 +353,7 @@ export default function Profile() {
                   <AlertDialogAction
                     disabled={deleteAccount !== 'DELETE ACCOUNT'}
                     onClick={handleDeleteAccount}
+                    className='bg-danger hover:bg-danger-hover text-white'
                   >
                     Delete Account
                   </AlertDialogAction>
@@ -331,41 +365,19 @@ export default function Profile() {
       </TabsContent>
 
       <TabsContent value='orders' className='mt-0 md:w-3/4'>
-        <Card className='space-y-5 border border-[#e2e9e1]'>
-          <CardHeader>
-            <CardTitle>Recent Orders</CardTitle>
-            <CardDescription className='flex flex-col gap-2 text-[#90908e]'>
-              <span>{`View and manage your recent purchases`}</span>
-            </CardDescription>
-          </CardHeader>
-
-          <Separator className='m-0 h-[1px] w-full bg-[#e2e9e1]' />
-
-          <CardContent>
-            <Orders/>
-          </CardContent>
-        </Card>
+        <Orders />
       </TabsContent>
 
       <TabsContent value='trackYourOrder' className='mt-0 md:w-3/4'>
-        <Card className='space-y-5 border border-[#e2e9e1]'>
-        <CardHeader>
-        <CardTitle>Order Tracking</CardTitle>
-        <CardDescription>Track the status of your order</CardDescription>
-      </CardHeader>
-
-          <Separator className='m-0 h-[1px] w-full bg-[#e2e9e1]' />
-
-          <CardContent>
-            <TrackOrder/>
-          </CardContent>
-        </Card>
+        <TrackOrder />
       </TabsContent>
-      
-
 
       <TabsContent value='changePass' className='mt-0 md:w-3/4'>
         <ChangePass />
+      </TabsContent>
+
+      <TabsContent value='address' className='mt-0 md:w-3/4'>
+        <AddressSection />
       </TabsContent>
     </Tabs>
   )

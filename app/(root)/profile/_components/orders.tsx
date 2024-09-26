@@ -26,15 +26,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Input } from '@/components/ui/input'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 
 import {
   Table,
@@ -46,12 +38,17 @@ import {
 } from '@/components/ui/table'
 import { useState } from 'react'
 import OrderDetails from './order-details'
-import { Overlay } from '@radix-ui/react-dialog'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { CreditCard, Truck } from 'lucide-react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 type order = {
-  id: string
+  orderId: string
   date: string
   status:
     | 'pending'
@@ -76,77 +73,77 @@ interface RowData {
 
 const data: order[] = [
   {
-    id: '#m5gr84i9',
+    orderId: '#m5gr84i9',
     amount: 316,
     status: 'pending',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#3u1reuv4',
+    orderId: '#3u1reuv4',
     amount: 242,
     status: 'success',
     quantity: '1 Item',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#derv1ws0',
+    orderId: '#derv1ws0',
     amount: 837,
     status: 'processing',
     quantity: '1 Item',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#ckma50ae',
+    orderId: '#ckma50ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#5kma53ae',
+    orderId: '#5kma53ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#ekmac3ae',
+    orderId: '#ekmac3ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#5amg53ae',
+    orderId: '#5amg53ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#csma5eae',
+    orderId: '#csma5eae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#akm353ae',
+    orderId: '#akm353ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#dkm353ae',
+    orderId: '#dkm353ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
     date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
   },
   {
-    id: '#bhqecj4p',
+    orderId: '#bhqecj4p',
     amount: 721,
     status: 'failed',
     quantity: '10 Items',
@@ -156,9 +153,11 @@ const data: order[] = [
 
 const columns: ColumnDef<order>[] = [
   {
-    accessorKey: 'id',
+    accessorKey: 'orderId',
     header: 'Order ID',
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('id')}</div>
+    cell: ({ row }) => (
+      <div className='capitalize'>{row.getValue('orderId')}</div>
+    )
   },
   {
     accessorKey: 'date',
@@ -225,16 +224,18 @@ const columns: ColumnDef<order>[] = [
               <DotsHorizontalIcon className='h-4 w-4' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
+          <DropdownMenuContent align='end' className='border-border border'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(order.id)}
+              onClick={() => navigator.clipboard.writeText(order.orderId)}
               className='cursor-pointer'
             >
               Copy order ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View product</DropdownMenuItem>
+            <DropdownMenuItem className='cursor-pointer'>
+              View product
+            </DropdownMenuItem>
 
             <Dialog>
               <DialogTrigger asChild>
@@ -249,7 +250,7 @@ const columns: ColumnDef<order>[] = [
   }
 ]
 
-export default function Orders() {
+const Orders = () => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -280,113 +281,133 @@ export default function Orders() {
   })
 
   return (
-    <div className='w-full'>
-      <div className='flex items-center py-4'>
-        <Input
-          placeholder='Filter IDs...'
-          value={(table.getColumn('id')?.getFilterValue() as string) ?? ''}
-          onChange={event =>
-            table.getColumn('id')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='ml-auto'>
-              Columns <ChevronDownIcon className='ml-2 h-4 w-4' />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
-            {table
-              .getAllColumns()
-              .filter(column => column.getCanHide())
-              .map(column => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className='capitalize'
-                    checked={column.getIsVisible()}
-                    onCheckedChange={value => column.toggleVisibility(!!value)}
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-      <div className='rounded-md border'>
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  return (
-                    <TableHead className='font-semibold' key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  )
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map(row => {
-                return (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && 'selected'}
-                  >
-                    {row.getVisibleCells().map(cell => (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
+    <Card className='space-y-5 border border-border'>
+      <CardHeader>
+        <CardTitle>Recent Orders</CardTitle>
+        <CardDescription className='flex flex-col gap-2 text-[#90908e]'>
+          <span>{`View and manage your recent purchases`}</span>
+        </CardDescription>
+      </CardHeader>
+
+      <Separator className='m-0 h-[1px] w-full bg-border' />
+
+      <CardContent>
+        <div className='w-full'>
+          <div className='flex items-center py-4'>
+            <Input
+              placeholder='Filter IDs...'
+              value={
+                (table.getColumn('orderId')?.getFilterValue() as string) ?? ''
+              }
+              onChange={event =>
+                table.getColumn('orderId')?.setFilterValue(event.target.value)
+              }
+              className='max-w-sm focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant='outline' className='ml-auto'>
+                  Columns <ChevronDownIcon className='ml-2 h-4 w-4' />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='end' className='border-border border'>
+                {table
+                  .getAllColumns()
+                  .filter(column => column.getCanHide())
+                  .map(column => {
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className='capitalize'
+                        checked={column.getIsVisible()}
+                        onCheckedChange={value =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {column.id}
+                      </DropdownMenuCheckboxItem>
+                    )
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          <div className='rounded-md border-border border '>
+            <Table>
+              <TableHeader>
+                {table.getHeaderGroups().map(headerGroup => (
+                  <TableRow key={headerGroup.id}  className='border-border'>
+                    {headerGroup.headers.map(header => {
+                      return (
+                        <TableHead className='font-semibold' key={header.id}>
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
+                      )
+                    })}
                   </TableRow>
-                )
-              })
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-24 text-center'
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-      <div className='flex items-center justify-end space-x-2 py-4'>
-        <div className='space-x-2'>
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant='outline'
-            size='sm'
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {table.getRowModel().rows?.length ? (
+                  table.getRowModel().rows.map(row => {
+                    return (
+                      <TableRow
+                       className='border-border'
+                        key={row.id}
+                        data-state={row.getIsSelected() && 'selected'}
+                      >
+                        {row.getVisibleCells().map(cell => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    )
+                  })
+                ) : (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      className='h-24 text-center'
+                    >
+                      No results.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+          <div className='flex items-center justify-end space-x-2 py-4'>
+            <div className='space-x-2'>
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                Previous
+              </Button>
+              <Button
+                variant='outline'
+                size='sm'
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                Next
+              </Button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
+
+export default Orders

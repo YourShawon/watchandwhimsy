@@ -1,172 +1,128 @@
 'use client'
 
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { ArrowRightIcon } from '@radix-ui/react-icons'
+import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
-import Logo from '../../../public/icons/logo'
-import { Separator } from '@radix-ui/react-separator'
+import { ArrowRight } from 'lucide-react'
 import FollowIcons from '../followIcons'
 
-const Footer = () => {
-  const [value, setValue] = useState<string>('')
+const FooterSection = ({
+  title,
+  links
+}: {
+  title: string
+  links: string[]
+}) => (
+  <div className='space-y-2'>
+    <h3 className='font-semibold text-green'>{title}</h3>
+    <ul className='space-y-1'>
+      {links.map(link => (
+        <li key={link}>
+          <Link
+            href='/'
+            className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-green'
+          >
+            {link}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+)
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }
+export default function Footer() {
+  const [email, setEmail] = useState('')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (value === '') return
-    setValue('')
-    console.log(value)
+    console.log('Subscribed:', email)
+    setEmail('')
   }
 
   return (
-    <div className='bg-[#E8F6EA] py-6 sm:pb-2 sm:pt-10'>
-      <div className='container flex flex-wrap items-start justify-between gap-y-5 font-spartan text-base text-[#222] xl:text-lg'>
-        <div className='flex w-full flex-col gap-1 sm:w-1/2 lg:w-1/3 xl:w-1/4'>
-          <Link href={'#'}>
-            <div className='flex items-end justify-start'>
-              <Logo />
-              <span className='text-xl font-semibold'>Watch Whimsy</span>
-            </div>
-          </Link>
-          <span className='mt-4 font-semibold text-[#088178] sm:text-[#90908e]'>
-            SUPPORT
-          </span>
-          <p>
-            <span>South Banasree,</span>
-            <br />
-            <span>Khilgaon, Dhaka, Bangladesh.</span>
-          </p>
-          <p>support@wathwhimsy.com</p>
-          <p>+880 19** - ****62</p>
-        </div>
-
-        <div className='flex w-1/2 flex-col gap-1 lg:w-1/3 xl:w-1/4'>
-          <span className='font-semibold text-[#088178]'>INFORMATION</span>
-          <ul>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  My Account
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Shop
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Login / Register
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Cart
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Wishlist
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className='flex w-1/2 flex-col gap-1 lg:w-1/3 xl:w-1/4'>
-          <span className='font-semibold text-[#088178]'>ABOUT</span>
-          <ul>
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Privacy Policy
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Terms & Conditions
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  FAQ
-                </span>
-              </Link>
-            </li>
-
-            <li>
-              <Link href='/'>
-                <span className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-[#088178]'>
-                  Contact
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className='flex w-full flex-col gap-4 sm:w-1/2 lg:w-full lg:flex-row lg:items-start lg:justify-start lg:gap-12 xl:w-1/4 xl:flex-col xl:gap-4'>
-          <div className='lg:w-1/2 xl:w-full'>
-            <h3 className='mb-2 font-semibold text-[#088178]'>SUBSCRIBE</h3>
-            <form
-              onSubmit={handleSubmit}
-              className='flex w-full items-center space-x-2'
-            >
-              <Input
-                type='email'
-                value={value}
-                name='email'
-                onChange={handleChange}
-                placeholder='Enter your email'
-                className='border border-[#088178] text-base text-[#222] lg:text-lg'
-              />
-              <Button
-                type='submit'
-                variant='outline'
-                className='border border-[#088178]'
+    <footer className='bg-border'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
+        <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
+          <div className='space-y-4'>
+            <Link href='/' className='flex items-center space-x-2'>
+              <span className='sr-only'>Watch Whimsy</span>
+              <svg
+                viewBox='0 0 24 24'
+                className='h-6 w-6'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
               >
-                <ArrowRightIcon className='text-[#088178]' />
-              </Button>
-            </form>
+                <circle cx='12' cy='12' r='10' />
+                <path d='M12 6v6l4 2' />
+              </svg>
+              <span className='text-xl font-semibold'>Watch Whimsy</span>
+            </Link>
+            <p className='text-sm text-muted-foreground'>
+              South Banasree,
+              <br />
+              Khilgaon, Dhaka, Bangladesh
+            </p>
+            <p className='text-sm text-muted-foreground'>
+              support@watchwhimsy.com
+            </p>
+            <p className='text-sm text-muted-foreground'>+880 19** - ****62</p>
           </div>
 
-          <FollowIcons />
+          <FooterSection
+            title='INFORMATION'
+            links={[
+              'My Account',
+              'Shop',
+              'Login / Register',
+              'Cart',
+              'Wishlist'
+            ]}
+          />
+
+          <FooterSection
+            title='ABOUT'
+            links={['Privacy Policy', 'Terms & Conditions', 'FAQ', 'Contact']}
+          />
+
+          <div className='space-y-4'>
+            <h3 className='font-semibold text-green'>SUBSCRIBE</h3>
+            <form onSubmit={handleSubmit} className='flex space-x-2'>
+              <Input
+                type='email'
+                placeholder='Enter your email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className='flex-grow focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
+              />
+              <Button className='bg-green text-white hover:bg-green-hover' type='submit' size='icon'>
+                <ArrowRight className='h-4 w-4' />
+              </Button>
+            </form>
+            <FollowIcons />
+          </div>
+        </div>
+
+        <Separator className='my-8' />
+
+        <div className='text-center text-sm text-muted-foreground'>
+          <p>
+            Copyright © 2024 Watch and Whimsy - all rights reserved. Technical
+            support by Quantic Dynamics.
+          </p>
+          <div className='mt-2'>
+            <Link href='#' className='hover:text-green'>
+              Terms and conditions
+            </Link>
+            {' | '}
+            <Link href='#' className='hover:text-green'>
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
-
-      <Separator className='my-4 h-[1px] bg-[#90908e]' />
-
-      <div className='container w-full text-center text-sm'>
-        <span>
-          Copyright © 2024 Watch and Whimsy - all rights reserved. Technical
-          support by Quantic Dynamics.
-        </span>
-        <Separator className='my-4 h-[1px] bg-[#90908e48]' />
-        <span>
-          <Link href={'#'}>Terms and conditions </Link>|
-          <Link href={'#'}> Privacy Policy</Link>
-        </span>
-      </div>
-    </div>
+    </footer>
   )
 }
-
-export default Footer

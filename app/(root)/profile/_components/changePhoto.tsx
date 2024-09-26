@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Edit2Icon, EditIcon, Pencil } from 'lucide-react'
+import { Pencil } from 'lucide-react'
 import React, { useState } from 'react'
 
 function ChangePhoto() {

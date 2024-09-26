@@ -5,7 +5,6 @@ const useCart = (getCarts, locations) => {
   const [subtotal, setSubtotal] = useState(0)
   const [shippingPrice, setShippingPrice] = useState(0)
   const [selectedLocation, setSelectedLocation] = useState('')
-  const [selectErrorMessage, setSelectErrorMessage] = useState('')
   const [dataSubmitErrorMessage, setDataSubmitErrorMessage] = useState('')
 
   useEffect(() => {
@@ -16,33 +15,25 @@ const useCart = (getCarts, locations) => {
     setSubtotal(data.reduce((acc, curr) => acc + curr.price * curr.quantity, 0))
   }, [data])
 
-  const handleSubmit = e => {
-    e.preventDefault()
-
-    if (!selectedLocation) {
-      setSelectErrorMessage('Please select a location.')
-      return
-    }
-    setSelectErrorMessage('')
-
-    const selected = locations.find(item => item.name === selectedLocation)
+  const handleShippingPrice = value => {
+    const selected = locations.find(item => item.name === value)
     setShippingPrice(selected.cost)
   }
 
   const sentData = () => {
     if (!shippingPrice) {
-      setDataSubmitErrorMessage('Please update your location.')
+      setDataSubmitErrorMessage('Please select shipping address!.')
       return
     }
     if (!subtotal) {
-      setDataSubmitErrorMessage('Please minimum on product purchase.')
+      setDataSubmitErrorMessage('Minimum on product purchase.!')
       return
     }
     setDataSubmitErrorMessage('')
 
-    const proceedOrder = data.map(item => ({
-      productId: item.productId,
-      quantity: item.quantity
+    const proceedOrder = data.map(product => ({
+      productId: product.productId,
+      quantity: product.quantity
     }))
     proceedOrder.push(shippingPrice)
 
@@ -53,10 +44,10 @@ const useCart = (getCarts, locations) => {
     data,
     subtotal,
     shippingPrice,
-    selectErrorMessage,
     dataSubmitErrorMessage,
+    selectedLocation,
     setSelectedLocation,
-    handleSubmit,
+    handleShippingPrice,
     sentData
   }
 }
