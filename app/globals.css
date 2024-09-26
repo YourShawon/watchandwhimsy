@@ -59,6 +59,65 @@
   }
 }
 
+/* Spartan Font */
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal; 
+}
+
+@font-face {
+  font-family: "spartan";
+  src: url("/fonts/Spartan-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal; 
+}
+
+/* Spartan font end */
+
 @layer base {
   * {
     @apply border-border;

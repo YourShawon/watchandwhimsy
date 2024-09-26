@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Lato } from "next/font/google"
 
-const inter = Inter({ subsets: ["latin"] });
+
+const lato = Lato({
+  weight: ["400", "300","700", "900"],
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-lato"
+})
+
 
 export const metadata: Metadata = {
   title: "Watch And Whimsy",
@@ -15,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${lato.variable} ${lato.className}`}>
         {children}
       </body>
     </html>
