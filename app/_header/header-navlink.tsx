@@ -23,7 +23,7 @@ const HeaderBottom: FC<HeaderBottomProps> = ({
             <Popover open={isOpen} onOpenChange={handleOpenChange}>
               <PopoverTrigger
                 onClick={handleToggle}
-                className='flex cursor-pointer items-center gap-2 text-xl font-bold text-green'
+                className='flex cursor-pointer items-center gap-2 text-xl font-bold text-green-0x'
               >
                 <Category />
                 Browse Categories
@@ -37,7 +37,7 @@ const HeaderBottom: FC<HeaderBottomProps> = ({
                   {headerCategoryList.map(category => (
                     <li
                       key={category.id}
-                      className='cursor-pointer border-b border-white-3x px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green'
+                      className='cursor-pointer border-b border-white-3x px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green-0x'
                     >
                       {category.title}
                     </li>
@@ -51,7 +51,7 @@ const HeaderBottom: FC<HeaderBottomProps> = ({
               <Link
                 key={item.id}
                 href={item.path}
-                className='cursor-pointer text-base font-bold transition ease-in-out duration-200 hover:text-green'
+                className='cursor-pointer text-base font-bold transition ease-in-out duration-200 hover:text-green-0x'
               >
                 {item.title}
                 </Link>

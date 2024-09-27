@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import ReactStars from "react-rating-stars-component";
 
+import ReactStars from "react-rating-stars-component"
 
 const ratingChanged = (newRating: number) => {
   console.log(newRating);

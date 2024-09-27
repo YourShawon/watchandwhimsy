@@ -72,7 +72,7 @@ const AdditionalInfo = () => {
                       <p className='mr-8 text-xs leading-6 text-green-7x'>
                         December 4, 2020 at 3:12pm
                       </p>
-                      <Link href="/" className='text-sm font-[400] text-green cursor-pointer flex gap-1'>
+                      <Link href="/" className='text-sm font-[400] text-green-0x cursor-pointer flex gap-1'>
                         Reply
                         <ArrowRight className='h-5 mt-[2px]'/>
                       </Link>

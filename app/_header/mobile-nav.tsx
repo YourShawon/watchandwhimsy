@@ -40,7 +40,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
             <X />
           </SheetClose>
           <SheetHeader>
-            <SheetTitle className='mb-5 mt-10 flex items-center rounded-[5px] border border-green pr-4'>
+            <SheetTitle className='mb-5 mt-10 flex items-center rounded-[5px] border border-green-0x pr-4'>
               <input
                 onFocus={handleSearch}
                 className='w-full border-none bg-transparent px-4 py-2 font-normal text-black-solid outline-none duration-200 placeholder:text-base placeholder:text-black focus:outline-none'
@@ -53,7 +53,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
           <SheetDescription>
             <Accordion type='single' collapsible>
               <AccordionItem value='item-1'>
-                <AccordionTrigger className='flex items-center gap-2 text-lg font-bold text-green justify-normal'>
+                <AccordionTrigger className='flex items-center gap-2 text-lg font-bold text-green-0x justify-normal'>
                     <Category />
                     Browse Categories
                 </AccordionTrigger>
@@ -62,7 +62,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
                     {headerCategoryList.map(category => (
                       <li
                         key={category.id}
-                        className='cursor-pointer px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green'
+                        className='cursor-pointer px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green-0x'
                       >
                         {category.title}
                       </li>
@@ -84,26 +84,26 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
           </SheetDescription>
           <SheetFooter className='my-6'>
             <ul className='flex flex-col gap-4'>
-              <li className='text-base font-medium text-green hover:text-black'>
+              <li className='text-base font-medium text-green-0x hover:text-black'>
                 <Link href={'/contact'}>Our Location</Link>
               </li>
               <li>
                 <Link
                   href={'/log-in'}
-                  className='text-base font-medium text-green hover:underline'
+                  className='text-base font-medium text-green-0x hover:underline'
                 >
                   Log In
                 </Link>{' '}
                 <span> / </span>
                 <Link
                   href={'/sign-up'}
-                  className='text-base font-medium text-green hover:underline'
+                  className='text-base font-medium text-green-0x hover:underline'
                 >
                   Sign Up
                 </Link>
               </li>
               <li>
-              <Link href='tel:01234546789' className='text-base  font-medium text-green hover:text-black'>
+              <Link href='tel:01234546789' className='text-base  font-medium text-green-0x hover:text-black'>
                   (+8801) - 23454 - 6789
                 </Link>
               </li>

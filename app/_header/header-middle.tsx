@@ -80,7 +80,7 @@ const HeaderMiddle: FC<HeaderMiddleProps> = ({
                   <span className='font-spartan text-lg font-medium text-gray-1x'>
                     Total
                   </span>
-                  <span className='font-spartan text-2xl font-medium text-green'>
+                  <span className='font-spartan text-2xl font-medium text-green-0x'>
                     $4000.00
                   </span>
                 </div>
