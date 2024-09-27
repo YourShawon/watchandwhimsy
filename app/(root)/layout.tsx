@@ -1,15 +1,20 @@
+import Footer from '@/components/shared/footer/footer'
+import Provider from './storeProvider'
 
 import Navbar from "../_header/navbar";
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <div>
-      <Navbar/>
-      {children}
+      <Provider>
+        <Navbar/>
+        {children}
+        <Footer />
+      </Provider>
     </div>
-  );
+  )
 }
