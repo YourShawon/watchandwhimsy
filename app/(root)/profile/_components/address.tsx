@@ -75,9 +75,9 @@ export default function AddressSection() {
     address: Address
     type: 'billing' | 'shipping'
   }) => (
-    <Card className='border-border'>
+    <Card>
       <CardHeader>
-        <CardTitle className='flex items-center'>
+        <CardTitle className='flex items-center text-black-solid'>
           {type === 'billing' ? (
             <Home className='mr-2 h-4 w-4' />
           ) : (
@@ -86,7 +86,7 @@ export default function AddressSection() {
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className='text-black-solid'>
         <p>{address.street}</p>
         <p>{address.city},</p>
         <p>
@@ -94,8 +94,7 @@ export default function AddressSection() {
         </p>
         {address.phone && <p>Phone: {address.phone}</p>}
         <Button
-          variant={'ghost'}
-          className='mt-2 border border-border font-semibold'
+          className='mt-2 border sm:hover:bg-white-2x font-semibold'
           onClick={() => handleEditAddress(type)}
         >
           Edit
@@ -128,7 +127,7 @@ export default function AddressSection() {
         className='space-y-4'
       >
         <div>
-          <Label htmlFor='street'>Street</Label>
+          <Label htmlFor='street' className='text-muted-foreground'>Street</Label>
           <Input
             id='street'
             name='street'
@@ -138,7 +137,7 @@ export default function AddressSection() {
           />
         </div>
         <div>
-          <Label htmlFor='city'>City</Label>
+          <Label htmlFor='city' className="text-muted-foreground">City</Label>
           <Input
             id='city'
             name='city'
@@ -149,7 +148,7 @@ export default function AddressSection() {
         </div>
         <div className='grid grid-cols-2 gap-4'>
           <div>
-            <Label htmlFor='state'>State</Label>
+            <Label htmlFor='state' className="text-muted-foreground">State</Label>
             <Input
               id='state'
               name='state'
@@ -159,7 +158,7 @@ export default function AddressSection() {
             />
           </div>
           <div>
-            <Label htmlFor='zipCode'>ZIP Code</Label>
+            <Label htmlFor='zipCode' className="text-muted-foreground">ZIP Code</Label>
             <Input
               id='zipCode'
               name='zipCode'
@@ -170,7 +169,7 @@ export default function AddressSection() {
           </div>
         </div>
         <div>
-          <Label htmlFor='country'>Country</Label>
+          <Label htmlFor='country' className="text-muted-foreground">Country</Label>
           <Input
             id='country'
             name='country'
@@ -181,7 +180,7 @@ export default function AddressSection() {
         </div>
         {type === 'shipping' && (
           <div>
-            <Label htmlFor='phone'>Phone</Label>
+            <Label htmlFor='phone' className="text-muted-foreground">Phone</Label>
             <Input
               id='phone'
               name='phone'
@@ -191,16 +190,16 @@ export default function AddressSection() {
             />
           </div>
         )}
-        <Button className='bg-green hover:bg-green-hover text-white'  type='submit'>Save Address</Button>
+        <Button className='bg-green-0x sm:hover:bg-green-8x text-white transition-all duration-300'  type='submit'>Save Address</Button>
       </form>
     )
   }
 
   return (
-    <Card className='space-y-5 border-border'>
+    <Card className='space-y-5'>
       <CardHeader>
-        <CardTitle>Addresses</CardTitle>
-        <CardDescription className='space-y-2 text-[#90908e]'>
+        <CardTitle className='text-black-solid'>Addresses</CardTitle>
+        <CardDescription className='space-y-2 text-muted-foreground'>
           <span>
             {
               'From your account dashboard, you can easily check & view your recent orders, manage your shipping and billing addresses, and edit your password and account details.'
@@ -209,7 +208,7 @@ export default function AddressSection() {
         </CardDescription>
       </CardHeader>
 
-      <Separator className='m-0 h-[1px] w-full bg-border' />
+      <Separator className='m-0 h-[1px] w-full' />
 
       <CardContent className='grid gap-6 md:grid-cols-2'>
         <AddressCard
@@ -228,7 +227,7 @@ export default function AddressSection() {
         open={editingAddress !== null}
         onOpenChange={() => setEditingAddress(null)}
       >
-        <DialogContent className='w-72 rounded-md border-none sm:w-96 lg:w-[32rem]'>
+        <DialogContent className='w-72 bg-white border-none sm:w-96 lg:w-[32rem]'>
           <DialogHeader>
             <DialogTitle>
               Edit {editingAddress === 'billing' ? 'Billing' : 'Shipping'}

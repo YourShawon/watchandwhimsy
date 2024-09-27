@@ -16,13 +16,13 @@ const FooterSection = ({
   links: string[]
 }) => (
   <div className='space-y-2'>
-    <h3 className='font-semibold text-green'>{title}</h3>
+    <h3 className='font-semibold text-green-0x'>{title}</h3>
     <ul className='space-y-1'>
       {links.map(link => (
         <li key={link}>
           <Link
             href='/'
-            className='transition-all duration-500 hover:ml-2 hover:mr-0 hover:text-green'
+            className='transition-all duration-300 sm:hover:ml-2 sm:hover:mr-0 sm:hover:text-green-0x'
           >
             {link}
           </Link>
@@ -42,11 +42,11 @@ export default function Footer() {
   }
 
   return (
-    <footer className='bg-border'>
-      <div className='container mx-auto px-4 py-8 md:py-12'>
+    <footer className='bg-green-2x'>
+      <div className='sm:container mx-auto px-4 py-8 md:py-12'>
         <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4'>
           <div className='space-y-4'>
-            <Link href='/' className='flex items-center space-x-2'>
+            <Link href='/' className='flex items-center'>
               <span className='sr-only'>Watch Whimsy</span>
               <svg
                 viewBox='0 0 24 24'
@@ -58,7 +58,7 @@ export default function Footer() {
                 <circle cx='12' cy='12' r='10' />
                 <path d='M12 6v6l4 2' />
               </svg>
-              <span className='text-xl font-semibold'>Watch Whimsy</span>
+              <span className='text-xl font-semibold ml-2'>Watch Whimsy</span>
             </Link>
             <p className='text-sm text-muted-foreground'>
               South Banasree,
@@ -88,7 +88,7 @@ export default function Footer() {
           />
 
           <div className='space-y-4'>
-            <h3 className='font-semibold text-green'>SUBSCRIBE</h3>
+            <h3 className='font-semibold text-green-0x'>SUBSCRIBE</h3>
             <form onSubmit={handleSubmit} className='flex space-x-2'>
               <Input
                 type='email'
@@ -97,7 +97,7 @@ export default function Footer() {
                 onChange={e => setEmail(e.target.value)}
                 className='flex-grow focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
               />
-              <Button className='bg-green text-white hover:bg-green-hover' type='submit' size='icon'>
+              <Button className='bg-green-0x text-white sm:hover:bg-green-8x transition-all duration-300' type='submit' size='icon'>
                 <ArrowRight className='h-4 w-4' />
               </Button>
             </form>
@@ -113,11 +113,11 @@ export default function Footer() {
             support by Quantic Dynamics.
           </p>
           <div className='mt-2'>
-            <Link href='#' className='hover:text-green'>
+            <Link href='#' className='sm:hover:underline'>
               Terms and conditions
             </Link>
             {' | '}
-            <Link href='#' className='hover:text-green'>
+            <Link href='#' className='sm:hover:underline'>
               Privacy Policy
             </Link>
           </div>

@@ -40,7 +40,7 @@ function TrackOrder() {
       const mockResult: TrackingResult = {
         orderId: trackingId,
         status: 'Shipped',
-        orderDate: format(new Date(2014, 7, 11), 'MMM-dd-yyyy'),
+        orderDate: new Date().toLocaleString(),
         products: [
           {
             id: 'P001',
@@ -69,13 +69,13 @@ function TrackOrder() {
   }
 
   return (
-    <Card className='space-y-5 border border-border'>
+    <Card className='space-y-5'>
       <CardHeader>
         <CardTitle>Order Tracking</CardTitle>
         <CardDescription>Track the status of your order</CardDescription>
       </CardHeader>
 
-      <Separator className='m-0 h-[1px] w-full bg-border' />
+      <Separator className='m-0 h-[1px] w-full' />
 
       <CardContent>
         <form
@@ -91,7 +91,10 @@ function TrackOrder() {
             onChange={e => setTrackingId(e.target.value)}
             className='focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
           />
-          <Button type='submit' className='bg-green hover:bg-green-hover text-white'>
+          <Button
+            type='submit'
+            className='bg-green-0x text-white transition-all duration-300 sm:hover:bg-green-8x'
+          >
             <Search className='mr-2 h-4 w-4' /> Track Order
           </Button>
         </form>
@@ -100,15 +103,19 @@ function TrackOrder() {
             <div className='grid grid-cols-2 gap-4'>
               <div>
                 <p className='font-semibold'>Order ID:</p>
-                <p>{trackingResult.orderId}</p>
+                <p className='text-muted-foreground'>
+                  {trackingResult.orderId}
+                </p>
               </div>
               <div>
                 <p className='font-semibold'>Order Date:</p>
-                <p>{trackingResult.orderDate}</p>
+                <p className='text-muted-foreground'>
+                  {format((trackingResult.orderDate), 'dd-MMM-yyyy')}
+                </p>
               </div>
               <div>
                 <p className='font-semibold'>Status:</p>
-                <p>{trackingResult.status}</p>
+                <p className='text-muted-foreground'>{trackingResult.status}</p>
               </div>
             </div>
             <div>
@@ -127,7 +134,9 @@ function TrackOrder() {
                     </Link>
                     <div>
                       <p className='font-medium'>{product.name}</p>
-                      <p className='text-sm text-gray-500'>ID: {product.id}</p>
+                      <p className='text-sm text-muted-foreground'>
+                        ID: {product.id}
+                      </p>
                     </div>
                   </div>
                 ))}

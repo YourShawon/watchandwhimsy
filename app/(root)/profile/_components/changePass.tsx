@@ -40,7 +40,7 @@ function ChangePass() {
   const confirmPassword = watch('confirmPass')
 
   return (
-    <Card className='space-y-5 border border-border'>
+    <Card className='space-y-5'>
       <CardHeader>
         <CardTitle>Change Password</CardTitle>
         <CardDescription className='space-y-2 text-gray'>
@@ -52,14 +52,14 @@ function ChangePass() {
         </CardDescription>
       </CardHeader>
 
-      <Separator className='m-0 h-[1px] w-full bg-border' />
+      <Separator className='m-0 h-[1px] w-full' />
 
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='mt-5 grid grid-cols-1 gap-4 md:grid-cols-2'>
             <div>
               <Label
-                className='cursor-pointer font-semibold text-gray'
+                className='cursor-pointer font-medium text-muted-foreground'
                 htmlFor='oldPass'
               >
                 Old Password
@@ -73,11 +73,11 @@ function ChangePass() {
                   required: 'Old password not match!'
                 })}
               />
-              <p className='text-sm text-danger'>{errors?.oldPass?.message}</p>
+              <p className='text-sm text-red-500'>{errors?.oldPass?.message}</p>
             </div>
             <div>
               <Label
-                className='cursor-pointer font-semibold text-gray'
+                className='cursor-pointer font-medium text-muted-foreground'
                 htmlFor='newPass'
               >
                 New Password
@@ -91,11 +91,11 @@ function ChangePass() {
                   required: 'This field is required!'
                 })}
               />
-              <p className='text-sm text-danger'>{errors?.newPass?.message}</p>
+              <p className='text-sm text-red-500'>{errors?.newPass?.message}</p>
             </div>
             <div>
               <Label
-                className='cursor-pointer font-semibold text-gray'
+                className='cursor-pointer font-medium text-muted-foreground'
                 htmlFor='confirmPass'
               >
                 Confirm Password
@@ -109,7 +109,7 @@ function ChangePass() {
                   required: 'Passwords do not match!'
                 })}
               />
-              <p className='text-sm text-danger'>
+              <p className='text-sm text-red-500'>
                 {errors?.confirmPass?.message}
               </p>
             </div>
@@ -118,7 +118,7 @@ function ChangePass() {
           <div className='mt-4 flex w-full justify-end'>
             <Button
               type='submit'
-              className='w-fit rounded bg-green hover:bg-green-hover text-white font-medium'
+              className='w-fit bg-green-0x sm:hover:bg-green-8x text-white transition-all duration-300'
             >
               Save changes
             </Button>

@@ -8,7 +8,7 @@ import React from 'react'
 const FollowIcons: React.FC = () => {
   return (
     <div className='lg:w-1/2 xl:w-full'>
-      <h5 className='font-spartan text-lg font-semibold text-[#90908c]'>
+      <h5 className='font-spartan text-lg font-semibold text-muted-foreground'>
         Follow Us
       </h5>
       <div className='mt-3 flex gap-3'>

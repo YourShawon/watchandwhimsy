@@ -107,7 +107,7 @@ const Li: FC<LiProps> = ({ children, icon, delay }) => {
       className={`invisible translate-y-7 transform opacity-0 transition-all ${delay} duration-500 ease-in-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100`}
     >
       <Link href={icon} target='_blank'>
-        <div className='flex h-8 w-8 items-center justify-center rounded-full border-border bg-border'>
+        <div className='flex h-8 w-8 items-center justify-center rounded-full bg-green-2x'>
           {children}
         </div>
       </Link>
@@ -117,8 +117,8 @@ const Li: FC<LiProps> = ({ children, icon, delay }) => {
 
 const TeamSection: FC = () => {
   return (
-    <section className='sm:container px-4 py-12'>
-      <div className='container mx-auto'>
+    <section className='sm:container px-2 py-12'>
+      <div className='mx-auto'>
         <h2 className='mb-4 text-center text-3xl font-bold'>
           Our Amazing Team
         </h2>
@@ -131,7 +131,7 @@ const TeamSection: FC = () => {
           {teamData.map((item, i) => (
             <Card
               key={`${item.name}-${i}`}
-              className='group relative flex flex-col overflow-hidden border-border p-2 transition-all hover:visible hover:opacity-100'
+              className='group relative flex flex-col overflow-hidden p-2 transition-all hover:visible hover:opacity-100'
             >
               <CardContent className='p-0'>
                 <Image
@@ -139,10 +139,10 @@ const TeamSection: FC = () => {
                   alt={`Profile picture of ${item.name}`}
                   width={400}
                   height={400}
-                  className='h-auto w-full object-cover'
+                  className='h-auto w-full object-cover rounded-md'
                 />
 
-                <ul className='absolute bottom-32 left-1/2 top-1/2 flex -translate-x-1/2 translate-y-1/2 transform items-center gap-1'>
+                <ul className='absolute bottom-24 left-1/2 top-1/2 flex -translate-x-1/2 translate-y-1/2 transform items-center gap-1'>
                   {[
                     {
                       link: item.media.twitter,
@@ -176,9 +176,9 @@ const TeamSection: FC = () => {
                   ))}
                 </ul>
 
-                <div className='p-4'>
-                  <h3 className='text-lg font-semibold'>{item.name}</h3>
-                  <p className='text-muted-foreground'>{item.role}</p>
+                <div className='p-4 pb-0'>
+                  <h3 className='text-black-solid font-semibold'>{item.name}</h3>
+                  <p className='text-muted-foreground text-sm'>{item.role}</p>
                 </div>
               </CardContent>
             </Card>

@@ -46,6 +46,7 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { formatAmount } from '@/lib/utils'
 
 type order = {
   orderId: string
@@ -77,77 +78,77 @@ const data: order[] = [
     amount: 316,
     status: 'pending',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#3u1reuv4',
     amount: 242,
     status: 'success',
     quantity: '1 Item',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#derv1ws0',
     amount: 837,
     status: 'processing',
     quantity: '1 Item',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#ckma50ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#5kma53ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#ekmac3ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#5amg53ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#csma5eae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#akm353ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#dkm353ae',
     amount: 874,
     status: 'success',
     quantity: '2 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   },
   {
     orderId: '#bhqecj4p',
     amount: 721,
     status: 'failed',
     quantity: '10 Items',
-    date: format(new Date(2014, 1, 11), 'MMM-dd-yyyy')
+    date: new Date().toLocaleString()
   }
 ]
 
@@ -162,7 +163,11 @@ const columns: ColumnDef<order>[] = [
   {
     accessorKey: 'date',
     header: 'Date',
-    cell: ({ row }) => <div className='capitalize'>{row.getValue('date')}</div>
+    cell: ({ row }) => (
+      <div className='capitalize'>
+        {format(row.getValue('date'), 'dd-MMM-yyyy')}
+      </div>
+    )
   },
   {
     accessorKey: 'status',
@@ -171,17 +176,17 @@ const columns: ColumnDef<order>[] = [
       const status = row.getValue('status') as RowData['status']
 
       const statusStyles: Record<RowData['status'], string> = {
-        pending: 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200',
-        processing: 'bg-blue-100 text-blue-800 hover:bg-blue-200',
-        success: 'bg-green-100 text-green-800 hover:bg-green-200',
-        failed: 'bg-red-100 text-red-800 hover:bg-red-200',
-        shipped: 'bg-purple-100 text-purple-800 hover:bg-purple-200',
-        delivered: 'bg-teal-100 text-teal-800 hover:bg-teal-200'
+        pending: 'bg-yellow-100 text-black-solid sm:hover:bg-yellow-200',
+        processing: 'bg-blue-100 text-blue-800 sm:hover:bg-blue-200',
+        success: 'bg-green-100 text-green-800 sm:hover:bg-green-200',
+        failed: 'bg-red-100 text-red-800 sm:hover:bg-red-200',
+        shipped: 'bg-purple-100 text-purple-800 sm:hover:bg-purple-200',
+        delivered: 'bg-teal-100 text-teal-800 sm:hover:bg-teal-200'
       }
 
       return (
         <span
-          className={`inline-flex cursor-pointer items-center rounded-full px-2.5 py-0.5 text-sm font-medium ${statusStyles[status]}`}
+          className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-sm font-medium ${statusStyles[status]}`}
         >
           {status}
         </span>
@@ -201,13 +206,9 @@ const columns: ColumnDef<order>[] = [
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue('amount'))
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'BDT'
-      }).format(amount)
-
-      return <div className='text-right font-medium'>{formatted}</div>
+      return (
+        <div className='text-right font-medium'>{formatAmount(amount)}</div>
+      )
     }
   },
   {
@@ -219,27 +220,29 @@ const columns: ColumnDef<order>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='h-8 w-8 p-0'>
+            <Button variant='ghost' className='h-8 w-8 p-0 sm:hover:bg-white-1x'>
               <span className='sr-only'>Open menu</span>
               <DotsHorizontalIcon className='h-4 w-4' />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align='end' className='border-border border'>
+          <DropdownMenuContent align='end' className='border bg-white'>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(order.orderId)}
-              className='cursor-pointer'
+              className='cursor-pointer sm:hover:bg-white-2x'
             >
               Copy order ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className='cursor-pointer'>
+            <DropdownMenuItem className='cursor-pointer sm:hover:bg-white-2x'>
               View product
             </DropdownMenuItem>
 
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant='outline'>View Details</Button>
+                <Button className='cursor-pointer border sm:hover:bg-white-2x'>
+                  View Details
+                </Button>
               </DialogTrigger>
               <OrderDetails />
             </Dialog>
@@ -281,15 +284,15 @@ const Orders = () => {
   })
 
   return (
-    <Card className='space-y-5 border border-border'>
+    <Card className='space-y-5 border'>
       <CardHeader>
-        <CardTitle>Recent Orders</CardTitle>
-        <CardDescription className='flex flex-col gap-2 text-[#90908e]'>
+        <CardTitle className='text-black-solid'>Recent Orders</CardTitle>
+        <CardDescription className='flex flex-col gap-2 text-muted-foreground'>
           <span>{`View and manage your recent purchases`}</span>
         </CardDescription>
       </CardHeader>
 
-      <Separator className='m-0 h-[1px] w-full bg-border' />
+      <Separator className='m-0 h-[1px] w-full bg-white-1x' />
 
       <CardContent>
         <div className='w-full'>
@@ -310,7 +313,7 @@ const Orders = () => {
                   Columns <ChevronDownIcon className='ml-2 h-4 w-4' />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align='end' className='border-border border'>
+              <DropdownMenuContent align='end' className='bg-white'>
                 {table
                   .getAllColumns()
                   .filter(column => column.getCanHide())
@@ -318,7 +321,7 @@ const Orders = () => {
                     return (
                       <DropdownMenuCheckboxItem
                         key={column.id}
-                        className='capitalize'
+                        className='cursor-pointer capitalize transition-all duration-300 sm:hover:bg-white-2x'
                         checked={column.getIsVisible()}
                         onCheckedChange={value =>
                           column.toggleVisibility(!!value)
@@ -331,14 +334,17 @@ const Orders = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <div className='rounded-md border-border border '>
+          <div className='rounded-md border'>
             <Table>
               <TableHeader>
                 {table.getHeaderGroups().map(headerGroup => (
-                  <TableRow key={headerGroup.id}  className='border-border'>
+                  <TableRow key={headerGroup.id} className=''>
                     {headerGroup.headers.map(header => {
                       return (
-                        <TableHead className='font-semibold' key={header.id}>
+                        <TableHead
+                          className='font-semibold text-muted-foreground'
+                          key={header.id}
+                        >
                           {header.isPlaceholder
                             ? null
                             : flexRender(
@@ -356,12 +362,11 @@ const Orders = () => {
                   table.getRowModel().rows.map(row => {
                     return (
                       <TableRow
-                       className='border-border'
                         key={row.id}
                         data-state={row.getIsSelected() && 'selected'}
                       >
                         {row.getVisibleCells().map(cell => (
-                          <TableCell key={cell.id}>
+                          <TableCell key={cell.id} className='text-black-solid'>
                             {flexRender(
                               cell.column.columnDef.cell,
                               cell.getContext()
@@ -375,7 +380,7 @@ const Orders = () => {
                   <TableRow>
                     <TableCell
                       colSpan={columns.length}
-                      className='h-24 text-center'
+                      className='h-24 text-center text-muted-foreground'
                     >
                       No results.
                     </TableCell>
@@ -387,7 +392,7 @@ const Orders = () => {
           <div className='flex items-center justify-end space-x-2 py-4'>
             <div className='space-x-2'>
               <Button
-                variant='outline'
+                className='border sm:hover:bg-white-2x'
                 size='sm'
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
@@ -395,7 +400,7 @@ const Orders = () => {
                 Previous
               </Button>
               <Button
-                variant='outline'
+                className='border sm:hover:bg-white-2x'
                 size='sm'
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}

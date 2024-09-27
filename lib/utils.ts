@@ -34,3 +34,15 @@ export function idGenerator(strLength: number): string {
     )
   }
 }
+
+export const formatAmount = (amount: number) => {
+  // Format the amount as a BDT amount
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'BDT'
+  }).format(amount)
+}
+
+export const formatDate = (date: string) => {
+  return
+}

@@ -42,11 +42,11 @@ function SelectLocationForm({
         <SelectTrigger className='capitalize'>
           <SelectValue placeholder='Select Location'/>
         </SelectTrigger>
-        <SelectContent className='border-border'>
+        <SelectContent className='bg-white'>
           {departments.map(department => (
             <SelectGroup key={department}>
-              <SelectLabel>
-                {department.charAt(0).toUpperCase() + department.slice(1)}
+              <SelectLabel className='capitalize bg-white-2x my-1'>
+                {department}
               </SelectLabel>
               {locations
                 .filter(item => item.department === department)
@@ -54,7 +54,7 @@ function SelectLocationForm({
                   <SelectItem
                     key={index}
                     value={item.name}
-                    className='capitalize'
+                    className='capitalize cursor-pointer sm:hover:bg-white-2x transition-all duration-300'
                   >
                     {item.name}
                   </SelectItem>

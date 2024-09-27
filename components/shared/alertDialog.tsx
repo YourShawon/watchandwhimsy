@@ -29,16 +29,16 @@ function ReuseAlertDialog({
   return (
     <AlertDialog>
       <AlertDialogTrigger >{children}</AlertDialogTrigger>
-      <AlertDialogContent className='w-72 bg-white rounded-md border-none sm:w-96 lg:w-[32rem]'>
+      <AlertDialogContent className='w-72 bg-white border-none sm:w-96 lg:w-[32rem]'>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription className='text-[#222]'>
+          <AlertDialogDescription className='text-black-solid'>
             {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-green hover:bg-green-hover text-white' onClick={cb}>{actionText}</AlertDialogAction>
+          <AlertDialogCancel className='sm:hover:bg-white-2x'>Cancel</AlertDialogCancel>
+          <AlertDialogAction className='bg-green-0x sm:hover:bg-green-8x text-white' onClick={cb}>{actionText}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

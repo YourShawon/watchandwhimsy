@@ -72,7 +72,7 @@ function ChangePhoto() {
       {selectedFile && (
         <Button
           variant={'outline'}
-          className='rounded border-[#e2e9e1] text-[#90908e] hover:text-[#90908e] md:font-semibold'
+          className='rounded border-[#e2e9e1] text-[#90908e] sm:hover:text-[#90908e] md:font-semibold'
           onClick={handleFileUpload}
         >
           Upload Photo

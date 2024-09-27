@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "hooks/cart/useCart.js", "app/(root)/wishlist/_components/mobileWishlistItemvg"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(root)/cart/_components/hook/useCart.ts", "app/(root)/wishlist/_components/mobileWishlistItemvg"],
   "exclude": ["node_modules"]
 }
