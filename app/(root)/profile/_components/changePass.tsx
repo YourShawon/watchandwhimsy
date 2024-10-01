@@ -9,15 +9,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
+import { ChangePassFormData } from '@/interface/profile'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { SubmitHandler } from 'react-hook-form'
-
-interface ChangePassFormData {
-  oldPass: string
-  newPass: string
-  confirmPass: string
-}
 
 function ChangePass() {
   const {
@@ -43,7 +38,7 @@ function ChangePass() {
     <Card className='space-y-5'>
       <CardHeader>
         <CardTitle>Change Password</CardTitle>
-        <CardDescription className='space-y-2 text-gray'>
+        <CardDescription className='text-gray space-y-2'>
           <span>
             {
               'From your account dashboard, you can easily check & view your recent orders, manage your shipping and billing addresses, and edit your password and account details.'
@@ -117,8 +112,9 @@ function ChangePass() {
 
           <div className='mt-4 flex w-full justify-end'>
             <Button
+            variant={"bgGreen"}
               type='submit'
-              className='w-fit bg-green-0x sm:hover:bg-green-8x text-white transition-all duration-300'
+              className='w-fit'
             >
               Save changes
             </Button>

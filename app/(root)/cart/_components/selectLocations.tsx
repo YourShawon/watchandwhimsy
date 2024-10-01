@@ -7,18 +7,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-
-type Location = {
-  name: string
-  department: string
-}
-
-type SelectLocationFormProps = {
-  handleSelectLocation: (location: string) => void
-  handleShippingPrice: (location: string) => void
-  errorMessage?: string
-  locations: Location[]
-}
+import { SelectLocationFormProps } from '@/interface/cart'
 
 function SelectLocationForm({
   handleSelectLocation,
@@ -40,12 +29,12 @@ function SelectLocationForm({
         }}
       >
         <SelectTrigger className='capitalize'>
-          <SelectValue placeholder='Select Location'/>
+          <SelectValue placeholder='Select Location' />
         </SelectTrigger>
         <SelectContent className='bg-white'>
           {departments.map(department => (
             <SelectGroup key={department}>
-              <SelectLabel className='capitalize bg-white-2x my-1'>
+              <SelectLabel className='my-1 bg-white-2x capitalize'>
                 {department}
               </SelectLabel>
               {locations
@@ -54,7 +43,7 @@ function SelectLocationForm({
                   <SelectItem
                     key={index}
                     value={item.name}
-                    className='capitalize cursor-pointer sm:hover:bg-white-2x transition-all duration-300'
+                    className='cursor-pointer capitalize transition-all duration-300 sm:hover:bg-white-2x'
                   >
                     {item.name}
                   </SelectItem>
@@ -63,7 +52,7 @@ function SelectLocationForm({
           ))}
         </SelectContent>
       </Select>
-      {/* {errorMessage && <p className='text-red-500'>{errorMessage}</p>} */}
+      {/* {errorMessage && <p className="text-red-500">{errorMessage}</p>} */}
     </>
   )
 }

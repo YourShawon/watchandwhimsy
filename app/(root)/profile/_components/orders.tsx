@@ -36,7 +36,7 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { useState } from 'react'
+import { act, useState } from 'react'
 import OrderDetails from './order-details'
 import {
   Card,
@@ -47,112 +47,12 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { formatAmount } from '@/lib/utils'
+import { Order } from '@/types/profile'
+import { RowData } from '@/interface/profile'
+import { orders } from '@/constants/orders'
 
-type order = {
-  orderId: string
-  date: string
-  status:
-    | 'pending'
-    | 'processing'
-    | 'success'
-    | 'failed'
-    | 'shipped'
-    | 'delivered'
-  quantity: string
-  amount: number
-}
-
-interface RowData {
-  status:
-    | 'pending'
-    | 'processing'
-    | 'success'
-    | 'failed'
-    | 'shipped'
-    | 'delivered'
-}
-
-const data: order[] = [
-  {
-    orderId: '#m5gr84i9',
-    amount: 316,
-    status: 'pending',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#3u1reuv4',
-    amount: 242,
-    status: 'success',
-    quantity: '1 Item',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#derv1ws0',
-    amount: 837,
-    status: 'processing',
-    quantity: '1 Item',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#ckma50ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#5kma53ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#ekmac3ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#5amg53ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#csma5eae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#akm353ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#dkm353ae',
-    amount: 874,
-    status: 'success',
-    quantity: '2 Items',
-    date: new Date().toLocaleString()
-  },
-  {
-    orderId: '#bhqecj4p',
-    amount: 721,
-    status: 'failed',
-    quantity: '10 Items',
-    date: new Date().toLocaleString()
-  }
-]
-
-const columns: ColumnDef<order>[] = [
+// Define the columns for the table
+const columns: ColumnDef<Order>[] = [
   {
     accessorKey: 'orderId',
     header: 'Order ID',
@@ -175,6 +75,7 @@ const columns: ColumnDef<order>[] = [
     cell: ({ row }: { row: { getValue: (key: keyof RowData) => string } }) => {
       const status = row.getValue('status') as RowData['status']
 
+      // Define the status styles
       const statusStyles: Record<RowData['status'], string> = {
         pending: 'bg-yellow-100 text-black-solid sm:hover:bg-yellow-200',
         processing: 'bg-blue-100 text-blue-800 sm:hover:bg-blue-200',
@@ -217,10 +118,14 @@ const columns: ColumnDef<order>[] = [
     cell: ({ row }) => {
       const order = row.original
 
+      // Order action
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='ghost' className='h-8 w-8 p-0 sm:hover:bg-white-1x'>
+            <Button
+              variant='ghost'
+              className='h-8 w-8 p-0 sm:hover:bg-white-1x'
+            >
               <span className='sr-only'>Open menu</span>
               <DotsHorizontalIcon className='h-4 w-4' />
             </Button>
@@ -244,6 +149,8 @@ const columns: ColumnDef<order>[] = [
                   View Details
                 </Button>
               </DialogTrigger>
+
+              {/* Order details Component */}
               <OrderDetails />
             </Dialog>
           </DropdownMenuContent>
@@ -259,8 +166,9 @@ const Orders = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
 
+  // Define the table
   const table = useReactTable({
-    data,
+    data: orders,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -296,6 +204,7 @@ const Orders = () => {
 
       <CardContent>
         <div className='w-full'>
+          {/* Filter table header */}
           <div className='flex items-center py-4'>
             <Input
               placeholder='Filter IDs...'
@@ -334,6 +243,8 @@ const Orders = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
+          {/* Table */}
           <div className='rounded-md border'>
             <Table>
               <TableHeader>
@@ -389,6 +300,8 @@ const Orders = () => {
               </TableBody>
             </Table>
           </div>
+
+          {/* Pagination */}
           <div className='flex items-center justify-end space-x-2 py-4'>
             <div className='space-x-2'>
               <Button
