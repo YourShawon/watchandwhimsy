@@ -16,16 +16,13 @@ import {
 } from '@/components/ui/accordion'
 import X from '@/public/icons/crossIcon'
 import Category from '@/public/icons/browsCategory'
-import Facebook from '@/public/icons/facebook'
-import Twitter from '@/public/icons/twitter'
-import Instagram from '@/public/icons/instagram'
-import Youtube from '@/public/icons/youtube'
 import SearchIcon from '@/public/icons/search'
 import { FC } from 'react'
 import { MobileNavProps } from '@/interface/header-interface'
 import { headerCategoryList, NavbarList } from '@/constants/header'
 import Link from 'next/link'
 import Bars from '@/public/icons/bars'
+import FollowIcons from '@/components/shared/followIcons'
 
 const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
   return (
@@ -109,36 +106,7 @@ const MobileNav: FC<MobileNavProps> = ({ handleSearch }) => {
               </li>
             </ul>
           </SheetFooter>
-          <div>
-            <h5 className='font-spartan text-lg font-semibold text-gray-2x' >
-              Follow Us
-            </h5>
-            <ul className='mt-3 flex gap-3'>
-              <li>
-                <Link target='_blank' href={"https://www.facebook.com/"}>
-                <Facebook />
-                </Link>
-              </li>
-              <li>
-              <Link target='_blank' href={"https://www.twitter.com/"}>
-              <Twitter />
-                </Link>
-                
-              </li>
-              <li>
-              <Link target='_blank' href={"https://www.instagram.com/"}>
-              <Instagram />
-                </Link>
-                
-              </li>
-              <li>
-                <Link target='_blank' href={"https://www.youtube.com/"}>
-                <Youtube />
-                </Link>
-                
-              </li>
-            </ul>
-          </div>
+          <FollowIcons/>
         </SheetContent>
       </Sheet>
     </div>

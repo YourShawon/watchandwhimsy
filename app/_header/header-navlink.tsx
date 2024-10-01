@@ -31,13 +31,13 @@ const HeaderBottom: FC<HeaderBottomProps> = ({
               <PopoverContent
                 align='start'
                 sideOffset={20}
-                className={`popover-content-scroll left-[46px] top-4 hidden max-h-[554px] overflow-y-scroll scroll-smooth bg-white px-0 lg:block`}
+                className={`popover-content-scroll left-[46px] top-4 hidden max-h-[373px] overflow-y-scroll scroll-smooth bg-white px-0 lg:block`}
               >
                 <ul className='flex flex-col'>
                   {headerCategoryList.map(category => (
                     <li
                       key={category.id}
-                      className='cursor-pointer border-b border-white-3x px-5 py-2 text-base capitalize transition duration-200 hover:bg-green-5x hover:text-green-0x'
+                      className='cursor-pointer border-b text-[15px] border-white-3x px-5 py-2 capitalize transition duration-200 hover:bg-green-5x hover:text-green-0x'
                     >
                       {category.title}
                     </li>
