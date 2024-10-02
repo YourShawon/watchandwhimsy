@@ -1,6 +1,6 @@
 import React from "react";
 
-function useSort() {
+function useSortProducts() {
   const sortByLowToHighPrice = (a: { price: number }, b: { price: number }) =>
     a.price - b.price;
   const sortByHighToLowPrice = (a: { price: number }, b: { price: number }) =>
@@ -20,4 +20,4 @@ function useSort() {
   };
 }
 
-export default useSort;
+export default useSortProducts;

@@ -22,6 +22,8 @@ import Rating from '@/components/shared/rating-stars'
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
 
+  // const price =  product.originalPrice - (product.originalPrice * product.discount) / 100
+
   // add to favorite
   const favoritesAction = useStoreActions((actions: any) => actions.favorites)
 
@@ -49,7 +51,7 @@ function ProductCard({ product }: { product: Product }) {
             width={400}
             height={400}
             alt={isHovered ? product.media[1].alt : product.media[0].alt}
-            className='h-full w-auto object-cover transition-all duration-700 ease-in-out hover:scale-105'
+            className='mx-auto h-full w-auto object-cover transition-all duration-700 ease-in-out hover:scale-105'
           />
         </div>
 
@@ -67,7 +69,7 @@ function ProductCard({ product }: { product: Product }) {
               <Tooltip delayDuration={200}>
                 <TooltipTrigger>
                   <Link
-                    href={`/${product.productId}`}
+                    href={`/products/${product.slug}`}
                     className='group/btn flex h-8 w-8 items-center justify-center rounded-full bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x lg:h-9 lg:w-9'
                   >
                     <BiSearch className='h-4 w-4 text-green-0x group-hover/btn:text-white lg:h-5 lg:w-5' />
@@ -163,9 +165,11 @@ function ProductCard({ product }: { product: Product }) {
           <span className='text-lg font-bold text-green-0x'>
             {formatAmount(product.price)}
           </span>
-          <span className='ml-2 text-sm text-muted-foreground line-through'>
-            {formatAmount(product.originalPrice)}
-          </span>
+          {product.price !== product.originalPrice && (
+            <span className='ml-2 text-sm text-muted-foreground line-through'>
+              {formatAmount(product.originalPrice)}
+            </span>
+          )}
         </div>
       </CardContent>
 

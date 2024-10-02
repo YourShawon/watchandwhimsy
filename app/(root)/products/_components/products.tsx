@@ -14,16 +14,19 @@ import {
   PaginationEllipsis,
   PaginationItem
 } from '@/components/ui/pagination'
-
-import ProductCard from './product-card'
+import ProductCard from '../../../../components/shared/product/product-card'
+import { Button } from '@/components/ui/button'
 import { CiGrid31, CiGrid41 } from 'react-icons/ci'
 
-import { Button } from '@/components/ui/button'
-import useSort from '../_hook/useSort'
-import { response } from '@/constants/products'
+// import { response as products } from '@/constants/products'
+import { Product } from '@/interface/products'
+import { useFetchProducts } from '../../../../components/shared/product/hooks/useFetchProducts'
+import useSortProducts from '../../../../components/shared/product/hooks/useSortProducts'
 
 function ProductsInShop() {
-  const [sortedProducts, setSortedProducts] = useState(response)
+  const { products, fetchedProducts, loading, error, setProducts } =
+    useFetchProducts()
+
   const [currentPage, setCurrentPage] = useState(1)
 
   const INIT_SHOW_PRODUCTS = 10 // 9 products per page
@@ -34,38 +37,38 @@ function ProductsInShop() {
     sortByHighToLowPrice,
     sortByReleaseDate,
     sortByRating
-  } = useSort()
+  } = useSortProducts()
 
   const handleSorting = (value: string) => {
+    const sortedProducts = [...products]
     switch (value) {
       case 'lowToHighPrice':
-        setSortedProducts([...response].sort(sortByLowToHighPrice))
+        setProducts(sortedProducts.sort(sortByLowToHighPrice))
         break
       case 'highToLowPrice':
-        setSortedProducts([...response].sort(sortByHighToLowPrice))
+        setProducts(sortedProducts.sort(sortByHighToLowPrice))
         break
       case 'releaseDate':
-        setSortedProducts([...response].sort(sortByReleaseDate))
+        setProducts(sortedProducts.sort(sortByReleaseDate))
         break
       case 'rating':
-        setSortedProducts([...response].sort(sortByRating))
+        setProducts(sortedProducts.sort(sortByRating))
         break
       default:
-        setSortedProducts(response)
-        break
+        setProducts(fetchedProducts)
     }
-    setCurrentPage(1) // Reset to first page when sorting changes
+    setCurrentPage(1)
   }
 
   // Pagination logic
   const indexOfLastProduct = currentPage * showProducts
   const indexOfFirstProduct = indexOfLastProduct - showProducts
-  const currentProducts = sortedProducts.slice(
+  const currentProducts = products.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   )
 
-  const totalPages = Math.ceil(sortedProducts.length / showProducts)
+  const totalPages = Math.ceil(products.length / showProducts)
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -79,15 +82,21 @@ function ProductsInShop() {
     }
   }
 
+  if (loading) {
+    return <div>Loading products...</div>
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
+
   return (
     <div className='lg:col-span-9'>
       <div className='mb-6 flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between'>
         <h2 className='text-muted-foreground'>
           We found{' '}
-          <span className='font-semibold text-green-0x'>
-            {sortedProducts.length}
-          </span>{' '}
-          {`${sortedProducts.length === 1 ? 'item' : 'items'}`} for you!
+          <span className='font-semibold text-green-0x'>{products.length}</span>{' '}
+          {`${products.length === 1 ? 'item' : 'items'}`} for you!
         </h2>
 
         <div className='flex flex-col gap-2 sm:flex-row'>
@@ -102,25 +111,25 @@ function ProductsInShop() {
             </SelectTrigger>
             <SelectContent className='bg-white'>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value={'10'}
               >
                 Show: 10
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value={'20'}
               >
                 Show: 20
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value={'30'}
               >
                 Show: 30
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value={'50'}
               >
                 Show: 50
@@ -139,31 +148,31 @@ function ProductsInShop() {
             </SelectTrigger>
             <SelectContent className='bg-white'>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value='featured'
               >
                 Sort by: Featured
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value='lowToHighPrice'
               >
                 Sort by: Price: Low to High
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value='highToLowPrice'
               >
                 Sort by: Price: High to Low
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value='releaseDate'
               >
                 Sort by: Release Date
               </SelectItem>
               <SelectItem
-                className='focus:bg-green-text-green-0x focus:text-white'
+                className='cursor-pointer focus:bg-green-0x focus:text-white'
                 value='rating'
               >
                 Sort by: Rating
@@ -175,7 +184,7 @@ function ProductsInShop() {
 
       {/* Products */}
       <div className='grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-5'>
-        {currentProducts.map(product => (
+        {currentProducts.map((product: Product) => (
           <ProductCard key={product.productId} product={product} />
         ))}
       </div>

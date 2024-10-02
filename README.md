@@ -1,2 +1,1 @@
-// add custom classes in tooltip = 'hidden border-none bg-green-0x text-xs text-white sm:block
-sm:hover:bg-green-8x'
+/products page niye kaj ase. onek kaj. onek jhamela pakiye felsi.

@@ -1,4 +1,4 @@
-import Products from '@/app/(root)/_components/_products/products'
+import Products from '@/app/(root)/_components/products/products'
 
 import HeroSlider from "./_components/_hero/hero-slider";
 
