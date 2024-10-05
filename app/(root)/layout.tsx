@@ -1,7 +1,8 @@
-import Footer from '@/components/shared/footer/footer'
+
 import Provider from './storeProvider'
 
 import Navbar from "../_header/navbar";
+import Footer from '../_footer/footer';
 
 export default function RootLayout({
   children

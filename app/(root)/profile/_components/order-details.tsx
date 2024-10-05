@@ -22,42 +22,10 @@ import {
 } from '@/components/ui/dialog'
 import { formatAmount } from '@/lib/utils'
 import { format } from 'date-fns'
-
-type OrderItem = {
-  product: string
-  price: number
-  quantity: number
-}
-
-type OrderDetails = {
-  id: string
-  date: string
-  status:
-    | 'pending'
-    | 'processing'
-    | 'success'
-    | 'failed'
-    | 'shipped'
-    | 'delivered'
-  total: number
-  shippingInfo: {
-    name: string
-    address: string
-    city: string
-    state: string
-    zip: string
-    country: string
-  }
-  paymentInfo: {
-    method: string
-    cardNumber: string
-    expirationDate: string
-  }
-  items: OrderItem[]
-}
+import { OrderDetails as Order } from '@/types/profile'
 
 export default function OrderDetails() {
-  const orderDetails: OrderDetails = {
+  const orderDetails: Order = {
     id: '12345',
     date: new Date().toLocaleString(),
     status: 'success',

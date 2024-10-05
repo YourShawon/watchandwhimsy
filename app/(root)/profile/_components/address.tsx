@@ -18,22 +18,14 @@ import {
 import { MapPin, Home } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
-
-type Address = {
-  street: string
-  city: string
-  state: string
-  zipCode: string
-  country: string
-  phone?: string
-}
+import { Address } from '@/types/profile'
 
 export default function AddressSection() {
   const [billingAddress, setBillingAddress] = useState<Address>({
     street: '3522 Interstate 75 Business Spur',
     city: 'Sault Ste. Marie',
     state: 'MI',
-    zipCode: '49783',
+    postcode: '1219',
     country: 'New York'
   })
 
@@ -41,7 +33,7 @@ export default function AddressSection() {
     street: '4299 Express Lane',
     city: 'Sarasota',
     state: 'FL',
-    zipCode: '34249',
+    postcode: '1212',
     country: 'USA',
     phone: '1.941.227.4444'
   })
@@ -90,11 +82,11 @@ export default function AddressSection() {
         <p>{address.street}</p>
         <p>{address.city},</p>
         <p>
-          {address.state} {address.zipCode} {address.country}
+          {address.state} {address.postcode} {address.country}
         </p>
         {address.phone && <p>Phone: {address.phone}</p>}
         <Button
-          className='mt-2 border sm:hover:bg-white-2x font-semibold'
+          className='mt-2 border font-semibold sm:hover:bg-white-2x'
           onClick={() => handleEditAddress(type)}
         >
           Edit
@@ -127,7 +119,9 @@ export default function AddressSection() {
         className='space-y-4'
       >
         <div>
-          <Label htmlFor='street' className='text-muted-foreground'>Street</Label>
+          <Label htmlFor='street' className='text-muted-foreground'>
+            Street Address
+          </Label>
           <Input
             id='street'
             name='street'
@@ -137,7 +131,9 @@ export default function AddressSection() {
           />
         </div>
         <div>
-          <Label htmlFor='city' className="text-muted-foreground">City</Label>
+          <Label htmlFor='city' className='text-muted-foreground'>
+            City
+          </Label>
           <Input
             id='city'
             name='city'
@@ -148,7 +144,9 @@ export default function AddressSection() {
         </div>
         <div className='grid grid-cols-2 gap-4'>
           <div>
-            <Label htmlFor='state' className="text-muted-foreground">State</Label>
+            <Label htmlFor='state' className='text-muted-foreground'>
+              State
+            </Label>
             <Input
               id='state'
               name='state'
@@ -158,18 +156,22 @@ export default function AddressSection() {
             />
           </div>
           <div>
-            <Label htmlFor='zipCode' className="text-muted-foreground">ZIP Code</Label>
+            <Label htmlFor='postcode' className='text-muted-foreground'>
+              Postcode
+            </Label>
             <Input
-              id='zipCode'
-              name='zipCode'
-              value={editedAddress.zipCode}
+              id='postcode'
+              name='postcode'
+              value={editedAddress.postcode}
               onChange={handleChange}
               className='focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
             />
           </div>
         </div>
         <div>
-          <Label htmlFor='country' className="text-muted-foreground">Country</Label>
+          <Label htmlFor='country' className='text-muted-foreground'>
+            Country
+          </Label>
           <Input
             id='country'
             name='country'
@@ -180,7 +182,9 @@ export default function AddressSection() {
         </div>
         {type === 'shipping' && (
           <div>
-            <Label htmlFor='phone' className="text-muted-foreground">Phone</Label>
+            <Label htmlFor='phone' className='text-muted-foreground'>
+              Phone
+            </Label>
             <Input
               id='phone'
               name='phone'
@@ -190,7 +194,12 @@ export default function AddressSection() {
             />
           </div>
         )}
-        <Button className='bg-green-0x sm:hover:bg-green-8x text-white transition-all duration-300'  type='submit'>Save Address</Button>
+        <Button
+          variant={"bgGreen"}
+          type='submit'
+        >
+          Save Address
+        </Button>
       </form>
     )
   }
@@ -227,7 +236,7 @@ export default function AddressSection() {
         open={editingAddress !== null}
         onOpenChange={() => setEditingAddress(null)}
       >
-        <DialogContent className='w-72 bg-white border-none sm:w-96 lg:w-[32rem]'>
+        <DialogContent className='w-72 border-none bg-white sm:w-96 lg:w-[32rem]'>
           <DialogHeader>
             <DialogTitle>
               Edit {editingAddress === 'billing' ? 'Billing' : 'Shipping'}
