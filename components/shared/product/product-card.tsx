@@ -17,7 +17,7 @@ import { IoBagAddOutline } from 'react-icons/io5'
 import { BiHeart, BiSearch } from 'react-icons/bi'
 import { PiShareNetworkLight } from 'react-icons/pi'
 import React from 'react'
-import Rating from '@/components/shared/rating-stars'
+import RatingStar from '../rating-star'
 
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -152,12 +152,7 @@ function ProductCard({ product }: { product: Product }) {
         </Link>
 
         <div className='flex items-center justify-start gap-2'>
-          <Rating
-            count={5}
-            size={20}
-            value={(product.rating / 100) * 5}
-            actionColor='#eab308'
-          />
+          <RatingStar value={(product.rating / 100) * 5}/>
           <small>{`${product.rating}%`}</small>
         </div>
 

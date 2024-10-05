@@ -7,7 +7,6 @@ const RatingStar = ({value=0, editable=false, onChange}: {value?: number, editab
   const handleClick = (ratingValue: number) => {
     setRating(ratingValue)
   }
-  console.log(rating)
 
   return (
     <div className="flex justify-start space-x-[2px]">
