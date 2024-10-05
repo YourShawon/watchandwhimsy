@@ -14,14 +14,15 @@ import {
   PaginationEllipsis,
   PaginationItem
 } from '@/components/ui/pagination'
-import ProductCard from '../../../../components/shared/product/product-card'
+import ProductCard from '@/components/shared/product/product-card'
 import { Button } from '@/components/ui/button'
 import { CiGrid31, CiGrid41 } from 'react-icons/ci'
 
 // import { response as products } from '@/constants/products'
 import { Product } from '@/interface/products'
-import { useFetchProducts } from '../../../../components/shared/product/hooks/useFetchProducts'
-import useSortProducts from '../../../../components/shared/product/hooks/useSortProducts'
+import { useFetchProducts } from '@/components/shared/product/hooks/useFetchProducts'
+import useSortProducts from '@/components/shared/product/hooks/useSortProducts'
+import ProductSkeleton from '@/components/shared/product/skeleton'
 
 function ProductsInShop() {
   const { products, fetchedProducts, loading, error, setProducts } =
@@ -63,6 +64,7 @@ function ProductsInShop() {
   // Pagination logic
   const indexOfLastProduct = currentPage * showProducts
   const indexOfFirstProduct = indexOfLastProduct - showProducts
+
   const currentProducts = products.slice(
     indexOfFirstProduct,
     indexOfLastProduct
@@ -82,12 +84,19 @@ function ProductsInShop() {
     }
   }
 
-  if (loading) {
-    return <div>Loading products...</div>
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>
+  if (error || loading || products.length === 0) {
+    return (
+      <div className='lg:col-span-9'>
+        <div className='grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-5'>
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+          <ProductSkeleton />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -183,11 +192,13 @@ function ProductsInShop() {
       </div>
 
       {/* Products */}
-      <div className='grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-5'>
-        {currentProducts.map((product: Product) => (
-          <ProductCard key={product.productId} product={product} />
-        ))}
-      </div>
+      {products.length !== 0 && (
+        <div className='grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-5'>
+          {currentProducts.map((product: Product) => (
+            <ProductCard key={product.productId} product={product} />
+          ))}
+        </div>
+      )}
 
       {/* Pagination */}
       <Pagination className='my-12 text-sm'>

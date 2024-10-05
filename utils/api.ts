@@ -1,8 +1,12 @@
 // utils/api.ts
 import axios from 'axios'
 
+const CACHE_EXPIRY_TIME = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+
+const productsApi = process.env.NEXT_PUBLIC_PRODUCTS_API_KEY
+
 const axiosInstance = axios.create({
-  baseURL: 'https://956f505c-809c-4256-a32c-b3d6097e83c3.mock.pstmn.io',
+  baseURL: productsApi,
   headers: {
     'Content-Type': 'application/json'
   }
@@ -17,51 +21,49 @@ const apiGet = async (url: string, params?: any) => {
   }
 }
 
-const apiPost = async (url: string, data: any) => {
+const apiPost = async (url: string, data: any, params?: any) => {
   try {
-    const response = await axiosInstance.post(url, data)
+    const response = await axiosInstance.post(url, data, { params })
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-const apiPut = async (url: string, data: any) => {
+const apiPut = async (url: string, data: any, params?: any) => {
   try {
-    const response = await axiosInstance.put(url, data)
+    const response = await axiosInstance.put(url, data, { params })
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-const apiPatch = async (url: string, data: any) => {
+const apiPatch = async (url: string, data: any, params?: any) => {
   try {
-    const response = await axiosInstance.patch(url, data)
+    const response = await axiosInstance.patch(url, data, { params })
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-const apiDelete = async (url: string) => {
+const apiDelete = async (url: string, params?: any) => {
   try {
-    const response = await axiosInstance.delete(url)
+    const response = await axiosInstance.delete(url, { params })
     return response.data
   } catch (error) {
     throw error
   }
 }
 
-const CACHE_EXPIRY_TIME = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
-
-const saveToCache = (key: string, data: any) => {
+const saveToLocalStore = (key: string, data: any) => {
   const timestamp = new Date().getTime()
   const cacheData = { data, timestamp }
   localStorage.setItem(key, JSON.stringify(cacheData))
 }
 
-const getFromCache = (key: string) => {
+const getFromLocalStore = (key: string) => {
   const cachedData = localStorage.getItem(key)
   if (!cachedData) return null
 
@@ -76,4 +78,12 @@ const getFromCache = (key: string) => {
   return data
 }
 
-export { apiGet, apiPost, apiPut, apiPatch, apiDelete, saveToCache, getFromCache }
+export {
+  apiGet,
+  apiPost,
+  apiPut,
+  apiPatch,
+  apiDelete,
+  saveToLocalStore,
+  getFromLocalStore
+}

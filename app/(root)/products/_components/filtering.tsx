@@ -38,7 +38,7 @@ const Filtering = () => {
   const renderCheckbox = (item: string) => (
     <>
       <Checkbox
-        className='border-2 border-gray-300 data-[state=checked]:border-green-0x data-[state=checked]:bg-green-0x'
+        className='border-2 border-gray-300 text-white data-[state=checked]:border-green-0x data-[state=checked]:bg-green-0x'
         id={item}
       />
       <Label className='cursor-pointer font-normal' htmlFor={item}>
