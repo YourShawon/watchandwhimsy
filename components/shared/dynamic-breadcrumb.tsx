@@ -1,4 +1,3 @@
-
 "use client"
 import Link from "next/link"
  
@@ -20,12 +19,12 @@ const homeBreadcrumb = [
   }
 ]
 
-function capitalizeFirstLetter(str) {
+function capitalizeFirstLetter(str:string) {
   if (!str) return str; // handle empty strings
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function createBreadcrumbItems (arr) {
+function createBreadcrumbItems (arr: string[]) {
   const arr2 = arr.map ((item, idx) => (
     {
       id: idx + 1,
