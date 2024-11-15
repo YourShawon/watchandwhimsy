@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import React from "react"
  
 import {
   Breadcrumb,
@@ -53,18 +54,20 @@ const DynamicBreadcrumb = () => {
       <Breadcrumb>
         <BreadcrumbList>
           {items.map((item, idx )=> (
-            <BreadcrumbItem key={item.id}>
-              {idx === items.length - 1 ? (
-                <BreadcrumbPage>{item.title}</BreadcrumbPage>
-              ) : (
-                <>
-                  <BreadcrumbLink>
-                    <Link href={item.href}>{item.title}</Link>
-                  </BreadcrumbLink>
-                  <BreadcrumbSeparator />
-                </>
-              )}
-            </BreadcrumbItem>
+            <React.Fragment key={item.id}>
+              <BreadcrumbItem>
+                {idx === items.length - 1 ? (
+                  <BreadcrumbPage>{item.title}</BreadcrumbPage>
+                ) : (
+                  <>
+                    <Link href={item.href}>
+                      {item.title}
+                    </Link>
+                  </>
+                )}
+              </BreadcrumbItem>
+              {idx !== items.length - 1 && <BreadcrumbSeparator />}
+            </React.Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>

@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import { ArrowUp, Castle, CreditCard, RefreshCw } from 'lucide-react'
-import Rating from '@/components/shared/rating-stars'
 import { Button } from '@/components/ui/button'
 import CategoryWidget from '@/components/shared/category-widget'
 import NewProductWidget from '@/components/shared/new-products-widgets'
@@ -11,6 +10,8 @@ import { products } from '@/constants/product'
 import RelatedProducts from '@/components/shared/related-products'
 import AdditionalInfo from './_components/additional-info'
 import DynamicBreadcrumb from '@/components/shared/dynamic-breadcrumb'
+import RatingStar from '@/components/shared/rating-star'
+import ProductImgShowcase from './_components/product-img-showcase'
 
 const product = products[0]
 
@@ -22,6 +23,7 @@ const applyDiscount = (prevPrice: number, discount: number): number => {
 
 const ProductDetails = () => {
   const priceAfterDiscount = applyDiscount(product.price, product.discount)
+  const productImages = ["/watch1/img1.jpg", "/watch1/img2.jpg", "/watch1/img3.jpg"];
 
   return (
     <div className='relative font-lato'>
@@ -34,18 +36,7 @@ const ProductDetails = () => {
           <div className='flex flex-col lg:w-3/4 lg:pr-3'>
             <div className='flex flex-col md:flex-row md:flex-wrap'>
               <div className='md:w-1/2'>
-                <div>
-                  <div className='md:mr-3'>
-                    <Image
-                      src={product.imgUrl[0]}
-                      width={500}
-                      height={500}
-                      alt='Product Image'
-                      className='w-full'
-                    />
-                  </div>
-                </div>
-                <div>{/* TODO: Image slider */}</div>
+                <ProductImgShowcase imgUrls={productImages}/>
 
                 <div className='mt-6 flex items-center gap-2'>
                   <p>Share this:</p>
@@ -66,12 +57,7 @@ const ProductDetails = () => {
                   </div>
 
                   <div className='flex items-center gap-2'>
-                    <Rating
-                      count={5}
-                      size={24}
-                      value={product.rating}
-                      actionColor='#ffd700'
-                    />
+                    <RatingStar value={product.rating}/>
                     <span className='text-gray-3x'>
                       ({product.reviews} reviews)
                     </span>
@@ -160,16 +146,16 @@ const ProductDetails = () => {
 
           <div className='w-full lg:w-1/4'>
             {/* Right side widgets */}
-            <CategoryWidget />
-            <FillByPriceWidget />
-            <NewProductWidget />
+            <div>
+              <CategoryWidget />
+              <FillByPriceWidget />
+              <NewProductWidget />
+            </div>
           </div>
         </div>
       </div>
 
-      <Button variant='bgGreen' className='fixed bottom-2 right-2'>
-        <ArrowUp />
-      </Button>
+      
     </div>
   )
 }

@@ -1,41 +1,5 @@
+import { CartItem, Location, UseCartReturnType } from '@/types/cart'
 import { useState, useEffect } from 'react'
-
-// type CartItem = {
-//   productId: string;
-//   price: number;
-//   quantity: number;
-// };
-
-type CartItem = {
-  productId: string
-  price: number
-  quantity: number
-  title: string
-  description: string
-  media: {
-    url: string
-    alt: string
-  }
-  total: number
-  name: string
-  department: string
-}
-
-type Location = {
-  name: string
-  cost: number
-}
-
-type UseCartReturnType = {
-  data: CartItem[]
-  subtotal: number
-  shippingPrice: number
-  dataSubmitErrorMessage: string
-  selectedLocation: string
-  setSelectedLocation: (value: string) => void
-  handleShippingPrice: (value: string) => void
-  sentData: () => void
-}
 
 const useCart = (
   cartItems: CartItem[],

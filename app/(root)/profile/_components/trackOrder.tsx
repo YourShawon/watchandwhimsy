@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { TrackingResult } from '@/types/profile'
 import { format } from 'date-fns'
 import { Search } from 'lucide-react'
 import Image from 'next/image'
@@ -15,18 +16,6 @@ import Link from 'next/link'
 import React, { useState, FormEvent } from 'react'
 
 // Define types for the product and tracking result
-type Product = {
-  id: string
-  name: string
-  photo: string
-}
-
-type TrackingResult = {
-  orderId: string
-  status: string
-  orderDate: string
-  products: Product[]
-}
 
 function TrackOrder() {
   const [trackingId, setTrackingId] = useState<string>('') // trackingId is a string
@@ -93,8 +82,7 @@ function TrackOrder() {
           />
           <Button
             type='submit'
-            className='bg-green-0x text-white transition-all duration-300 sm:hover:bg-green-8x'
-          >
+            variant="bgGreen" >
             <Search className='mr-2 h-4 w-4' /> Track Order
           </Button>
         </form>
@@ -110,7 +98,7 @@ function TrackOrder() {
               <div>
                 <p className='font-semibold'>Order Date:</p>
                 <p className='text-muted-foreground'>
-                  {format((trackingResult.orderDate), 'dd-MMM-yyyy')}
+                  {format(trackingResult.orderDate, 'dd-MMM-yyyy')}
                 </p>
               </div>
               <div>

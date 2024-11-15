@@ -143,3 +143,9 @@ body {
 .popover-content-scroll::-webkit-scrollbar-button {
   display: none;
 }
+
+@layer components {
+  .input-border-green {
+    @apply focus:border-green-0x focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
+}

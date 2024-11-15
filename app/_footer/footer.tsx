@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import FollowIcons from '../followIcons'
+import FollowIcons from '@/components/shared/followIcons'
 
 const FooterSection = ({
   title,
@@ -97,7 +97,7 @@ export default function Footer() {
                 onChange={e => setEmail(e.target.value)}
                 className='flex-grow focus:border-cyan-600 focus-visible:ring-0 focus-visible:ring-offset-0'
               />
-              <Button className='bg-green-0x text-white sm:hover:bg-green-8x transition-all duration-300' type='submit' size='icon'>
+              <Button variant={"bgGreen"} className='transition-all duration-300' type='submit' size='icon'>
                 <ArrowRight className='h-4 w-4' />
               </Button>
             </form>
