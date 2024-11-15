@@ -3,6 +3,7 @@ import "./globals.css";
 import { Lato } from "next/font/google"
 import { ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ReactQueryProvider from "@/react-query";
 
 
 const lato = Lato({
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body className={`${lato.variable} ${lato.className}`}>
-        {children}
-        <Button variant='bgGreen' className='md:fixed hidden md:block bottom-2 right-2'>
-          <ArrowUp />
-        </Button>
+        <ReactQueryProvider>
+          {children}
+          <Button variant='bgGreen' className='md:fixed hidden md:block bottom-2 right-2'>
+            <ArrowUp />
+          </Button>
+        </ReactQueryProvider>
       </body>
     </html>
   );

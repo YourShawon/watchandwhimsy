@@ -7,9 +7,9 @@ import Summary from './_components/summary';
 export default function Home() {
   return (
     <>
-    <HeroSlider/>
-    <Products />
-    <Summary />
+      <HeroSlider/>
+      <Products />
+      <Summary />
     </>
   );
 }
