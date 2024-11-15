@@ -22,9 +22,7 @@ import RatingStar from '../rating-star'
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
 
-  // const price =  product.originalPrice - (product.originalPrice * product.discount) / 100
-
-  // add to favorite
+  // add to favorite 
   const favoritesAction = useStoreActions((actions: any) => actions.favorites)
 
   // add to cart
@@ -145,7 +143,7 @@ function ProductCard({ product }: { product: Product }) {
 
       <CardContent className='px-4'>
         <small className='text-muted-foreground'>{product.category}</small>
-        <Link href='javascript:void(0)'>
+        <Link href='/'>
           <h3 className='mt-1 line-clamp-2 w-fit font-semibold text-black-solid transition-all duration-300 hover:text-green-0x'>
             {product.title}
           </h3>
@@ -171,9 +169,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className='absolute bottom-6 right-5'>
         <TooltipProvider>
           <Tooltip delayDuration={200}>
-            <TooltipTrigger>
-              <Button
-                size={'icon'}
+            <TooltipTrigger
                 className='group/btn flex h-9 w-9 items-center justify-center rounded-full border border-green-1x bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x'
                 onClick={() => {
                   addToCartAction.addItem({
@@ -184,10 +180,8 @@ function ProductCard({ product }: { product: Product }) {
                     quantity: product.quantity,
                     price: product.price
                   })
-                }}
-              >
+                }}>
                 <IoBagAddOutline className='h-5 w-5 text-green-0x group-hover/btn:text-white' />
-              </Button>
             </TooltipTrigger>
             <TooltipContent
               sideOffset={10}

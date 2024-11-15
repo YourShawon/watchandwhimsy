@@ -28,8 +28,8 @@ function ReuseAlertDialog({
 }: ReuseAlertDialogProps) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger >{children}</AlertDialogTrigger>
-      <AlertDialogContent className='w-72 bg-white border-none sm:w-96 lg:w-[32rem]'>
+      <AlertDialogTrigger>{children}</AlertDialogTrigger>
+      <AlertDialogContent className='w-72 border-none bg-white sm:w-96 lg:w-[32rem]'>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription className='text-black-solid'>
@@ -37,8 +37,15 @@ function ReuseAlertDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='sm:hover:bg-white-2x'>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-green-0x sm:hover:bg-green-8x text-white transition-colors duration-300' onClick={cb}>{actionText}</AlertDialogAction>
+          <AlertDialogCancel className='sm:hover:bg-white-2x'>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            className='bg-green-0x text-white transition-colors duration-300 sm:hover:bg-green-8x'
+            onClick={cb}
+          >
+            {actionText}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
