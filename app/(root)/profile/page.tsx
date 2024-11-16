@@ -13,7 +13,6 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { TokensIcon } from '@radix-ui/react-icons'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,26 +25,26 @@ import {
   AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import { Separator } from '@radix-ui/react-select'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Key, LogOut, MapPin, Package, Trash, Truck } from 'lucide-react'
+import { LogOut, Trash } from 'lucide-react'
 import ChangePass from './_components/changePass'
 import Orders from './_components/orders'
 import TrackOrder from './_components/trackOrder'
 import AddressSection from './_components/address'
-import axios from 'axios'
 import DynamicBreadcrumb from '@/components/shared/dynamic-breadcrumb'
 import { ProfileData } from '@/interface/profile'
+import { tabsData } from '@/constants/profile'
 
 export default function Profile() {
   const [deleteAccount, setDeleteAccount] = useState('')
+
   const [profileData, setProfileData] = useState<ProfileData>({
     name: '',
     username: '',
     email: '',
     phone: ''
   })
-
   const {
     register,
     handleSubmit,
@@ -54,31 +53,6 @@ export default function Profile() {
   } = useForm({
     defaultValues: profileData
   })
-
-  // get profile data
-  const fetchProfileData = async () => {
-    try {
-      const response = await axios.get(
-        'https://c45143fa-b1d2-41f5-8445-a488e6931b78.mock.pstmn.io/users',
-        {
-          headers: {
-            'x-mock-response-code': '200'
-          }
-        }
-      )
-      const fetchedData = response.data.user
-      setProfileData(fetchedData)
-      console.log(response.data.message)
-      reset(fetchedData) // Update form values with fetched data
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchProfileData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const onSubmit = async (data: any) => {
     console.log(data)
@@ -93,6 +67,7 @@ export default function Profile() {
       <div className='bg-white-2x'>
         <DynamicBreadcrumb />
       </div>
+
       <Tabs
         defaultValue='dashboard'
         className='flex flex-col gap-5 p-2 py-5 md:container md:flex-row md:py-10'
@@ -100,55 +75,33 @@ export default function Profile() {
         <div className='flex h-full flex-col gap-4 md:w-1/4'>
           <div className='flex h-auto items-center gap-5 rounded border-none bg-green-2x p-2'>
             <Avatar className='h-12 w-12'>
-              <AvatarImage src='' alt={profileData?.name} />
+              <AvatarImage src='/image/user.webp' alt={'john doe'} />
               <AvatarFallback className='bg-white font-bold text-muted-foreground'>
-                {profileData?.username?.charAt(0).toLocaleUpperCase()}
+                J
               </AvatarFallback>
             </Avatar>
             <div className='flex flex-col gap-0'>
-              <h2 className='font-semibold text-black-solid'>
-                {profileData?.name || 'Dear User'}
-              </h2>
-              <p className='text-sm lowercase text-muted-foreground'>{`@${profileData?.username || 'username'}`}</p>
+              <h2 className='font-semibold text-black-solid'>John Doe</h2>
+              <p className='text-sm lowercase text-muted-foreground'>
+                @johndoe
+              </p>
             </div>
           </div>
 
           <TabsList className='flex h-auto flex-col bg-green-2x p-2'>
-            <TabsTrigger
-              className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
-              value='dashboard'
-            >
-              <TokensIcon className='mr-2' />
-              Dashboard
-            </TabsTrigger>
-            <TabsTrigger
-              className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
-              value='orders'
-            >
-              <Package className='mr-2 h-4 w-4' />
-              Orders
-            </TabsTrigger>
-            <TabsTrigger
-              className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
-              value='trackYourOrder'
-            >
-              <Truck className='mr-2 h-4 w-4' />
-              Track Your Order
-            </TabsTrigger>
-            <TabsTrigger
-              className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
-              value='changePass'
-            >
-              <Key className='mr-2 h-4 w-4' />
-              Change Password
-            </TabsTrigger>
-            <TabsTrigger
-              className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
-              value='address'
-            >
-              <MapPin className='mr-2 h-4 w-4' />
-              Address
-            </TabsTrigger>
+            {tabsData.map(tab => {
+              const Icon = tab.icon
+              return (
+                <TabsTrigger
+                  key={tab.id}
+                  className='w-full justify-start leading-9 data-[state=active]:bg-green-50 sm:hover:bg-green-50 md:font-medium'
+                  value={tab.value}
+                >
+                  <Icon className='mr-2 size-4' />
+                  {tab.name}
+                </TabsTrigger>
+              )
+            })}
 
             <Separator className='h-[1px] w-full' />
 
@@ -183,7 +136,7 @@ export default function Profile() {
             <CardHeader>
               <CardTitle className='text-black-solid'>My Account</CardTitle>
               <CardDescription className='flex flex-col gap-2 text-muted-foreground'>
-                <span>{`Hello ${profileData?.name || 'Dear User'}. Welcome to our website!`}</span>
+                <span>{`Hello John Doe. Welcome to our website!`}</span>
                 <span>
                   {
                     'From your account dashboard, you can easily check & view your recent orders, manage your shipping and billing addresses, and edit your password and account details.'
@@ -270,10 +223,7 @@ export default function Profile() {
                 </div>
 
                 <div className='mt-4 flex w-full justify-end'>
-                  <Button
-                    type='submit'
-                    variant={"bgGreen"}
-                  >
+                  <Button type='submit' variant={'bgGreen'}>
                     Save changes
                   </Button>
                 </div>
