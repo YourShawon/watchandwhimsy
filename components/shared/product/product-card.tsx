@@ -145,7 +145,7 @@ function ProductCard({ product }: { product: Product }) {
 
       <CardContent className='px-4'>
         <small className='text-muted-foreground'>{product.category}</small>
-        <Link href='javascript:void(0)'>
+        <Link href={`products/${product.productId}`}>
           <h3 className='mt-1 line-clamp-2 w-fit font-semibold text-black-solid transition-all duration-300 hover:text-green-0x'>
             {product.title}
           </h3>
