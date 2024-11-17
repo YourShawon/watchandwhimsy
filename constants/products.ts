@@ -1,7 +1,7 @@
 import { Product } from "@/interface/products"
 
 
-export const response: Product[] = [
+export const AllProducts: Product[] = [
   {
     productId: '0a7aeffa-a87e-415b-8b2d-ed56834ccfd0',
     get slug() {
@@ -9,11 +9,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727198994/image0_h8yoef.png',
+        url: '/watch1/img1.jpg',
         alt: 'Handmade Granite Sausages'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img2.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -40,11 +40,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727198994/image0_h8yoef.png',
+        url: '/watch1/img2.jpg',
         alt: 'Intelligent Frozen Tuna'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img3.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -72,11 +72,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v17219/image14_qyprkj.png',
+        url: '/watch1/img3.jpg',
         alt: 'Incredible Concrete Towels'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img1.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -103,11 +103,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v17219/image12_wswnex.png',
+        url: '/watch1/img1.jpg',
         alt: 'Tasty Frozen Pizza'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img3.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -135,11 +135,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199016/image10_q4pxh8.png',
+        url: '/watch1/img2.jpg',
         alt: 'Rustic Metal Salad'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img3.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -166,11 +166,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img3.jpg',
         alt: 'Incredible Rubber Mouse'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img1.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],
@@ -197,11 +197,11 @@ export const response: Product[] = [
     },
     media: [
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199031/image8_rzochq.png',
+        url: '/watch1/img1.jpg',
         alt: 'Licensed Steel Pants'
       },
       {
-        url: 'https://res.cloudinary.com/anamulhoquewd/image/upload/v1727199021/image16_mrywfp.png',
+        url: '/watch1/img2.jpg',
         alt: 'Handmade Granite Sausages'
       }
     ],

@@ -6,14 +6,14 @@ import { Button } from '@/components/ui/button'
 import CategoryWidget from '@/components/shared/category-widget'
 import NewProductWidget from '@/components/shared/new-products-widgets'
 import FillByPriceWidget from '@/components/shared/fill-by-price-widget'
-import { products } from '@/constants/product'
+import { Products } from '@/constants/product'
 import RelatedProducts from '@/components/shared/related-products'
 import AdditionalInfo from './_components/additional-info'
 import DynamicBreadcrumb from '@/components/shared/dynamic-breadcrumb'
 import RatingStar from '@/components/shared/rating-star'
 import ProductImgShowcase from './_components/product-img-showcase'
 
-const product = products[0]
+const product = Products[0]
 
 const applyDiscount = (prevPrice: number, discount: number): number => {
   const percentageOfPrice = 100 - discount

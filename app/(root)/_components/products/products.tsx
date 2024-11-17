@@ -1,13 +1,14 @@
 'use client'
 
 import { Product } from '@/interface/products'
-// import { response as products } from '@/constants/products'
-import { useFetchProducts } from '@/components/shared/product/hooks/useFetchProducts'
 import ProductCard from '@/components/shared/product/product-card'
 import ProductSkeleton from '@/components/shared/product/skeleton'
+import { AllProducts } from '@/constants/products'
 
 function Products() {
-  const { products, loading, error } = useFetchProducts()
+  const products = AllProducts;
+  const [error, loading] = [false, false];
+
 
   if (error || loading || products.length === 0) {
     return (
