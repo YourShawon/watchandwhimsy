@@ -43,6 +43,7 @@ const config = {
         'white-3x': '#E5E7EB',
         'white-4x': '#dedfe2',
         'white-5x': '#e8e8e8',
+        'white-6x': '#a2a2a2',
         'black-solid': '#222',
         'black-1/10': '#0000001a',
         'black-1/4': '#00000040',
@@ -67,6 +68,9 @@ const config = {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))'
         },
+      },
+      boxShadow:{
+        "demoShadow": "20px 20px 54px rgba(0, 0, 0, 0.03)",
       },
       borderRadius: {
         lg: "var(--radius)",
