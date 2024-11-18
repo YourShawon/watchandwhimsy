@@ -14,8 +14,8 @@ const Contact = () => {
             Get in touch
           </h4>
           <h5 className='mb-5 font-spartan lg:text-[58px] sm:text-5xl text-4xl font-black lg:leading-[63px] sm:leading-[58px] leading-[45px] text-black-solid'>
-            Let&apos;s Talk About <br /> Your
-            <span className='relative inline-block after:absolute after:bottom-[20%] after:left-[-5%] after:z-[-1] after:block after:h-1/5 after:w-[110%] after:bg-[#ffdabf] after:opacity-80 after:transition-all after:duration-500 after:ease-linear after:hover:h-2/5'>
+            Let&apos;s Talk About <br /> Your {' '}
+            <span className='relative after:content-[""] after:absolute after:-left-[5%] after:bottom-[20%] after:w-[110%] after:h-[20%] after:bg-[#F5DCC6] opacity-[0.8] after:-z-[1] after:transition-transform after:duration-500 after:hover:h-[30%]'>
               Idea
             </span>
           </h5>
