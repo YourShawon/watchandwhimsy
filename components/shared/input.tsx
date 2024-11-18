@@ -18,7 +18,7 @@ const Input = ({type, placeholder, onChange, onFocus, onBlur, className}: InputP
                 onChange={onChange}
                 onFocus={onFocus}
                 onBlur={onBlur}
-                className={cn('h-[45px] w-full rounded border border-green-1x py-[1px] pl-5 pr-[2px] text-[13px] text-black-1x outline-none', className)}
+                className={cn('h-[45px] w-full rounded border border-green-1x py-[1px] pl-5 pr-[2px] text-[13px] text-black-1x outline-none focus:border-green-0x', className)}
                 placeholder={placeholder}
               />
         </>

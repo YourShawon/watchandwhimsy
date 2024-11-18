@@ -15,7 +15,7 @@ const Contact = () => {
           </h4>
           <h5 className='mb-5 font-spartan lg:text-[58px] sm:text-5xl text-4xl font-black lg:leading-[63px] sm:leading-[58px] leading-[45px] text-black-solid'>
             Let&apos;s Talk About <br /> Your {' '}
-            <span className='relative after:content-[""] after:absolute after:-left-[5%] after:bottom-[20%] after:w-[110%] after:h-[20%] after:bg-[#F5DCC6] opacity-[0.8] after:-z-[1] after:transition-transform after:duration-500 after:hover:h-[30%]'>
+            <span className='relative after:content-[""] after:absolute after:-left-[5%] after:bottom-[20%] after:w-[110%] after:h-[20%] after:bg-[#F5DCC6] opacity-[0.8] after:-z-[1] after:transition-all after:duration-500 after:hover:h-[40%]'>
               Idea
             </span>
           </h5>
@@ -88,7 +88,7 @@ const Contact = () => {
                 <Input type='text' placeholder='Your Phone'/>
                 <Input type='text' placeholder='Subject'/>
             </div>
-            <textarea name="message" className='w-full rounded border border-green-1x py-[1px] pl-5 pr-[2px] text-[13px] text-black-1x outline-none' placeholder='Message' rows={10}></textarea>
+            <textarea name="message" className='w-full rounded border border-green-1x py-[1px] pl-5 pr-[2px] text-[13px] text-black-1x outline-none focus:border-green-0x' placeholder='Message' rows={10}></textarea>
           </div>
             <Button variant={"bgGreen"} size={"lg"} className='mt-10'>Send Message</Button>
         </form>
