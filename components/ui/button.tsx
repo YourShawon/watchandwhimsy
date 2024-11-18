@@ -20,14 +20,16 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         bgGreen: "bg-green-0x text-white font-lato text-[15px] font-[500] rounded-[5px] border border-green-8x hover:bg-green-8x transition-all duration-300",
-        customOutline: "bg-transparent border border-green-0x hover:translate-y-[-4px] transition-all duration-300 ease-linear rounded text-sm text-green-0x font-bold"
+        customOutline: "bg-transparent border border-green-0x hover:translate-y-[-4px] transition-all duration-300 ease-linear rounded text-sm text-green-0x font-bold",
+        fillOutline: "bg-green-0x border border-green-0x hover:translate-y-[-4px] transition-all duration-300 ease-linear rounded text-sm text-white font-bold"
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
-        outline: "py-3 px-[30px]"
+        outline: "py-3 px-[30px]",
+        outlineSm: "py-2 px-[18px]"
       },
     },
     defaultVariants: {

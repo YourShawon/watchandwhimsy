@@ -12,8 +12,7 @@ const AboutCarousel = () => {
     <>
       <Carousel
       opts={{
-        loop: true,
-        
+        loop: true,        
       }}
         plugins={[
           Autoplay({
@@ -24,12 +23,11 @@ const AboutCarousel = () => {
         <CarouselContent>
             {
                 aboutCarousel.map(item => (
-                     <CarouselItem key={item.id} className='basis-1/5'>
+                     <CarouselItem key={item.id} className='basis-1/3 xl:basis-1/5'>
                         <Image className='py-[10px] grayscale transition-all duration-150 hover:grayscale-0 cursor-pointer' src={item.image} alt='carousel image'/>
                      </CarouselItem>
                 ))
             }
-         
         </CarouselContent>
       </Carousel>
     </>
