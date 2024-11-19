@@ -12,10 +12,7 @@ export default function Home() {
     <>
       <HeroSlider/>
       <Products />
-      <Summary />
-      <HeroSlider/>
       <SellInformation/>
-      <Products />
       <Ads/>
       <Feature/>
       <Summary />

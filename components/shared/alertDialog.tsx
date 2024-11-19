@@ -28,7 +28,7 @@ function ReuseAlertDialog({
 }: ReuseAlertDialogProps) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger >{children}</AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent className='w-72 bg-white border-none sm:w-96 lg:w-[32rem]'>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>

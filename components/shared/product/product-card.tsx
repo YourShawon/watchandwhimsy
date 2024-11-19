@@ -156,7 +156,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className='absolute bottom-6 right-5'>
         <TooltipProvider>
           <Tooltip delayDuration={200}>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <Button
                 size={'icon'}
                 className='group/btn flex h-9 w-9 items-center justify-center rounded-full border border-green-1x bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x'

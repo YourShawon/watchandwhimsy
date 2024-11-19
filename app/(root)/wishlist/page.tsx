@@ -117,9 +117,7 @@ function Wishlist() {
                     </Button>
                   </TableCell>
                   <TableCell className='text-center'>
-                    <ReuseAlertDialog
-                      
-                    >
+                    <ReuseAlertDialog>
                       <Button
                         className='border text-green-0x transition-colors duration-500 sm:hover:bg-green-2x'
                         size='icon'
