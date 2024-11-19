@@ -128,7 +128,7 @@ function ProductCard({ product }: { product: Product }) {
 
       <CardContent className='px-4'>
         <small className='text-muted-foreground'>{product.category}</small>
-        <Link href={`products/${product.productId}`}>
+        <Link href={`shop/${product.productId}`}>
           <h3 className='mt-1 line-clamp-2 w-fit font-semibold text-black-solid transition-all duration-300 hover:text-green-0x'>
             {product.title}
           </h3>
@@ -161,6 +161,7 @@ function ProductCard({ product }: { product: Product }) {
                 onClick={() => console.log("add to cart")}
               >
                 <IoBagAddOutline className='h-5 w-5 text-green-0x group-hover/btn:text-white' />
+              </Button>
             </TooltipTrigger>
             <TooltipContent
               sideOffset={10}
