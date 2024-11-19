@@ -10,12 +10,15 @@ import Feature from './_components/_feature';
 export default function Home() {
   return (
     <>
-    <HeroSlider/>
-    <SellInformation/>
-    <Products />
-    <Ads/>
-    <Feature/>
-    <Summary />
+      <HeroSlider/>
+      <Products />
+      <Summary />
+      <HeroSlider/>
+      <SellInformation/>
+      <Products />
+      <Ads/>
+      <Feature/>
+      <Summary />
     </>
   );
 }

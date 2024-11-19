@@ -1,4 +1,5 @@
-import Image from 'next/image'
+"use client"
+
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import { ArrowUp, Castle, CreditCard, RefreshCw } from 'lucide-react'
@@ -6,14 +7,13 @@ import { Button } from '@/components/ui/button'
 import CategoryWidget from '@/components/shared/category-widget'
 import NewProductWidget from '@/components/shared/new-products-widgets'
 import FillByPriceWidget from '@/components/shared/fill-by-price-widget'
-import { products } from '@/constants/product'
 import RelatedProducts from '@/components/shared/related-products'
 import AdditionalInfo from './_components/additional-info'
 import DynamicBreadcrumb from '@/components/shared/dynamic-breadcrumb'
 import RatingStar from '@/components/shared/rating-star'
 import ProductImgShowcase from './_components/product-img-showcase'
+import { AllProducts } from '@/constants/products'
 
-const product = products[0]
 
 const applyDiscount = (prevPrice: number, discount: number): number => {
   const percentageOfPrice = 100 - discount
@@ -21,9 +21,13 @@ const applyDiscount = (prevPrice: number, discount: number): number => {
   return priceAfterDiscount
 }
 
-const ProductDetails = () => {
-  const priceAfterDiscount = applyDiscount(product.price, product.discount)
-  const productImages = ["/watch1/img1.jpg", "/watch1/img2.jpg", "/watch1/img3.jpg"];
+const ProductDetails = ({ params }) => {
+  const productId = params.productId;
+  const product = AllProducts.filter(product => product.productId === productId)[0];
+  console.log(product)
+
+  const priceAfterDiscount = applyDiscount(product.originalPrice, product.discount)
+
 
   return (
     <div className='relative font-lato'>
@@ -36,7 +40,7 @@ const ProductDetails = () => {
           <div className='flex flex-col lg:w-3/4 lg:pr-3'>
             <div className='flex flex-col md:flex-row md:flex-wrap'>
               <div className='md:w-1/2'>
-                <ProductImgShowcase imgUrls={productImages}/>
+                <ProductImgShowcase images={product.media}/>
 
                 <div className='mt-6 flex items-center gap-2'>
                   <p>Share this:</p>
@@ -59,7 +63,7 @@ const ProductDetails = () => {
                   <div className='flex items-center gap-2'>
                     <RatingStar value={product.rating}/>
                     <span className='text-gray-3x'>
-                      ({product.reviews} reviews)
+                      ({product.reviews.length} reviews)
                     </span>
                   </div>
                 </div>

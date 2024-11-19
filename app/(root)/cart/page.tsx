@@ -11,8 +11,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { useStoreActions, useStoreState } from 'easy-peasy'
+import { useState } from 'react'
 import {
   Card,
   CardHeader,
@@ -25,35 +24,12 @@ import { locations as allLocation } from '@/constants/locations'
 import SelectLocationForm from './_components/selectLocations'
 import ReuseAlertDialog from '@/components/shared/alertDialog'
 import { formatAmount } from '@/lib/utils'
-import useCart from './_components/hook/useCart'
 import DynamicBreadcrumb from '@/components/shared/dynamic-breadcrumb'
 import { Location, Product } from '@/interface/cart'
 
 function Cart() {
   const [locations, setLocations] = useState<Location[]>([])
   const [carts, setCarts] = useState<Product[]>([]) // Define as array of Product
-
-  const cartItems = useStoreState((states: any) => states.addToCarts.items)
-  const cartActions = useStoreActions((actions: any) => actions.addToCarts)
-
-  const {
-    data,
-    subtotal,
-    shippingPrice,
-    dataSubmitErrorMessage,
-    selectedLocation,
-    handleShippingPrice,
-    setSelectedLocation,
-    sentData
-  } = useCart(cartItems, locations)
-
-  useEffect(() => {
-    setCarts(data)
-  }, [data])
-
-  useEffect(() => {
-    setLocations(allLocation)
-  }, [])
 
   if (carts.length === 0) {
     return (
@@ -125,9 +101,7 @@ function Cart() {
                     <div className='flex h-20 w-10 flex-col items-center justify-between overflow-hidden border'>
                       <Button
                         className='text-green-0x transition-all duration-300 sm:hover:bg-white-1x'
-                        onClick={() => {
-                          cartActions.incrementQuantity(product.productId)
-                        }}
+                        onClick={() => console.log("Increase Product")}
                         disabled={product.quantity >= 10}
                       >
                         <Plus className='h-3 w-3' />
@@ -135,9 +109,7 @@ function Cart() {
                       <h2>{product.quantity}</h2>
                       <Button
                         className='text-green-0x transition-all duration-300 sm:hover:bg-white-1x'
-                        onClick={() => {
-                          cartActions.decrementQuantity(product.productId)
-                        }}
+                        onClick={() => console.log("Decrease products")}
                         disabled={product.quantity <= 1}
                       >
                         <Minus className='h-3 w-3' />
@@ -149,7 +121,7 @@ function Cart() {
                   </TableCell>
                   <TableCell>
                     <ReuseAlertDialog
-                      cb={() => cartActions.removeItem(product.productId)}
+                      
                     >
                       <Button
                         className='border bg-transparent text-green-0x transition-all duration-300 sm:hover:bg-white-1x'
@@ -193,9 +165,7 @@ function Cart() {
                   <div className='flex h-10 w-24 items-center justify-between overflow-hidden border'>
                     <Button
                       className='border-r p-2 text-green-0x'
-                      onClick={() => {
-                        cartActions.decrementQuantity(product.productId)
-                      }}
+                      onClick={() => console.log("decrease quantity")}
                       disabled={product.quantity <= 1}
                     >
                       <Minus className='h-3 w-3' />
@@ -203,9 +173,7 @@ function Cart() {
                     <h2>{product.quantity}</h2>
                     <Button
                       className='border-l p-2 text-green-0x transition-all duration-300'
-                      onClick={() => {
-                        cartActions.incrementQuantity(product.productId)
-                      }}
+                      onClick={() => console.log("increase quantity")}
                       disabled={product.quantity >= 10}
                     >
                       <Plus className='h-3 w-3' />
@@ -218,7 +186,7 @@ function Cart() {
                     Total: {formatAmount(product.price * product.quantity)}
                   </span>
                   <ReuseAlertDialog
-                    cb={() => cartActions.removeItem(product.productId)}
+                    
                   >
                     <Button
                       className='border bg-transparent text-green-0x'
@@ -244,12 +212,12 @@ function Cart() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <SelectLocationForm
+              {/* <SelectLocationForm
                 handleShippingPrice={handleShippingPrice}
                 handleSelectLocation={setSelectedLocation}
                 errorMessage={dataSubmitErrorMessage}
                 locations={locations}
-              />
+              /> */}
             </CardContent>
           </Card>
 
@@ -265,33 +233,33 @@ function Cart() {
               <div className='space-y-2'>
                 <div className='flex justify-between'>
                   <span>Cart Subtotal</span>
-                  <span>{formatAmount(subtotal)}</span>
+                  <span>{`$ 100`}</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Shipping</span>
-                  <span>{formatAmount(shippingPrice)}</span>
+                  <span>{`$ 100`}</span>
                 </div>
                 <div className='flex justify-between'>
                   <span>Address</span>
                   <span className='capitalize'>
-                    {selectedLocation || 'Select Location'}
+                    { 'Select Location'}
                   </span>
                 </div>
                 <div className='flex justify-between font-bold'>
                   <span>Total</span>
-                  <span>{formatAmount(subtotal + shippingPrice)}</span>
+                  <span>{`$ 100`}</span>
                 </div>
               </div>
               <Button
                 className='mt-4 w-full'
                 variant={'bgGreen'}
-                onClick={sentData}
+                onClick={() => console.log("proceed to checkout")}
               >
                 Proceed to Checkout
               </Button>
-              {dataSubmitErrorMessage && (
+              {/* {dataSubmitErrorMessage && (
                 <p className='mt-2 text-red-500'>{dataSubmitErrorMessage}</p>
-              )}
+              )} */}
             </CardContent>
           </Card>
         </div>

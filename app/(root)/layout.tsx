@@ -2,7 +2,7 @@
 import Provider from './storeProvider'
 
 import Navbar from "../_header/navbar";
-import Footer from '../_footer/footer';
+import Footer from './_components/footer';
 
 export default function RootLayout({
   children

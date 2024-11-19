@@ -19,16 +19,19 @@ import { Button } from '@/components/ui/button'
 import { CiGrid31, CiGrid41 } from 'react-icons/ci'
 
 // import { response as products } from '@/constants/products'
-import { Product } from '@/interface/products'
-import { useFetchProducts } from '@/components/shared/product/hooks/useFetchProducts'
 import useSortProducts from '@/components/shared/product/hooks/useSortProducts'
 import ProductSkeleton from '@/components/shared/product/skeleton'
+import { Product } from '@/interface/products'
+import { AllProducts } from '@/constants/products'
 
 function ProductsInShop() {
-  const { products, fetchedProducts, loading, error, setProducts } =
-    useFetchProducts()
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const [products, setProducts] = useState(AllProducts);
+  const fetchedProducts = true;
+  const loading = false;
+  const error = false;
 
-  const [currentPage, setCurrentPage] = useState(1)
 
   const INIT_SHOW_PRODUCTS = 10 // 9 products per page
   const [showProducts, setShowProducts] = useState(INIT_SHOW_PRODUCTS)
@@ -56,7 +59,7 @@ function ProductsInShop() {
         setProducts(sortedProducts.sort(sortByRating))
         break
       default:
-        setProducts(fetchedProducts)
+        setProducts([])
     }
     setCurrentPage(1)
   }
