@@ -1,5 +1,3 @@
-'use client'
-
 import { Product } from '@/interface/products'
 import ProductCard from '@/components/shared/product/product-card'
 import ProductSkeleton from '@/components/shared/product/skeleton'
