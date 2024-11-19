@@ -23,22 +23,13 @@ import {
   Product,
   StoreModel
 } from '@/interface/wishlist'
+import { AllProducts } from '@/constants/products'
 
 function Wishlist() {
-  const [products, setProducts] = useState<Product[]>([])
-  const favorites = useStoreState((states: any) => states.favorites.items)
+  const products = AllProducts;
+  // const [products, setProducts] = useState<Product[]>([])
+  const favorites = [];
 
-  const favoritesAction = useStoreActions<StoreModel, FavoritesActions>(
-    actions => actions.favorites
-  )
-
-  const addToCartAction = useStoreActions<StoreModel, CartActions>(
-    actions => actions.addToCarts
-  )
-
-  useEffect(() => {
-    setProducts(favorites)
-  }, [favorites])
 
   if (products.length === 0) {
     return (
@@ -120,23 +111,14 @@ function Wishlist() {
                   <TableCell className='text-center'>
                     <Button
                       variant={'bgGreen'}
-                      onClick={() => {
-                        addToCartAction.addItem({
-                          productId: product.productId,
-                          title: product.title,
-                          description: product.description,
-                          media: product.media,
-                          quantity: product.quantity,
-                          price: product.price
-                        })
-                      }}
+                      onClick={() => console.log("add to cart")}
                     >
                       Add to Cart
                     </Button>
                   </TableCell>
                   <TableCell className='text-center'>
                     <ReuseAlertDialog
-                      cb={() => favoritesAction.removeItem(product.productId)}
+                      
                     >
                       <Button
                         className='border text-green-0x transition-colors duration-500 sm:hover:bg-green-2x'
@@ -181,21 +163,12 @@ function Wishlist() {
                 <div className='flex items-center justify-between'>
                   <Button
                     className='bg-green-0x text-white'
-                    onClick={() => {
-                      addToCartAction.addItem({
-                        productId: product.productId,
-                        title: product.title,
-                        description: product.description,
-                        media: product.media,
-                        quantity: product.quantity,
-                        price: product.price
-                      })
-                    }}
+                    onClick={() => console.log("Add to cart")}
                   >
                     Add to Cart
                   </Button>
                   <ReuseAlertDialog
-                    cb={() => favoritesAction.removeItem(product.productId)}
+                    
                   >
                     <Button
                       className='border bg-transparent text-green-0x'

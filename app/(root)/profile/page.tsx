@@ -55,29 +55,6 @@ export default function Profile() {
     defaultValues: profileData
   })
 
-  // get profile data
-  const fetchProfileData = async () => {
-    try {
-      const response = await axios.get(
-        'https://c45143fa-b1d2-41f5-8445-a488e6931b78.mock.pstmn.io/users',
-        {
-          headers: {
-            'x-mock-response-code': '200'
-          }
-        }
-      )
-      const fetchedData = response.data.user
-      setProfileData(fetchedData)
-      console.log(response.data.message)
-      reset(fetchedData) // Update form values with fetched data
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchProfileData()
-  }, [])
 
   const onSubmit = async (data: any) => {
     console.log(data)

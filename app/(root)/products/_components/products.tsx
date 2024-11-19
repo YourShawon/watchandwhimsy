@@ -22,12 +22,12 @@ import { CiGrid31, CiGrid41 } from 'react-icons/ci'
 import useSortProducts from '@/components/shared/product/hooks/useSortProducts'
 import ProductSkeleton from '@/components/shared/product/skeleton'
 import { Product } from '@/interface/products'
-import { Products } from '@/constants/product'
+import { AllProducts } from '@/constants/products'
 
 function ProductsInShop() {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   
-  const products = Products;
+  const [products, setProducts] = useState(AllProducts);
   const fetchedProducts = true;
   const loading = false;
   const error = false;
@@ -59,7 +59,7 @@ function ProductsInShop() {
         setProducts(sortedProducts.sort(sortByRating))
         break
       default:
-        setProducts(fetchedProducts)
+        setProducts([])
     }
     setCurrentPage(1)
   }
