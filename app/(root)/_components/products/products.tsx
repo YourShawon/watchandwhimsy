@@ -28,7 +28,6 @@ function Products() {
   return (
     <div className='mx-auto px-4 py-8 sm:container'>
       <h1 className='mb-4 text-2xl font-bold text-black-solid'>Products</h1>
-
       <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {products.slice(0, 8).map((product: Product) => (
           <ProductCard key={product.productId} product={product} />

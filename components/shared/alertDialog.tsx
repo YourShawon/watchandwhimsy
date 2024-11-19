@@ -37,8 +37,15 @@ function ReuseAlertDialog({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className='sm:hover:bg-white-2x'>Cancel</AlertDialogCancel>
-          <AlertDialogAction className='bg-green-0x sm:hover:bg-green-8x text-white transition-colors duration-300' onClick={cb}>{actionText}</AlertDialogAction>
+          <AlertDialogCancel className='sm:hover:bg-white-2x'>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            className='bg-green-0x text-white transition-colors duration-300 sm:hover:bg-green-8x'
+            onClick={cb}
+          >
+            {actionText}
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

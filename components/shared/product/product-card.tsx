@@ -22,8 +22,6 @@ import RatingStar from '../rating-star'
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
 
-  // const price =  product.originalPrice - (product.originalPrice * product.discount) / 100
-
 
   const tagStyles: tagStyles = {
     hot: 'bg-yellow-200 sm:hover:bg-yellow-300',
@@ -163,7 +161,6 @@ function ProductCard({ product }: { product: Product }) {
                 onClick={() => console.log("add to cart")}
               >
                 <IoBagAddOutline className='h-5 w-5 text-green-0x group-hover/btn:text-white' />
-              </Button>
             </TooltipTrigger>
             <TooltipContent
               sideOffset={10}

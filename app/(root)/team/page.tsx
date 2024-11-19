@@ -30,9 +30,6 @@ const Li: FC<LiProps> = ({ children, icon, delay }) => {
 const TeamSection: FC = () => {
   return (
     <>
-      <div className='bg-white-2x'>
-        <DynamicBreadcrumb />
-      </div>
       <section className='px-2 py-12 sm:container'>
         <div className='mx-auto'>
           <h2 className='mb-4 text-center text-3xl font-bold'>
