@@ -1,6 +1,6 @@
-
 "use client"
 import Link from "next/link"
+import React from "react"
  
 import {
   Breadcrumb,
@@ -20,12 +20,12 @@ const homeBreadcrumb = [
   }
 ]
 
-function capitalizeFirstLetter(str) {
+function capitalizeFirstLetter(str:string) {
   if (!str) return str; // handle empty strings
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function createBreadcrumbItems (arr) {
+function createBreadcrumbItems (arr: string[]) {
   const arr2 = arr.map ((item, idx) => (
     {
       id: idx + 1,
@@ -54,18 +54,20 @@ const DynamicBreadcrumb = () => {
       <Breadcrumb>
         <BreadcrumbList>
           {items.map((item, idx )=> (
-            <BreadcrumbItem key={item.id}>
-              {idx === items.length - 1 ? (
-                <BreadcrumbPage>{item.title}</BreadcrumbPage>
-              ) : (
-                <>
-                  <BreadcrumbLink>
-                    <Link href={item.href}>{item.title}</Link>
-                  </BreadcrumbLink>
-                  <BreadcrumbSeparator />
-                </>
-              )}
-            </BreadcrumbItem>
+            <React.Fragment key={item.id}>
+              <BreadcrumbItem>
+                {idx === items.length - 1 ? (
+                  <BreadcrumbPage>{item.title}</BreadcrumbPage>
+                ) : (
+                  <>
+                    <Link href={item.href}>
+                      {item.title}
+                    </Link>
+                  </>
+                )}
+              </BreadcrumbItem>
+              {idx !== items.length - 1 && <BreadcrumbSeparator />}
+            </React.Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>

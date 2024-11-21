@@ -1,4 +1,5 @@
 interface Media {
+  id: string
   url: string
   alt: string
 }
@@ -16,9 +17,23 @@ export interface Product {
   category: string
   stock: number
   rating: number
+  brand: string
+  warranty: number
+  sku: string
+  gender: string
   price: number
   discount: number
   releaseDate: string
+  reviews: Reviews[]
+}
+
+interface Reviews {
+  id: string
+  username: string
+  message: string
+  rating: number
+  date: string
+  avatarUrl: string
 }
 
 export interface tagStyles {

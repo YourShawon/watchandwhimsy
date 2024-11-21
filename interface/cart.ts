@@ -27,3 +27,9 @@ export interface Product {
   quantity: number
   media: Media[]
 }
+
+// short-cart item
+
+export interface ShortCartProps {
+  image: string, alt: string, name: string, price: number, quantity: number
+}

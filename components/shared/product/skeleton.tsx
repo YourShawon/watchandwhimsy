@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 const ProductSkeleton = () => {
   return (
-    <Card className=''>
+    <Card>
       <CardHeader>
         <Skeleton className='h-[250px] w-full rounded-md bg-white-1x' />
       </CardHeader>

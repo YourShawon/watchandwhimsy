@@ -1,3 +1,4 @@
+"use client"
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -9,7 +10,6 @@ import {
 } from '@/components/ui/tooltip'
 import { Product, tagStyles } from '@/interface/products'
 import { formatAmount } from '@/lib/utils'
-import { useStoreActions } from 'easy-peasy'
 import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
@@ -17,18 +17,11 @@ import { IoBagAddOutline } from 'react-icons/io5'
 import { BiHeart, BiSearch } from 'react-icons/bi'
 import { PiShareNetworkLight } from 'react-icons/pi'
 import React from 'react'
-import Rating from '@/components/shared/rating-stars'
+import RatingStar from '../rating-star'
 
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
 
-  // const price =  product.originalPrice - (product.originalPrice * product.discount) / 100
-
-  // add to favorite
-  const favoritesAction = useStoreActions((actions: any) => actions.favorites)
-
-  // add to cart
-  const addToCartAction = useStoreActions((actions: any) => actions.addToCarts)
 
   const tagStyles: tagStyles = {
     hot: 'bg-yellow-200 sm:hover:bg-yellow-300',
@@ -90,17 +83,7 @@ function ProductCard({ product }: { product: Product }) {
                   <Button
                     size={'icon'}
                     className='group/btn flex h-8 w-8 items-center justify-center rounded-full bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x lg:h-9 lg:w-9'
-                    onClick={() => {
-                      favoritesAction.addItem({
-                        productId: product.productId,
-                        title: product.title,
-                        description: product.description,
-                        media: product.media,
-                        stock: product.stock,
-                        quantity: product.quantity,
-                        price: product.price
-                      })
-                    }}
+                    onClick={() => console.log("Add to Wishlist")}
                   >
                     <BiHeart className='h-4 w-4 text-green-0x group-hover/btn:text-white lg:h-5 lg:w-5' />
                   </Button>
@@ -145,19 +128,14 @@ function ProductCard({ product }: { product: Product }) {
 
       <CardContent className='px-4'>
         <small className='text-muted-foreground'>{product.category}</small>
-        <Link href='javascript:void(0)'>
+        <Link href={`shop/${product.productId}`}>
           <h3 className='mt-1 line-clamp-2 w-fit font-semibold text-black-solid transition-all duration-300 hover:text-green-0x'>
             {product.title}
           </h3>
         </Link>
 
         <div className='flex items-center justify-start gap-2'>
-          <Rating
-            count={5}
-            size={20}
-            value={(product.rating / 100) * 5}
-            actionColor='#eab308'
-          />
+          <RatingStar value={(product.rating / 100) * 5}/>
           <small>{`${product.rating}%`}</small>
         </div>
 
@@ -176,20 +154,11 @@ function ProductCard({ product }: { product: Product }) {
       <div className='absolute bottom-6 right-5'>
         <TooltipProvider>
           <Tooltip delayDuration={200}>
-            <TooltipTrigger>
+            <TooltipTrigger asChild>
               <Button
                 size={'icon'}
                 className='group/btn flex h-9 w-9 items-center justify-center rounded-full border border-green-1x bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x'
-                onClick={() => {
-                  addToCartAction.addItem({
-                    productId: product.productId,
-                    title: product.title,
-                    description: product.description,
-                    media: product.media,
-                    quantity: product.quantity,
-                    price: product.price
-                  })
-                }}
+                onClick={() => console.log("add to cart")}
               >
                 <IoBagAddOutline className='h-5 w-5 text-green-0x group-hover/btn:text-white' />
               </Button>
