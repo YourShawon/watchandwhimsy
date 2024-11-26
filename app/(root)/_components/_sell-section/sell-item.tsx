@@ -4,6 +4,7 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 const SellItem = ({item, index}: {item: SellProps, index: number}) => {
     return (
         <div className={`px-3 relative ${index == 2 && "md:hidden"} lg:inline-block`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={item.backgroundImage} alt={item.title} />
             <div className='py-5 px-[30px] absolute top-1/2 z-10 -translate-y-1/2 group/box'>
                 <span className='text-gray-2x text-sm'>{item.title}</span>

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
@@ -14,20 +14,29 @@ import RatingStar from '@/components/shared/rating-star'
 import ProductImgShowcase from './_components/product-img-showcase'
 import { AllProducts } from '@/constants/products'
 
-
 const applyDiscount = (prevPrice: number, discount: number): number => {
   const percentageOfPrice = 100 - discount
   const priceAfterDiscount = (prevPrice * percentageOfPrice) / 100
   return priceAfterDiscount
 }
 
-const ProductDetails = ({ params }) => {
-  const productId = params.productId;
-  const product = AllProducts.filter(product => product.productId === productId)[0];
+const ProductDetails = ({
+  params
+}: {
+  params: {
+    productId: string
+  }
+}) => {
+  const productId = params.productId
+  const product = AllProducts.filter(
+    product => product.productId === productId
+  )[0]
   console.log(product)
 
-  const priceAfterDiscount = applyDiscount(product.originalPrice, product.discount)
-
+  const priceAfterDiscount = applyDiscount(
+    product.originalPrice,
+    product.discount
+  )
 
   return (
     <div className='relative font-lato'>
@@ -40,7 +49,7 @@ const ProductDetails = ({ params }) => {
           <div className='flex flex-col lg:w-3/4 lg:pr-3'>
             <div className='flex flex-col md:flex-row md:flex-wrap'>
               <div className='md:w-1/2'>
-                <ProductImgShowcase images={product.media}/>
+                <ProductImgShowcase images={product.media} />
 
                 <div className='mt-6 flex items-center gap-2'>
                   <p>Share this:</p>
@@ -61,7 +70,7 @@ const ProductDetails = ({ params }) => {
                   </div>
 
                   <div className='flex items-center gap-2'>
-                    <RatingStar value={product.rating}/>
+                    <RatingStar value={product.rating} />
                     <span className='text-gray-3x'>
                       ({product.reviews.length} reviews)
                     </span>
@@ -158,8 +167,6 @@ const ProductDetails = ({ params }) => {
           </div>
         </div>
       </div>
-
-      
     </div>
   )
 }
