@@ -4,9 +4,8 @@ import ProductSkeleton from '@/components/shared/product/skeleton'
 import { AllProducts } from '@/constants/products'
 
 function Products() {
-  const products = AllProducts;
-  const [error, loading] = [false, false];
-
+  const products = AllProducts
+  const [error, loading] = [false, false]
 
   if (error || loading || products.length === 0) {
     return (
