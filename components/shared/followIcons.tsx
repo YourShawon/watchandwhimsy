@@ -12,16 +12,16 @@ const FollowIcons: React.FC = () => {
         Follow Us
       </h5>
       <div className='mt-3 flex gap-3'>
-        <Link href={'javascript:void(0)'}>
+        <Link href={'/'}>
           <Facebook />
         </Link>
-        <Link href={'javascript:void(0)'}>
+        <Link href={'/'}>
           <Twitter />
         </Link>
-        <Link href={'javascript:void(0)'}>
+        <Link href={'/'}>
           <Instagram />
         </Link>
-        <Link href={'javascript:void(0)'}>
+        <Link href={'/'}>
           <Youtube />
         </Link>
       </div>

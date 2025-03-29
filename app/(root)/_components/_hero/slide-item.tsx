@@ -27,6 +27,7 @@ const SlideItem: FC<SliderItemProps> = ({item}) => {
             </button>
           </div>
           <div className='hidden sm:block sm:w-1/2'>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={item.image}
               alt='Slider image'

@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image"
+
 // Interface for location
 export interface Location {
   name: string
@@ -26,4 +28,10 @@ export interface Product {
   price: number
   quantity: number
   media: Media[]
+}
+
+// short-cart item
+
+export interface ShortCartProps {
+  image: StaticImageData, alt: string, name: string, price: number, quantity: number
 }

@@ -50,6 +50,7 @@ export const useFetchProducts = () => {
 
   useEffect(() => {
     fetchProducts()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Now return setProducts along with other state variables

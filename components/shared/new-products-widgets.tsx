@@ -1,12 +1,15 @@
 import React from 'react'
 import SidebarWidgetFrame from './sidebar-widget-frame'
-import ProductCard from './product-card'
+import HorizontalProductCard from './products/horizontal-product-card'
+
 
 const NewProductWidget = () => {
   return (
     <>
       <SidebarWidgetFrame title='New Products'>
-        new product
+        <div className='flex flex-wrap'>
+          <HorizontalProductCard />
+        </div>
       </SidebarWidgetFrame>
     </>
   )

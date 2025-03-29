@@ -16,7 +16,7 @@ const FillByPriceWidget = () => {
         <FilterCheckbox title='Color'/>
 
         <Button variant="bgGreen" className='flex items-center space-x-2'>
-          <Filter className='text-whtie w-6 h-6'/>
+          <Filter className='text-white w-5 h-5 mr-2'/>
           Filter
         </Button>
       </SidebarWidgetFrame>

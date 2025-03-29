@@ -6,7 +6,7 @@ const SidebarWidgetFrame = ({ children, title }: {
 }) => {
   return (
     <div className='mb-8 p-8 relative border border-white-5x'>
-      <h5 className='relative border-b border-green-1x pb-3 text-base after:contents-[""] after:w-[50px] after:h-[2px] after:absolute after:bottom-0 after:left-0 after:bg-green mb-6'>{title}</h5>
+      <h5 className='relative border-b border-green-1x pb-3 text-base after:contents-[""] after:w-[50px] after:h-[2px] after:absolute after:bottom-0 after:left-0 after:bg-green-0x mb-6'>{title}</h5>
 
       {children}
       
