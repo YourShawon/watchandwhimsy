@@ -1,16 +1,16 @@
 class Storage {
-  set(key, data) {
+  set(key: string, data: unknown) {
     // Save data to sessionStorage
     sessionStorage.setItem(key, JSON.stringify(data))
   }
 
-  get(key) {
+  get<T = unknown>(key: string): T | null {
     // Get saved data from sessionStorage
     const data = sessionStorage.getItem(key)
-    return JSON.parse(data)
+    return data ? (JSON.parse(data) as T) : null
   }
 
-  remove(key) {
+  remove(key: string) {
     sessionStorage.removeItem(key)
   }
 }

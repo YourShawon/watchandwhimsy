@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -21,7 +21,6 @@ import RatingStar from '../rating-star'
 
 function ProductCard({ product }: { product: Product }) {
   const [isHovered, setIsHovered] = useState(false)
-
 
   const tagStyles: tagStyles = {
     hot: 'bg-yellow-200 sm:hover:bg-yellow-300',
@@ -83,7 +82,7 @@ function ProductCard({ product }: { product: Product }) {
                   <Button
                     size={'icon'}
                     className='group/btn flex h-8 w-8 items-center justify-center rounded-full bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x lg:h-9 lg:w-9'
-                    onClick={() => console.log("Add to Wishlist")}
+                    onClick={() => console.log('Add to Wishlist')}
                   >
                     <BiHeart className='h-4 w-4 text-green-0x group-hover/btn:text-white lg:h-5 lg:w-5' />
                   </Button>
@@ -135,7 +134,7 @@ function ProductCard({ product }: { product: Product }) {
         </Link>
 
         <div className='flex items-center justify-start gap-2'>
-          <RatingStar value={(product.rating / 100) * 5}/>
+          <RatingStar value={(product.rating / 100) * 5} />
           <small>{`${product.rating}%`}</small>
         </div>
 
@@ -158,7 +157,7 @@ function ProductCard({ product }: { product: Product }) {
               <Button
                 size={'icon'}
                 className='group/btn flex h-9 w-9 items-center justify-center rounded-full border border-green-1x bg-green-2x transition-all duration-300 hover:-translate-y-1 hover:bg-green-0x'
-                onClick={() => console.log("add to cart")}
+                onClick={() => console.log('add to cart')}
               >
                 <IoBagAddOutline className='h-5 w-5 text-green-0x group-hover/btn:text-white' />
               </Button>

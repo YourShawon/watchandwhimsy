@@ -2,7 +2,7 @@
 
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
-import { ArrowUp, Castle, CreditCard, RefreshCw } from 'lucide-react'
+import { Castle, CreditCard, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import CategoryWidget from '@/components/shared/category-widget'
 import NewProductWidget from '@/components/shared/new-products-widgets'
@@ -21,7 +21,11 @@ const applyDiscount = (prevPrice: number, discount: number): number => {
   return priceAfterDiscount
 }
 
-const ProductDetails = ({ params }) => {
+interface ProductDetailsProps {
+  params: { productId: string }
+}
+
+const ProductDetails = ({ params }: ProductDetailsProps) => {
   const productId = params.productId;
   const product = AllProducts.filter(product => product.productId === productId)[0];
   console.log(product)
